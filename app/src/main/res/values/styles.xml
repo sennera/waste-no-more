@@ -1,0 +1,15 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat">
+
+    </style>
+
+    <!--<style name="PageTemplate" parent="Theme.AppCompat">-->
+        <!--<item name="android:layout_width">fill_parent</item>-->
+        <!--<item name="android:layout_height">wrap_content</item>-->
+        <!--<item name="android:background">#110000</item>-->
+        <!--<item name="android:typeface">monospace</item>-->
+    <!--</style>-->
+
+</resources>

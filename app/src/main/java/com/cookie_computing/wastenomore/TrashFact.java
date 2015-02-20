@@ -9,33 +9,29 @@ import android.view.View;
 import android.widget.TextView;
 
 
-public class TrashResults extends ActionBarActivity {
+public class TrashFact extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trash_results);
+        setContentView(R.layout.activity_trash_fact);
 
         // Get the message from the intent
         Intent intent = getIntent();
-        String totalWeight = intent.getStringExtra(TrashCalc.EXTRA_MESSAGE);
 
-        String message = "You produced about " + totalWeight + " pounds of trash this week. See if you can use less next week!";
-
+        String message = "The average person generates over 4 pounds of trash every day and " +
+                "about 1.5 tons of solid waste per year.";
         // Create the text view
-        final TextView textView = (TextView) findViewById(R.id.trashResults);
-        textView.setTextSize(30);
+        final TextView textView = (TextView) findViewById(R.id.trashFact);
         textView.setText(message);
 
-        // Set the text view as the activity layout
-        //setContentView(textView);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_trash_results, menu);
+        getMenuInflater().inflate(R.menu.menu_trash_fact, menu);
         return true;
     }
 
@@ -54,9 +50,9 @@ public class TrashResults extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /** Called when the user clicks the Fact button */
-    public void goToFact(View view) {
-        Intent intent = new Intent(this, TrashFact.class);
+    /** Called when the user clicks the Home button */
+    public void goHome(View view) {
+        Intent intent = new Intent(this, Home.class);
         startActivity(intent);
     }
 }

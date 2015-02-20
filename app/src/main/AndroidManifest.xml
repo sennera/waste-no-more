@@ -24,7 +24,10 @@
             android:name=".TrashResults"
             android:label="@string/title_activity_trash_results" >
         </activity>
-
+        <activity
+            android:name=".TrashFact"
+            android:label="@string/title_activity_trash_fact" >
+        </activity>
     </application>
 
 </manifest>

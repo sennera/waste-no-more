@@ -4,16 +4,20 @@
     <string name="app_name">Waste No More</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello World!</string>
-    <string name="title_activity_trash_calc">Calculate Weekly Trash Usage</string>
-    <string name="title_activity_trash_results">Trash Results</string>
     <string name="calculate_trash">Calculate Trash Usage</string>
     <string name="button_calculate">Calculate</string>
     <string name="small_bags">small bags (8 gal)</string>
     <string name="med_bags">medium bags (13 gal)</string>
     <string name="large_bags">large bags (30 gal)</string>
+    <string name="trash_quote">Trash doesn\'t just disappear. It goes into landfills.</string>
+    <string name="back_home">Back Home</string>
+
 
     <color name="light_green">#CCFF99</color>
 
+    <string name="title_activity_trash_results">Trash Results</string>
+    <string name="title_activity_trash_calc">Calculate Weekly Trash Usage</string>
     <string name="title_activity_home">Home</string>
+    <string name="title_activity_trash_fact">Trash Facts</string>
 
 </resources>

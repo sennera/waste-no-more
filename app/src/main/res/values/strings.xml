@@ -11,7 +11,13 @@
     <string name="large_bags">large bags (30 gal)</string>
     <string name="trash_quote">Trash doesn\'t just disappear. It goes into landfills.</string>
     <string name="back_home">Back Home</string>
-
+    <string name="trash_fact_1_source">Environmental Protection Agency. "Municipal Solid Waste."
+        EPA. Accessed March 28, 2014.</string>
+    <string name="trash_fact_2">Americans make more than 200 million tons of garbage each year,
+        enough to fill Busch Stadium from top to bottom twice a day.</string>
+    <string name="trash_fact_2_source">Environmental Protection Agency. "10 FAST FACTS ON RECYCLING."
+        EPA. http://www.epa.gov/reg3wcmd/solidwasterecyclingfacts.htm. Accessed July 13, 2014.</string>
+    <string name="next_fact">Next Fact</string>
 
     <color name="light_green">#CCFF99</color>
 
@@ -19,5 +25,6 @@
     <string name="title_activity_trash_calc">Calculate Weekly Trash Usage</string>
     <string name="title_activity_home">Home</string>
     <string name="title_activity_trash_fact">Trash Facts</string>
+    <string name="title_activity_trash_fact2">Trash Fact</string>
 
 </resources>

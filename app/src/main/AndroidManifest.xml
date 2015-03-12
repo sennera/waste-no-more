@@ -32,6 +32,10 @@
             android:name=".TrashFact2"
             android:label="@string/title_activity_trash_fact2" >
         </activity>
+        <activity
+            android:name=".TrackTrash"
+            android:label="@string/title_activity_track_trash" >
+        </activity>
     </application>
 
 </manifest>

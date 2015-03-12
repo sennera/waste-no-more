@@ -45,4 +45,10 @@ public class Home extends ActionBarActivity {
         startActivity(intent);
     }
 
+    /** Called when the user clicks the Track Trash Usage button */
+    public void goToTrackTrash(View view) {
+        Intent intent = new Intent(this, TrackTrash.class);
+        startActivity(intent);
+    }
+
     }

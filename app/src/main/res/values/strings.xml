@@ -4,11 +4,12 @@
     <string name="app_name">Waste No More</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello World!</string>
-    <string name="calculate_trash">Check In Trash Usage</string>
+    <string name="calculate_trash">Trash Check In</string>
     <string name="button_calculate">Check In</string>
     <string name="small_bags">small bags (8 gal)</string>
     <string name="med_bags">medium bags (13 gal)</string>
     <string name="large_bags">large bags (30 gal)</string>
+    <string name="results_small_text">It\'ll be added to your total for this week. Look at your past usage to see if you\'re improving!</string>
     <string name="trash_quote">Trash doesn\'t just disappear. It goes into landfills.</string>
     <string name="back_home">Back Home</string>
     <string name="trash_fact_1_source">Environmental Protection Agency. "Municipal Solid Waste."
@@ -21,10 +22,11 @@
 
     <color name="light_green">#CCFF99</color>
 
-    <string name="title_activity_trash_results">Trash Results</string>
-    <string name="title_activity_trash_calc">Trash Usage Check-In</string>
+    <string name="title_activity_trash_results">Trash Total</string>
+    <string name="title_activity_trash_calc">Trash Check-In</string>
     <string name="title_activity_home">Home</string>
     <string name="title_activity_trash_fact">Trash Facts</string>
     <string name="title_activity_trash_fact2">Trash Fact</string>
+    <string name="title_activity_track_trash">Track Past Usage</string>
 
 </resources>

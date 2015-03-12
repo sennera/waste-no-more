@@ -35,7 +35,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
-    android:textSize="30dp"
+    android:textSize="25dp"
     android:textAppearance="?android:attr/textAppearanceLarge"
     android:id="@+id/trashFact"
     android:layout_marginTop="46dp"

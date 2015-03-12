@@ -42,6 +42,12 @@ public class CheckInDbHelper extends SQLiteOpenHelper {
             "DROP TABLE IF EXISTS " + UsageTypeContract.UsageTypes.TABLE_NAME;
 
 
+    //Indexes for the Usage types
+    public static final int TRASH_ID = 1;
+    public static final int WATER_ID = 2;
+    public static final int GAS_ID = 3;
+
+
     public CheckInDbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -71,18 +77,11 @@ public class CheckInDbHelper extends SQLiteOpenHelper {
         types.add("Gas");
 
         // This will be the primary key
-        //int i = 0;
         for (String type : types) {
-//            String insert = "INSERT INTO " + UsageTypes.TABLE_NAME +
-//                    " (" + UsageTypes._ID + ", " + UsageTypes.COLUMN_NAME_USAGE_TYPE +
-//                    ") VALUES ('" + i + "','" + type + "') ";
             String insert = "INSERT INTO " + UsageTypeContract.UsageTypes.TABLE_NAME +
                     " (" + UsageTypeContract.UsageTypes.COLUMN_NAME_USAGE_TYPE +
                     ") VALUES ('" + type + "') ";
             db.execSQL(insert);
-            System.out.println("seeded a field in DB");
-
-            //i++;
         }
 
     }

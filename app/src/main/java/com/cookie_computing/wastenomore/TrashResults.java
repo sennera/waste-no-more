@@ -18,9 +18,9 @@ public class TrashResults extends ActionBarActivity {
 
         // Get the message from the intent
         Intent intent = getIntent();
-        String totalWeight = intent.getStringExtra(TrashCalc.EXTRA_MESSAGE);
+        String totalWeight = intent.getStringExtra(TrashCalc.TOTAL_GAL);
 
-        String message = "You produced about " + totalWeight + " pounds of trash this week. See if you can use less next week!";
+        String message = "That adds up to about " + totalWeight + " pounds of trash.";
 
         // Create the text view
         final TextView textView = (TextView) findViewById(R.id.trashResults);

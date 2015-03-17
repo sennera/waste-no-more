@@ -197,14 +197,15 @@ public class TrackTrash extends ActionBarActivity {
         multiRenderer.setXTitle("Week");
         multiRenderer.setYTitle("Weight (lbs)");
         multiRenderer.setZoomButtonsVisible(true);
-        double yMax = getMax(amounts) + 20;
+        double yMax = getMax(amounts);
+        yMax = yMax + (0.1 * yMax);
         multiRenderer.setYAxisMax(yMax);
         multiRenderer.setYAxisMin(0);
-        int xMax = getMax(weeks) + 1;
-        int xMin = getMax(weeks);
+        double xMax = getMax(weeks) + 0.5;
+        double xMin = getMin(weeks) - 0.5;
         multiRenderer.setXAxisMax(xMax);
         multiRenderer.setXAxisMin(xMin);
-        multiRenderer.setXLabels(xMax - xMin);
+        multiRenderer.setXLabels((int) (xMax - xMin));
         //Increase text size
         multiRenderer.setLabelsTextSize(22);
         multiRenderer.setAxisTitleTextSize(22);
@@ -221,7 +222,7 @@ public class TrackTrash extends ActionBarActivity {
             Display display = getWindowManager().getDefaultDisplay();
             width = display.getWidth();  // deprecated
         }
-        float barWidth = (float) (.8 * width) / weeks.length;
+        float barWidth = (float) (.6 * width) / weeks.length;
         multiRenderer.setBarWidth(barWidth);
 
         multiRenderer.addSeriesRenderer(renderer);

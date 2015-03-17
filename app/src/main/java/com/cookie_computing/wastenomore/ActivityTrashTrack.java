@@ -25,7 +25,7 @@ import org.achartengine.renderer.XYSeriesRenderer;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class TrackTrash extends ActionBarActivity {
+public class ActivityTrashTrack extends ActionBarActivity {
 
     final long DAY_IN_MILLIS = 1000 * 60 * 60 * 24;
     private SQLiteDatabase db;
@@ -142,7 +142,7 @@ public class TrackTrash extends ActionBarActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
+        // automatically handle clicks on the ActivityHome/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
@@ -227,7 +227,7 @@ public class TrackTrash extends ActionBarActivity {
 
         multiRenderer.addSeriesRenderer(renderer);
 
-        // Getting a reference to RelativeLayout of the TrackTrash Layout
+        // Getting a reference to RelativeLayout of the ActivityTrashTrack Layout
         RelativeLayout chartContainer = (RelativeLayout) findViewById(R.id.track_trash_chart);
 
         final GraphicalView chart = ChartFactory.getBarChartView(getBaseContext(), dataset, multiRenderer, BarChart.Type.DEFAULT);

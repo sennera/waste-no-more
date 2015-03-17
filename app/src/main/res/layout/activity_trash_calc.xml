@@ -8,7 +8,7 @@
     android:paddingBottom="16dp"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    tools:context="com.cookie_computing.wastenomore.TrashCalc">
+    tools:context="com.cookie_computing.wastenomore.ActivityTrashCalc">
 
     <!--<TextView-->
         <!--android:layout_width="fill_parent"-->

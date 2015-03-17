@@ -17,7 +17,7 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 
-public class TrashCalc extends ActionBarActivity {
+public class ActivityTrashCalc extends ActionBarActivity {
 
     private SQLiteDatabase db;
 
@@ -40,7 +40,7 @@ public class TrashCalc extends ActionBarActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
+        // automatically handle clicks on the ActivityHome/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
@@ -54,7 +54,7 @@ public class TrashCalc extends ActionBarActivity {
 
     /** Called when the user clicks the Calculate button */
     public void sendMessage(View view) {
-        Intent intent = new Intent(this, TrashResults.class);
+        Intent intent = new Intent(this, ActivityTrashResults.class);
 
         // Get the edit text views for the bags
         EditText smallEditText = (EditText) findViewById(R.id.small_bags_number);

@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 
 
-public class TrashResults extends ActionBarActivity {
+public class ActivityTrashResults extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +18,7 @@ public class TrashResults extends ActionBarActivity {
 
         // Get the message from the intent
         Intent intent = getIntent();
-        String totalWeight = intent.getStringExtra(TrashCalc.TOTAL_GAL);
+        String totalWeight = intent.getStringExtra(ActivityTrashCalc.TOTAL_GAL);
 
         String message = "That adds up to about " + totalWeight + " pounds of trash.";
 
@@ -42,7 +42,7 @@ public class TrashResults extends ActionBarActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
+        // automatically handle clicks on the ActivityHome/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
@@ -56,7 +56,13 @@ public class TrashResults extends ActionBarActivity {
 
     /** Called when the user clicks the Fact button */
     public void goToFact(View view) {
-        Intent intent = new Intent(this, TrashFact.class);
+        Intent intent = new Intent(this, ActivityTrashFact.class);
+        startActivity(intent);
+    }
+
+    /** Called when the user clicks the Past Usages button */
+    public void goToTrackTrash(View view) {
+        Intent intent = new Intent(this, ActivityTrashTrack.class);
         startActivity(intent);
     }
 }

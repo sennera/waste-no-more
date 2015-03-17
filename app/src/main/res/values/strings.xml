@@ -11,14 +11,45 @@
     <string name="large_bags">large bags (30 gal)</string>
     <string name="results_small_text">It\'ll be added to your total for this week. Look at your past usage to see if you\'re improving!</string>
     <string name="trash_quote">Trash doesn\'t just disappear. It goes into landfills.</string>
-    <string name="back_home">Back Home</string>
+    <string name="back_home">Home</string>
+    <string name="learn_a_fact">Learn a Fact</string>
+    <string name="see_past_usage">See Past Usage</string>
+
+    <string name="trash_fact_1">The average person generates over 4 pounds of trash every day and
+        about 1.5 tons of solid waste per year.</string>
     <string name="trash_fact_1_source">Environmental Protection Agency. "Municipal Solid Waste."
         EPA. Accessed March 28, 2014.</string>
     <string name="trash_fact_2">Americans make more than 200 million tons of garbage each year,
         enough to fill Busch Stadium from top to bottom twice a day.</string>
     <string name="trash_fact_2_source">Environmental Protection Agency. "10 FAST FACTS ON RECYCLING."
         EPA. http://www.epa.gov/reg3wcmd/solidwasterecyclingfacts.htm. Accessed July 13, 2014.</string>
-    <string name="next_fact">Next Fact</string>
+    <string name="trash_fact_3">Over 75\%% of waste is recyclable, but we only recycle about 30\%% of it.</string>
+    <string name="trash_fact_3_source">Green Waste. "A Brighter Shade of Green." Recycling Stats.
+        Accessed March 28, 2014.</string>
+    <string name="trash_fact_4">We generate 21.5 million tons of food waste each year. If we
+        composted that food, it would reduce the same amount of greenhouse gas as taking 2 million
+        cars off the road.</string>
+    <string name="trash_fact_4_source">Green Waste. "A Brighter Shade of Green." Recycling Stats.
+        Accessed March 28, 2014.</string>
+    <string name="trash_fact_5">Recycling one aluminum can saves enough energy to listen to a
+        full album on your iPod. Recycling 100 cans could light your bedroom for two whole weeks.</string>
+    <string name="trash_fact_5_source">SustainAbility. "Recycling Facts." Sustainability-Recycling.
+        Accessed March 28, 2014.</string>
+    <string name="trash_fact_6">Recycling aluminum cans saves 95\%% of the energy used to make
+        aluminum cans from new material.</string>
+    <string name="trash_fact_6_source">Earth911, Inc.. "Facts About Aluminum Recycling."
+        Earth911.com. Accessed March 28, 2014.</string>
+    <string name="trash_fact_7">Americans throw away 25,000,000 plastic bottles every hour.</string>
+    <string name="trash_fact_7_source">Green Waste. "A Brighter Shade of Green." Recycling Stats.
+        Accessed March 28, 2014.</string>
+    <string name="trash_fact_8">If every American recycled just one-tenth of their newspapers,
+        we could save about 25 million trees each year.</string>
+    <string name="trash_fact_8_source">SustainAbility. "Recycling Facts." Sustainability-Recycling.
+        Accessed March 28, 2014.</string>
+
+    <string name="first_fact">Swipe to see another fact  &#xBB;</string>
+    <string name="next_fact">&#xAB;  Swipe to see another fact  &#xBB;</string>
+    <string name="last_fact">&#xAB;  Swipe to see another fact</string>
 
     <color name="light_green">#CCFF99</color>
 

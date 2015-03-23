@@ -30,10 +30,6 @@ public class ActivityTrashFact extends FragmentActivity {
         trashFactPagerAdapter = new FactPagerAdapter(getSupportFragmentManager());
         viewPager = (ViewPager) findViewById(R.id.pager);
         viewPager.setAdapter(trashFactPagerAdapter);
-
-        // Get the intent
-        Intent intent = getIntent();
-
     }
 
 
@@ -47,7 +43,7 @@ public class ActivityTrashFact extends FragmentActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the ActivityHome/Up button, so long
+        // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
@@ -60,10 +56,10 @@ public class ActivityTrashFact extends FragmentActivity {
     }
 
     /**
-     * Called when the user clicks the ActivityHome button
+     * Called when the user clicks the Home button
      */
     public void goHome(View view) {
-        Intent intent = new Intent(this, ActivityHome.class);
+        Intent intent = new Intent(this, ActivityTrashHome.class);
         startActivity(intent);
     }
 

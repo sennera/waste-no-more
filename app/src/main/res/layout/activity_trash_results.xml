@@ -58,7 +58,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/see_past_usage"
+        android:text="@string/past_usage"
         android:id="@+id/usageButton"
         android:onClick="goToTrackTrash"
         android:layout_gravity="center_horizontal"

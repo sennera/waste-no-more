@@ -23,7 +23,9 @@ import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class ActivityTrashTrack extends ActionBarActivity {
 
@@ -202,10 +204,9 @@ public class ActivityTrashTrack extends ActionBarActivity {
         multiRenderer.setYAxisMax(yMax);
         multiRenderer.setYAxisMin(0);
         double xMax = getMax(weeks) + 0.5;
-        double xMin = getMin(weeks) - 0.5;
+        multiRenderer.setXAxisMin(0.5);
         multiRenderer.setXAxisMax(xMax);
-        multiRenderer.setXAxisMin(xMin);
-        multiRenderer.setXLabels((int) (xMax - xMin));
+        multiRenderer.setXLabels((int) (xMax - 0.5));
         //Increase text size
         multiRenderer.setLabelsTextSize(22);
         multiRenderer.setAxisTitleTextSize(22);
@@ -282,6 +283,7 @@ public class ActivityTrashTrack extends ActionBarActivity {
                 CheckInContract.CheckIns.COLUMN_NAME_AMOUNT};
 
         String[] selectionArgs = {"" + CheckInDbHelper.TRASH_ID};
+        String sortBy = CheckInContract.CheckIns.COLUMN_NAME_DATE + " DESC";
 
         Cursor c = db.query(
                 CheckInContract.CheckIns.TABLE_NAME,  // The table to query
@@ -290,8 +292,9 @@ public class ActivityTrashTrack extends ActionBarActivity {
                 selectionArgs,                            // The values for the WHERE clause
                 null,                                     // don't group the rows
                 null,                                     // don't filter by row groups
-                null                                      // don't sort the rows
+                sortBy                                      // don't sort the rows
         );
+
 
         return c;
     }
@@ -300,8 +303,9 @@ public class ActivityTrashTrack extends ActionBarActivity {
         return c.getCount();
     }
 
-    private long getMinDate(Cursor c) {
-        long minDate = new Date(System.currentTimeMillis()).getTime();
+    private Date getMinDate(Cursor c) {
+        // the check in time couldn't have been later than the current time
+        Date minDate = new Date(System.currentTimeMillis());
         c.moveToFirst();
 
         for (int i = 0; i < c.getCount(); i++) {
@@ -310,9 +314,9 @@ public class ActivityTrashTrack extends ActionBarActivity {
             Date date = new Date();
             try {
                 date = parser.parse(dateString);
-                long thisDate = date.getTime();
-                if (thisDate < minDate) {
-                    minDate = thisDate;
+                //long thisDate = date.getTime();
+                if (date.before(minDate)) {
+                    minDate = date;
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -346,14 +350,19 @@ public class ActivityTrashTrack extends ActionBarActivity {
 
     private int[] getWeeks(Cursor c) {
         int[] weeks = new int[c.getCount()];
+        Date minDate = getMinDate(c);
         c.moveToFirst();
 
         for (int i = 0; i < weeks.length; i++) {
             String dateString = c.getString(c.getColumnIndexOrThrow(CheckInContract.CheckIns.COLUMN_NAME_DATE));
+            final SimpleDateFormat parser = new SimpleDateFormat("ww yyyy-MM-dd HH:mm:ss.SSS");
+            Date date = new Date();
             try {
-                int week = Integer.parseInt(dateString.substring(0, 2));
-                weeks[i] = week;
-                System.out.println("weeks i: " + i + " week: " + week);
+                date = parser.parse(dateString);
+                // the week number is one more than the number of weeks since the first check-in
+                int weekNumber = getWeeksBetween(minDate, date) + 1;
+                weeks[i] = weekNumber;
+                System.out.println("weeks i: " + i + " week: " + weekNumber);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -361,6 +370,36 @@ public class ActivityTrashTrack extends ActionBarActivity {
             c.moveToNext();
         }
         return weeks;
+    }
+
+    public static int getWeeksBetween (Date a, Date b) {
+
+        if (b.before(a)) {
+            return -getWeeksBetween(b, a);
+        }
+        a = resetTime(a);
+        b = resetTime(b);
+
+        Calendar cal = new GregorianCalendar();
+        cal.setTime(a);
+        int weeks = 0;
+        while (cal.getTime().before(b)) {
+            // add another week
+            cal.add(Calendar.WEEK_OF_YEAR, 1);
+            weeks++;
+        }
+        return weeks;
+    }
+
+    /* Resets the time but not the date or weeks part of the Date */
+    public static Date resetTime (Date d) {
+        Calendar cal = new GregorianCalendar();
+        cal.setTime(d);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        return cal.getTime();
     }
 
     private int getMax(int[] arr) {
@@ -374,7 +413,7 @@ public class ActivityTrashTrack extends ActionBarActivity {
     }
 
     private double getMax(double[] arr) {
-        double max = Integer.MIN_VALUE;
+        double max = Double.MIN_VALUE;
         for(int i = 0; i < arr.length; i++) {
             if(max < arr[i]) {
                 max = arr[i];

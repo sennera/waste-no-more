@@ -17,16 +17,15 @@ import java.sql.Date;
 import java.text.SimpleDateFormat;
 
 
-public class ActivityTrashCalc extends ActionBarActivity {
-
-    private SQLiteDatabase db;
+public class ActivityTrashCheckIn extends ActionBarActivity {
 
     public final static String TOTAL_GAL = "com.cookie-computing.wastenomore.TOTAL_GAL";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trash_calc);
+        setContentView(R.layout.activity_trash_check_in);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 
@@ -110,8 +109,6 @@ public class ActivityTrashCalc extends ActionBarActivity {
                     CheckInContract.CheckIns.TABLE_NAME,
                     CheckIns.COLUMN_NAME_AMOUNT,
                     values);
-//            System.out.println("Stored to Database: " + totalWeight + " lbs on " + getCurrentDate() +
-//                    " for usage type ID " + CheckInDbHelper.TRASH_ID);
             wdb.close();
 
         } else {
@@ -126,8 +123,6 @@ public class ActivityTrashCalc extends ActionBarActivity {
                     values,
                     CheckIns._ID + "=?", // The columns for the WHERE clause
                     selectionArgs);      // The values for the WHERE clause,
-//            System.out.println("Updated in Database: from " + thisWeeksInfo[1] + " to "
-//                    + newWeight + " lbs for usage type ID " + CheckInDbHelper.TRASH_ID);
             wdb.close();
         }
 
@@ -147,7 +142,7 @@ public class ActivityTrashCalc extends ActionBarActivity {
     private double[] getThisWeeksDate() {
         //Get the data from the DB
         CheckInDbHelper mDbHelper = new CheckInDbHelper(this);
-        db = mDbHelper.getReadableDatabase();
+        SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
         // Define a projection that specifies which columns from the database
         // you will actually use after this query.

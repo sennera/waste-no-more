@@ -1,0 +1,14 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.cookie_computing.wastenomore.ActivityTrashHome">
+
+    <!--Should not appear in top menu bar-->
+    <item android:id="@+id/water"
+        android:title="@string/water"
+        android:icon="@drawable/faucet"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+        android:orderInCategory="100" app:showAsAction="never" />
+</menu>

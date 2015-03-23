@@ -2,6 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.cookie_computing.wastenomore" >
 
+    <uses-sdk android:minSdkVersion="11" />
+
+    <!--<android:uses-permission-->
+        <!--android:name="android.permission.WRITE_EXTERNAL_STORAGE"-->
+        <!--android:maxSdkVersion="18" />-->
+    <!--<android:uses-permission android:name="android.permission.READ_PHONE_STATE" />-->
+    <!--<android:uses-permission-->
+        <!--android:name="android.permission.READ_EXTERNAL_STORAGE"-->
+        <!--android:maxSdkVersion="18" />-->
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/green_chart"
@@ -17,24 +27,63 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ActivityTrashCalc"
-            android:label="@string/title_activity_trash_calc" >
+            android:name=".ActivityTrashHome"
+            android:label="@string/title_activity_trash_home" >
+            android:parentActivityName="com.cookie_computing.wastenomore.ActivityHome" >
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cookie_computing.wastenomore.ActivityHome" />
+        </activity>
+        <activity
+            android:name=".ActivityTrashCheckIn"
+            android:label="@string/title_activity_trash_check_in"
+            android:parentActivityName=".ActivityTrashHome" >
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cookie_computing.wastenomore.ActivityTrashHome" />
         </activity>
         <activity
             android:name=".ActivityTrashResults"
-            android:label="@string/title_activity_trash_results" >
+            android:label="@string/title_activity_trash_results"
+            android:parentActivityName=".ActivityTrashCheckIn" >
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cookie_computing.wastenomore.ActivityTrashCheckIn" />
         </activity>
         <activity
             android:name=".ActivityTrashFact"
-            android:label="@string/title_activity_trash_fact" >
-        </activity>
-        <activity
-            android:name=".TrashFact2"
-            android:label="@string/title_activity_trash_fact2" >
+            android:label="@string/title_activity_trash_fact"
+            android:parentActivityName=".ActivityTrashHome" >
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cookie_computing.wastenomore.ActivityTrashHome" />
         </activity>
         <activity
             android:name=".ActivityTrashTrack"
-            android:label="@string/title_activity_track_trash" >
+            android:label="@string/title_activity_track_trash"
+            android:parentActivityName=".ActivityTrashHome" >
+
+            <!-- Parent activity meta-data to support 4.0 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cookie_computing.wastenomore.ActivityTrashHome" />
+        </activity>
+
+
+        <activity
+            android:name=".ActivityWaterHome"
+            android:label="@string/title_activity_activity_water_home"
+            android:parentActivityName=".ActivityHome" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cookie_computing.wastenomore.ActivityHome" />
         </activity>
     </application>
 

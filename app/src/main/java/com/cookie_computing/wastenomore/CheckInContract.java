@@ -3,6 +3,7 @@ package com.cookie_computing.wastenomore;
 import android.provider.BaseColumns;
 
 /**
+ * This lays out the column names and table name for the Check Ins table.
  * Created by April on 2/28/15.
  */
 public final class CheckInContract {

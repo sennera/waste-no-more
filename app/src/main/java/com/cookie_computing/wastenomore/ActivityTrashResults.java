@@ -18,7 +18,7 @@ public class ActivityTrashResults extends ActionBarActivity {
 
         // Get the message from the intent
         Intent intent = getIntent();
-        String totalWeight = intent.getStringExtra(ActivityTrashCalc.TOTAL_GAL);
+        String totalWeight = intent.getStringExtra(ActivityTrashCheckIn.TOTAL_GAL);
 
         String message = "That adds up to about " + totalWeight + " pounds of trash.";
 

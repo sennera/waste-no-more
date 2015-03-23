@@ -14,6 +14,7 @@ public class ActivityHome extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+        getSupportActionBar().hide();
     }
 
 
@@ -39,16 +40,20 @@ public class ActivityHome extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /** Called when the user clicks the Calculate Trash Usage button */
-    public void goToTrashCalc(View view) {
-        Intent intent = new Intent(this, ActivityTrashCalc.class);
+    /** Called when the user clicks the Trash button */
+    public void goToTrash(View view) {
+        openTrashHome();
+    }
+
+    private void openTrashHome() {
+        Intent intent = new Intent(this, ActivityTrashHome.class);
         startActivity(intent);
     }
 
-    /** Called when the user clicks the Track Trash Usage button */
-    public void goToTrackTrash(View view) {
-        Intent intent = new Intent(this, ActivityTrashTrack.class);
+    /** Called when the user clicks the Water button */
+    public void goToWater(View view) {
+        Intent intent = new Intent(this, ActivityWaterHome.class);
         startActivity(intent);
     }
 
-    }
+}

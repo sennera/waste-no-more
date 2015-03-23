@@ -3,9 +3,16 @@
 
     <string name="app_name">Waste No More</string>
     <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello World!</string>
-    <string name="calculate_trash">Trash Check In</string>
-    <string name="button_calculate">Check In</string>
+
+    <string name="trash">Trash</string>
+    <string name="water">Water</string>
+
+    <string name="check_in">Check In</string>
+    <string name="past_usage">Past Usage</string>
+    <string name="facts">Facts</string>
+
+    <string name="how_many_bags_of_trash">How many bags of trash have you gone through?</string>
+    <string name="since_last_check_in">(This week or since your last check-in)</string>
     <string name="small_bags">small bags (8 gal)</string>
     <string name="med_bags">medium bags (13 gal)</string>
     <string name="large_bags">large bags (30 gal)</string>
@@ -13,7 +20,6 @@
     <string name="trash_quote">Trash doesn\'t just disappear. It goes into landfills.</string>
     <string name="back_home">Home</string>
     <string name="learn_a_fact">Learn a Fact</string>
-    <string name="see_past_usage">See Past Usage</string>
 
     <string name="trash_fact_1">The average person generates over 4 pounds of trash every day and
         about 1.5 tons of solid waste per year.</string>
@@ -47,17 +53,20 @@
     <string name="trash_fact_8_source">SustainAbility. "Recycling Facts." Sustainability-Recycling.
         Accessed March 28, 2014.</string>
 
-    <string name="first_fact">Swipe to see another fact  &#xBB;</string>
+    <string name="first_fact">&#xAB;  Swipe to see another fact</string>
     <string name="next_fact">&#xAB;  Swipe to see another fact  &#xBB;</string>
-    <string name="last_fact">&#xAB;  Swipe to see another fact</string>
+    <string name="last_fact">Swipe to see another fact  &#xAB;</string>
 
     <color name="light_green">#CCFF99</color>
 
     <string name="title_activity_trash_results">Trash Total</string>
-    <string name="title_activity_trash_calc">Trash Check-In</string>
+    <string name="title_activity_trash_check_in">Trash Check In</string>
     <string name="title_activity_home">Home</string>
     <string name="title_activity_trash_fact">Trash Facts</string>
-    <string name="title_activity_trash_fact2">Trash Fact</string>
-    <string name="title_activity_track_trash">Track Past Usage</string>
+    <string name="title_activity_track_trash">Past Usage</string>
+    <string name="title_activity_trash_home">Waste No More Trash</string>
+    <string name="title_activity_activity_water_home">Waste No More Water</string>
+
+    <string name="hello_world">Hello world!</string>
 
 </resources>

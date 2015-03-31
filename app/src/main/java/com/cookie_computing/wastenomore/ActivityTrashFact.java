@@ -106,39 +106,30 @@ public class ActivityTrashFact extends FragmentActivity {
             int page = args.getInt(ARG_PAGE_NUM);
             String fact = "";
             String source = "";
-            String nextDirection = "";
             if(page == 1) {
                 fact = getResources().getString(R.string.trash_fact_1);
                 source = getResources().getString(R.string.trash_fact_1_source);
-                nextDirection = getResources().getString(R.string.first_fact);
             } else if(page == 2) {
                 fact = getResources().getString(R.string.trash_fact_2);
                 source = getResources().getString(R.string.trash_fact_2_source);
-                nextDirection = getResources().getString(R.string.next_fact);
             } else if(page == 3) {
                 fact = getResources().getString(R.string.trash_fact_3);
                 source = getResources().getString(R.string.trash_fact_3_source);
-                nextDirection = getResources().getString(R.string.next_fact);
             } else if(page == 4) {
                 fact = getResources().getString(R.string.trash_fact_4);
                 source = getResources().getString(R.string.trash_fact_4_source);
-                nextDirection = getResources().getString(R.string.next_fact);
             } else if(page == 5) {
                 fact = getResources().getString(R.string.trash_fact_5);
                 source = getResources().getString(R.string.trash_fact_5_source);
-                nextDirection = getResources().getString(R.string.next_fact);
             } else if(page == 6) {
                 fact = getResources().getString(R.string.trash_fact_6);
                 source = getResources().getString(R.string.trash_fact_6_source);
-                nextDirection = getResources().getString(R.string.next_fact);
             } else if(page == 7) {
                 fact = getResources().getString(R.string.trash_fact_7);
                 source = getResources().getString(R.string.trash_fact_7_source);
-                nextDirection = getResources().getString(R.string.next_fact);
             } else {
                 fact = getResources().getString(R.string.trash_fact_8);
                 source = getResources().getString(R.string.trash_fact_8_source);
-                nextDirection = getResources().getString(R.string.last_fact);
             }
             // Get the text view and set text for fact and source
             final TextView textView = (TextView) rootView.findViewById(R.id.trashFact);
@@ -147,8 +138,9 @@ public class ActivityTrashFact extends FragmentActivity {
             final TextView textSourceView = (TextView) rootView.findViewById(R.id.trashFactSource);
             textSourceView.setText(source);
 
-            final TextView textNextFact = (TextView) rootView.findViewById(R.id.swipeToNext);
-            textNextFact.setText(nextDirection);
+            final TextView textPageNum = (TextView) rootView.findViewById(R.id.page);
+            String pageString = "Page " + page + " of 8";
+            textPageNum.setText(pageString);
 
             return rootView;
         }

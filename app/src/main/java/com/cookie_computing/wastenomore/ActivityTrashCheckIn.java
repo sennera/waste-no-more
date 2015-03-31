@@ -97,7 +97,7 @@ public class ActivityTrashCheckIn extends ActionBarActivity {
         ContentValues values = new ContentValues();
         values.put(CheckIns.COLUMN_NAME_USAGE_TYPE_ID, CheckInDbHelper.TRASH_ID);
 
-        //See if there have been any check-ins already today
+        //See if there have been any check-ins already this week
         double[] thisWeeksInfo = getThisWeeksDate();
         // If the ID is -1 then there was no check-in found for this week
         if (thisWeeksInfo[0] == -1) {

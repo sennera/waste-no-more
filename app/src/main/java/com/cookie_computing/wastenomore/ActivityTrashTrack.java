@@ -173,6 +173,7 @@ public class ActivityTrashTrack extends ActionBarActivity {
         int[] weeks = getWeeks(data);
         double[] amounts = getAmounts(data);
 
+
         // Put data in the series
         XYSeries series = new XYSeries("Trash Amount");
         for(int i = 0; i < count; i++){
@@ -348,12 +349,21 @@ public class ActivityTrashTrack extends ActionBarActivity {
         return maxDate;
     }
 
+    /**
+     * Gets the week numbers for the chart. The week number is the number of weeks since the user
+     * started tracking their data in this usage type.
+     *
+     * @param c The cursor to read from
+     * @return The array of week numbers
+     */
     private int[] getWeeks(Cursor c) {
         int[] weeks = new int[c.getCount()];
         Date minDate = getMinDate(c);
         c.moveToFirst();
 
-        for (int i = 0; i < weeks.length; i++) {
+        // The weeks must be read backwards from the cursor so that the week numbers are in order
+        // (somehow they're put into the DB backwards).
+        for (int i = weeks.length - 1; i >= 0; i--) {
             String dateString = c.getString(c.getColumnIndexOrThrow(CheckInContract.CheckIns.COLUMN_NAME_DATE));
             final SimpleDateFormat parser = new SimpleDateFormat("ww yyyy-MM-dd HH:mm:ss.SSS");
             Date date = new Date();
@@ -446,7 +456,9 @@ public class ActivityTrashTrack extends ActionBarActivity {
         double[] amounts = new double[c.getCount()];
         c.moveToFirst();
 
-        for (int i = 0; i < amounts.length; i++) {
+        // The weeks must be read backwards from the cursor so that the week numbers are in order
+        // (somehow they're put into the DB backwards).
+        for (int i = amounts.length - 1; i >= 0; i--) {
             double amount = c.getDouble(c.getColumnIndexOrThrow(CheckInContract.CheckIns.COLUMN_NAME_AMOUNT));
             amounts[i] = amount;
             System.out.println("amounts i: " + i + " amounts: " + amount);

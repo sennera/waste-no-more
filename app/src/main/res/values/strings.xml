@@ -6,6 +6,7 @@
 
     <string name="trash">Trash</string>
     <string name="water">Water</string>
+    <string name="why">Why Waste Less?</string>
 
     <string name="check_in">Check In</string>
     <string name="past_usage">Past Usage</string>
@@ -53,9 +54,7 @@
     <string name="trash_fact_8_source">SustainAbility. "Recycling Facts." Sustainability-Recycling.
         Accessed March 28, 2014.</string>
 
-    <string name="first_fact">&#xAB;  Swipe to see another fact</string>
-    <string name="next_fact">&#xAB;  Swipe to see another fact  &#xBB;</string>
-    <string name="last_fact">Swipe to see another fact  &#xAB;</string>
+    <string name="swipe_fact">Swipe to see another fact</string>
 
     <color name="light_green">#CCFF99</color>
 

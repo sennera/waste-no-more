@@ -1,0 +1,284 @@
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        tools:context="com.cookie_computing.wastenomore.ActivityWaterCheckIn">
+
+
+        <!--BATHS/SHOWERS WATER USAGE-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:layout_margin="10sp"
+            android:orientation="vertical"
+            android:background="@color/dark_green"
+            android:gravity="center_horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10sp"
+                android:paddingRight="10sp"
+                android:paddingTop="10sp"
+                android:paddingBottom="10sp"
+                android:background="@color/dark_green_shade"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/cap_showers"
+                    android:textColor="@color/white"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:gravity="center_horizontal"
+                android:text="@string/how_many_shower_min"
+                android:textColor="@color/light_green"
+                android:id="@+id/how_long_shower" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:gravity="center"
+                android:text="@string/may_be_more"
+                android:textColor="@color/light_green"
+                android:id="@+id/mayBeMoreExplanation" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:id="@+id/linear2">
+
+                <EditText
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:ems="10"
+                    android:hint="@string/zero"
+                    android:id="@+id/shower_min_number"
+                    android:gravity="center_horizontal"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/minutes"
+                    android:id="@+id/shower_min_words"
+                    android:layout_gravity="right" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:gravity="center"
+                android:text="@string/how_many_baths"
+                android:textColor="@color/light_green"
+                android:id="@+id/how_many_baths" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:id="@+id/linear3">
+
+                <EditText
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:ems="10"
+                    android:hint="@string/zero"
+                    android:id="@+id/baths_number"
+                    android:gravity="center_horizontal" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/baths"
+                    android:id="@+id/baths_num_words"
+                    android:layout_gravity="right" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <!--LAUNDRY WATER USAGE-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:layout_margin="10sp"
+            android:orientation="vertical"
+            android:background="@color/dark_green"
+            android:gravity="center_horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10sp"
+                android:paddingRight="10sp"
+                android:paddingTop="10sp"
+                android:paddingBottom="10sp"
+                android:background="@color/dark_green_shade"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/cap_laundry"
+                    android:textColor="@color/white"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:gravity="center_horizontal"
+                android:text="@string/how_many_laundry"
+                android:textColor="@color/light_green"
+                android:id="@+id/how_many_laundry" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:id="@+id/linear4">
+
+                <EditText
+                    android:layout_width="30dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:ems="10"
+                    android:hint="@string/zero"
+                    android:id="@+id/laundry_number"
+                    android:gravity="center_horizontal"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:text="@string/loads"
+                    android:id="@+id/loads_number"
+                    android:layout_gravity="right" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <!--RESTROOM WATER USAGE-->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:layout_margin="10sp"
+            android:orientation="vertical"
+            android:background="@color/dark_green"
+            android:gravity="center_horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="10sp"
+                android:paddingRight="10sp"
+                android:paddingTop="10sp"
+                android:paddingBottom="10sp"
+                android:background="@color/dark_green_shade"
+                android:orientation="vertical"
+                android:gravity="center_horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceSmall"
+                    android:text="@string/cap_restroom"
+                    android:textColor="@color/white"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:gravity="center"
+                android:text="@string/restroom_question"
+                android:textColor="@color/light_green"
+                android:id="@+id/how_long_shower2" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="0dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:gravity="center"
+                android:text="@string/toilet_explanation"
+                android:textColor="@color/light_green"
+                android:id="@+id/restroomExplanation" />
+
+            <ToggleButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textOff="NO"
+                android:textOn="YES"
+                android:id="@+id/toggleButton"
+                android:layout_gravity="center_horizontal" />
+
+        </LinearLayout>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/check_in"
+            android:onClick="sendMessage"
+            android:layout_column="3" />
+
+    </LinearLayout>
+</ScrollView>

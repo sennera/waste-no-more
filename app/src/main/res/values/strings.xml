@@ -17,10 +17,34 @@
     <string name="small_bags">small bags (8 gal)</string>
     <string name="med_bags">medium bags (13 gal)</string>
     <string name="large_bags">large bags (30 gal)</string>
-    <string name="results_small_text">It\'ll be added to your total for this week. Look at your past usage to see if you\'re improving!</string>
+
+    <string name="how_many_shower_min">How many minutes did you spend in the shower today?</string>
+    <string name="may_be_more">We tend to think we shower shorter than we do. Be honest with this amount of time.</string>
+    <string name="how_many_baths">How many baths did you/will you take today?</string>
+    <string name="restroom_question">Do you have a water-conserving toilet?</string>
+    <string name="toilet_explanation">It would be labeled WaterSense.</string>
+    <string name="how_many_laundry">How many loads of laundry did you/will you do today?</string>
+    <string name="minutes">minutes</string>
+    <string name="baths">baths</string>
+    <string name="times">times</string>
+    <string name="loads">loads</string>
+    <string name="zero">0</string>
+
+
+    <string name="week_results_small_text">It\'ll be added to your total for this week. Look at your past usage to see if you\'re improving!</string>
+    <string name="day_results_small_text">It\'ll be added to your total for today. Look at your past usage to see if you\'re improving!</string>
     <string name="trash_quote">Trash doesn\'t just disappear. It goes into landfills.</string>
     <string name="back_home">Home</string>
     <string name="learn_a_fact">Learn a Fact</string>
+
+    <string name="choose_water_type">Choose what to check in for</string>
+    <string name="showers">Showers/Baths</string>
+    <string name="cap_showers">SHOWERS/BATHS</string>
+    <string name="restroom">Restroom</string>
+    <string name="cap_restroom">RESTROOM</string>
+    <string name="laundry">Laundry</string>
+    <string name="cap_laundry">LAUNDRY</string>
+    <string name="dishes">Doing Dishes</string>
 
     <string name="trash_fact_1">The average person generates over 4 pounds of trash every day and
         about 1.5 tons of solid waste per year.</string>
@@ -57,9 +81,13 @@
     <string name="swipe_fact">Swipe to see another fact</string>
 
     <color name="light_green">#CCFF99</color>
+    <color name="dark_green">#003300</color>
+    <color name="dark_green_shade">#325b32</color>
+    <color name="dark_gray">#2a2a2a</color>
+    <color name="white">#FFFFFF</color>
 
-    <string name="title_activity_trash_results">Trash Total</string>
-    <string name="title_activity_trash_check_in">Trash Check In</string>
+    <string name="title_activity_trash_results">Trash Check-In Results</string>
+    <string name="title_activity_trash_check_in">Trash Check-In</string>
     <string name="title_activity_home">Home</string>
     <string name="title_activity_trash_fact">Trash Facts</string>
     <string name="title_activity_track_trash">Past Usage</string>
@@ -67,5 +95,8 @@
     <string name="title_activity_activity_water_home">Waste No More Water</string>
 
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_activity_water_types">Water Check-In</string>
+    <string name="title_activity_activity_water_check_in">Water Check-In</string>
+    <string name="title_activity_activity_water_results">Water Check-In Results</string>
 
 </resources>

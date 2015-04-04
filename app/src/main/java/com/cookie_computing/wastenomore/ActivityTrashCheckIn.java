@@ -51,7 +51,7 @@ public class ActivityTrashCheckIn extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /** Called when the user clicks the Calculate button */
+    /** Called when the user clicks the Check In button */
     public void sendMessage(View view) {
         Intent intent = new Intent(this, ActivityTrashResults.class);
 
@@ -69,17 +69,17 @@ public class ActivityTrashCheckIn extends ActionBarActivity {
         if (smallBagString.equals("")) {
             smallBags = 0;
         } else {
-            smallBags = Integer.parseInt(smallBagString);
+            smallBags = Double.parseDouble(smallBagString);
         }
         if (medBagString.equals("")) {
             medBags = 0;
         } else {
-            medBags = Integer.parseInt(medBagString);
+            medBags = Double.parseDouble(medBagString);
         }
         if (largeBagString.equals("")) {
             largeBags = 0;
         } else {
-            largeBags = Integer.parseInt(largeBagString);
+            largeBags = Double.parseDouble(largeBagString);
         }
 
         // Calculate the number of gallons and weight used for that week to send with the Intent
@@ -166,13 +166,12 @@ public class ActivityTrashCheckIn extends ActionBarActivity {
         try {
             while(!c.isAfterLast()) {
                 String dateString = c.getString(c.getColumnIndexOrThrow(CheckInContract.CheckIns.COLUMN_NAME_DATE));
-                System.out.println(dateString);
-                String week = dateString.substring(0, 2);
-                System.out.println(week);
+                //The format for the date is "ww yyyy-MM-dd HH:mm:ss.SSS" so we'll check if the
+                // first 7 characters match (ww yyyy)
+                String week = dateString.substring(0, 7);
 
                 String thisWeek = getCurrentDate();
-                thisWeek = thisWeek.substring(0, 2);
-                System.out.println(thisWeek);
+                thisWeek = thisWeek.substring(0, 7);
 
                 if (thisWeek.equals(week)) {
                     double[] info = new double[2];

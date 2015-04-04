@@ -94,6 +94,7 @@ public class ActivityTrashFact extends FragmentActivity {
     // Instances of this class are fragments representing a single
     // object in our collection.
     public static class FactObjectFragment extends Fragment {
+
         public static final String ARG_PAGE_NUM = "page number";
 
         @Override

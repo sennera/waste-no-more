@@ -52,10 +52,11 @@
         <EditText
             android:layout_width="30dp"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:ems="10"
-            android:hint="0"
-            android:id="@+id/small_bags_number" />
+            android:hint="@string/zero"
+            android:id="@+id/small_bags_number"
+            android:gravity="center_horizontal" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -77,10 +78,11 @@
         <EditText
             android:layout_width="30dp"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:ems="10"
-            android:hint="0"
-            android:id="@+id/med_bags_number" />
+            android:hint="@string/zero"
+            android:id="@+id/med_bags_number"
+            android:gravity="center_horizontal"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -102,11 +104,12 @@
         <EditText
             android:layout_width="30dp"
             android:layout_height="wrap_content"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:ems="10"
             android:id="@+id/large_bags_number"
-            android:hint="0"
-            android:layout_gravity="left" />
+            android:hint="@string/zero"
+            android:layout_gravity="left"
+            android:gravity="center_horizontal"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -123,8 +126,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/check_in"
-        android:onClick="sendMessage"
-        android:layout_column="3" />
+        android:onClick="sendMessage"/>
 
     <LinearLayout
         android:orientation="horizontal"

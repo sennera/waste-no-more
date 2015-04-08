@@ -70,16 +70,28 @@ public class ActivityTrashCheckIn extends ActionBarActivity {
             smallBags = 0;
         } else {
             smallBags = Double.parseDouble(smallBagString);
+            // Check that they've entered a non-negative number
+            if(smallBags < 0) {
+                smallBags = 0;
+            }
         }
         if (medBagString.equals("")) {
             medBags = 0;
         } else {
             medBags = Double.parseDouble(medBagString);
+            // Check that they've entered a non-negative number
+            if(medBags < 0) {
+                medBags = 0;
+            }
         }
         if (largeBagString.equals("")) {
             largeBags = 0;
         } else {
             largeBags = Double.parseDouble(largeBagString);
+            // Check that they've entered a non-negative number
+            if(largeBags < 0) {
+                largeBags = 0;
+            }
         }
 
         // Calculate the number of gallons and weight used for that week to send with the Intent

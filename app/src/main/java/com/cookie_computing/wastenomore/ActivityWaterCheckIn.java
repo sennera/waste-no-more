@@ -120,6 +120,10 @@ public class ActivityWaterCheckIn extends ActionBarActivity {
             showerMin = 0;
         } else {
             showerMin = Double.parseDouble(showersString);
+            // Check that they've entered a non-negative number
+            if(showerMin < 0) {
+                showerMin = 0;
+            }
         }
         // Calculate the number of gallons for showers
         // Conversions from http://www.epa.gov/WaterSense/pubs/indoor.html
@@ -137,6 +141,10 @@ public class ActivityWaterCheckIn extends ActionBarActivity {
             baths = 0;
         } else {
             baths = Double.parseDouble(bathsString);
+            // Check that they've entered a non-negative number
+            if(baths < 0) {
+                baths = 0;
+            }
         }
         // Calculate the number of gallons for baths
         // Conversions from http://www.epa.gov/WaterSense/pubs/indoor.html
@@ -153,6 +161,10 @@ public class ActivityWaterCheckIn extends ActionBarActivity {
             loads = 0;
         } else {
             loads = Double.parseDouble(laundryString);
+            // Check that they've entered a non-negative number
+            if(loads < 0) {
+                loads = 0;
+            }
         }
         // 25 gal/load: http://water.usgs.gov/edu/qa-home-percapita.html
         return loads * 25;

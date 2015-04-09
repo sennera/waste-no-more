@@ -91,20 +91,12 @@
                 android:value="com.cookie_computing.wastenomore.ActivityHome" />
         </activity>
         <activity
-            android:name=".ActivityWaterTypes"
-            android:label="@string/title_activity_activity_water_types"
+            android:name=".ActivityWaterCheckIn"
+            android:label="@string/title_activity_activity_water_check_in"
             android:parentActivityName=".ActivityWaterHome" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.cookie_computing.wastenomore.ActivityWaterHome" />
-        </activity>
-        <activity
-            android:name=".ActivityWaterCheckIn"
-            android:label="@string/title_activity_activity_water_check_in"
-            android:parentActivityName=".ActivityWaterTypes" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.cookie_computing.wastenomore.ActivityWaterTypes" />
         </activity>
         <activity
             android:name=".ActivityWaterResults"

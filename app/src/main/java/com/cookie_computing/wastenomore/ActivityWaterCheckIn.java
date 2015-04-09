@@ -54,14 +54,15 @@ public class ActivityWaterCheckIn extends ActionBarActivity {
     public void sendMessage(View view) {
         Intent intent = new Intent(this, ActivityWaterResults.class);
 
-        double showerGals = getShowerGals();
-        double bathGals = getBathGals();
+        double showerBathGals = getShowerGals() + getBathGals();
         double laundryGals = getLaundryGals();
+        double dishWashingGals = getHandDishWashingGals() + getDishwasherGals();
+        double personalCare = getFaceWashGals() + getTeethBrushingGals() + getOtherRunningWaterGals();
 
         // Calculate the number of gallons used for that day to send with the Intent
         // Don't add in toilet gallons until we know if there's been a check-in today so it doesn't
         // get added in twice.
-        double totalGallons = showerGals + bathGals + laundryGals;
+        double totalGallons = showerBathGals + laundryGals + dishWashingGals + personalCare;
 
 
         // Send this check-in to the CheckIns DB
@@ -111,63 +112,75 @@ public class ActivityWaterCheckIn extends ActionBarActivity {
 
     // Get the number of gallons that were used from the shower today
     public double getShowerGals() {
-        // Get the number of minutes in the shower from the edit text view
-        EditText showersEditText = (EditText) findViewById(R.id.shower_min_number);
-        String showersString = showersEditText.getText().toString();
-
-        double showerMin;
-        if (showersString.equals("")) {
-            showerMin = 0;
-        } else {
-            showerMin = Double.parseDouble(showersString);
-            // Check that they've entered a non-negative number
-            if(showerMin < 0) {
-                showerMin = 0;
-            }
-        }
-        // Calculate the number of gallons for showers
-        // Conversions from http://www.epa.gov/WaterSense/pubs/indoor.html
+        // 2.5 gal/min: http://www.epa.gov/WaterSense/pubs/indoor.html
+        double showerMin = getNumFromEditText(R.id.shower_min_number);
         return showerMin * 2.5;
     }
 
     // Get the number of gallons that were used from baths today
     public double getBathGals() {
-        // Get the number of minutes in the bath from the edit text view
-        EditText bathsEditText = (EditText) findViewById(R.id.baths_number);
-        String bathsString = bathsEditText.getText().toString();
-
-        double baths;
-        if (bathsString.equals("")) {
-            baths = 0;
-        } else {
-            baths = Double.parseDouble(bathsString);
-            // Check that they've entered a non-negative number
-            if(baths < 0) {
-                baths = 0;
-            }
-        }
-        // Calculate the number of gallons for baths
-        // Conversions from http://www.epa.gov/WaterSense/pubs/indoor.html
+        // 36 gal/bath: http://www.epa.gov/WaterSense/pubs/indoor.html
+        double baths = getNumFromEditText(R.id.baths_number);
         return baths * 36;
     }
 
     // Get the number of gallons that were used from loads of laundry today
     public double getLaundryGals(){
-        //Calculate the gallons used for laundry
-        EditText laundryEditText = (EditText) findViewById(R.id.laundry_number);
-        String laundryString = laundryEditText.getText().toString();
-        double loads;
-        if (laundryString.equals("")) {
-            loads = 0;
-        } else {
-            loads = Double.parseDouble(laundryString);
-            // Check that they've entered a non-negative number
-            if(loads < 0) {
-                loads = 0;
-            }
-        }
         // 25 gal/load: http://water.usgs.gov/edu/qa-home-percapita.html
+        double loads = getNumFromEditText(R.id.laundry_number);
         return loads * 25;
+    }
+
+    // Get the number of gallons that were used from hand dish washing today
+    public double getHandDishWashingGals(){
+        // 3 gal/min: http://water.usgs.gov/edu/qa-home-percapita.html
+        double min = getNumFromEditText(R.id.hand_dish_min);
+        return min * 3;
+    }
+
+    // Get the number of gallons that were used from using the dishwasher today
+    public double getDishwasherGals(){
+        // 20 gal/load: http://water.usgs.gov/edu/qa-home-percapita.html
+        double runs = getNumFromEditText(R.id.dishwasher_number);
+        return runs * 20;
+    }
+
+    // Get the number of gallons that were used from using face-washing today
+    public double getFaceWashGals(){
+        // 2 gal/min: http://www.epa.gov/WaterSense/pubs/indoor.html
+        double min = getNumFromEditText(R.id.face_wash_min);
+        return min * 2;
+    }
+
+    // Get the number of gallons that were used from using teeth-brushing today
+    public double getTeethBrushingGals(){
+        // 2 gal/min: http://www.epa.gov/WaterSense/pubs/indoor.html
+        double min = getNumFromEditText(R.id.teeth_brushing_min);
+        return min * 2;
+    }
+
+    // Get the number of gallons that were used from other ways of using water today
+    public double getOtherRunningWaterGals(){
+        // 2 gal/min: http://www.epa.gov/WaterSense/pubs/indoor.html
+        double min = getNumFromEditText(R.id.other_running_min);
+        return min * 2;
+    }
+
+    // Helper method to get the number from the EditText with the given ID. Always gives positive:
+    // If input is negative, this returns 0.
+    public double getNumFromEditText(int editTextID){
+        EditText editText = (EditText) findViewById(editTextID);
+        String string = editText.getText().toString();
+        if (string.equals("")) {
+            return 0;
+        } else {
+            double num = Double.parseDouble(string);
+            // Check that they've entered a non-negative number
+            if(num < 0) {
+                return 0;
+            }
+            return num;
+        }
     }
 
     // Get the number of gallons that were used from using the restroom today (toilet-flushing and

@@ -64,7 +64,7 @@ public class ActivityWaterResults extends ActionBarActivity {
 
     /** Called when the user clicks the Past Usages button */
     public void goToTrackTrash(View view) {
-//        Intent intent = new Intent(this, ActivityWaterTrack.class);
-//        startActivity(intent);
+        Intent intent = new Intent(this, ActivityWaterTrack.class);
+        startActivity(intent);
     }
 }

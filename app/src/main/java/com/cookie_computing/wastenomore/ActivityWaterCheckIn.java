@@ -19,6 +19,7 @@ import java.text.SimpleDateFormat;
 public class ActivityWaterCheckIn extends ActionBarActivity {
 
     public final static String TOTAL_GAL = "com.cookie-computing.wastenomore.TOTAL_GAL";
+    SQLiteDatabase wdb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +50,13 @@ public class ActivityWaterCheckIn extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (wdb != null && wdb.isOpen()) {
+            wdb.close();
+        }
+    }
 
     /** Called when the user clicks the Check In button */
     public void sendMessage(View view) {
@@ -67,7 +75,7 @@ public class ActivityWaterCheckIn extends ActionBarActivity {
 
         // Send this check-in to the CheckIns DB
         CheckInDbHelper checkInDbHelper = new CheckInDbHelper(this);
-        SQLiteDatabase wdb = checkInDbHelper.getWritableDatabase();
+        wdb = checkInDbHelper.getWritableDatabase();
 
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
@@ -82,26 +90,49 @@ public class ActivityWaterCheckIn extends ActionBarActivity {
             values.put(CheckInContract.CheckIns.COLUMN_NAME_DATE, getCurrentDate());
             values.put(CheckInContract.CheckIns.COLUMN_NAME_AMOUNT, totalGallons);
 
-            // Insert the new row, returning the primary key value of the new row
-            long newRowId = wdb.insert(
-                    CheckInContract.CheckIns.TABLE_NAME,
-                    CheckInContract.CheckIns.COLUMN_NAME_AMOUNT,
-                    values);
-            wdb.close();
-
+            try{
+                // Insert the new row, returning the primary key value of the new row
+                long newRowId = wdb.insert(
+                        CheckInContract.CheckIns.TABLE_NAME,
+                        CheckInContract.CheckIns.COLUMN_NAME_AMOUNT,
+                        values);
+                wdb.close();
+            } catch (Exception e) {
+                System.out.println("An error occurred when trying to insert the entry in the database.");
+                if(wdb.isOpen()) {
+                    wdb.close();
+                }
+                if(checkInDbHelper != null){
+                    checkInDbHelper.close();
+                }
+            }
         } else {
             double newGallons = todaysInfo[1] + totalGallons;
             values.put(CheckInContract.CheckIns.COLUMN_NAME_AMOUNT, newGallons);
+            System.out.println("values " + values);
 
             // we'll say update WHERE _ID = today's ID
             String[] selectionArgs = {"" + todaysInfo[0]};
+            System.out.println("before update. Is open? " + wdb.isOpen());
 
-            long newRowId = wdb.update(
-                    CheckInContract.CheckIns.TABLE_NAME,
-                    values,
-                    CheckInContract.CheckIns._ID + "=?", // The columns for the WHERE clause
-                    selectionArgs);                      // The values for the WHERE clause,
-            wdb.close();
+            try{
+                long newRowId = wdb.update(
+                        CheckInContract.CheckIns.TABLE_NAME,
+                        values,
+                        CheckInContract.CheckIns._ID + "=?", // The columns for the WHERE clause
+                        selectionArgs);                      // The values for the WHERE clause,
+                System.out.println("after update. Is open? " + wdb.isOpen());
+                wdb.close();
+                System.out.println("after close. Is open? " + wdb.isOpen());
+            } catch (Exception e) {
+                System.out.println("An error occurred when trying to update the database.");
+                if(wdb.isOpen()) {
+                    wdb.close();
+                }
+                if(checkInDbHelper != null){
+                    checkInDbHelper.close();
+                }
+            }
         }
 
         // What we send to with the Intent only has to be an int
@@ -253,6 +284,9 @@ public class ActivityWaterCheckIn extends ActionBarActivity {
             e.printStackTrace();
         }
 
+        c.close();
+        db.close();
+        mDbHelper.close();
         return new double[] {-1,0};
     }
 

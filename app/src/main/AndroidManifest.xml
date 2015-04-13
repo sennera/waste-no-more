@@ -106,6 +106,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.cookie_computing.wastenomore.ActivityWaterCheckIn" />
         </activity>
+        <activity
+            android:name=".ActivityWaterTrack"
+            android:label="@string/title_activity_activity_water_track"
+            android:parentActivityName=".ActivityWaterHome" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cookie_computing.wastenomore.ActivityWaterHome" />
+        </activity>
+        <activity
+            android:name=".ActivityAbout"
+            android:label="@string/title_activity_activity_about"
+            android:parentActivityName=".ActivityHome" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cookie_computing.wastenomore.ActivityHome" />
+        </activity>
     </application>
 
 </manifest>

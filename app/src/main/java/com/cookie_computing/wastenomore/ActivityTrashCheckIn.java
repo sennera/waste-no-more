@@ -122,6 +122,7 @@ public class ActivityTrashCheckIn extends ActionBarActivity {
                     CheckIns.COLUMN_NAME_AMOUNT,
                     values);
             wdb.close();
+            checkInDbHelper.close();
 
         } else {
             double newWeight = thisWeeksInfo[1] + totalWeight;
@@ -136,6 +137,7 @@ public class ActivityTrashCheckIn extends ActionBarActivity {
                     CheckIns._ID + "=?", // The columns for the WHERE clause
                     selectionArgs);      // The values for the WHERE clause,
             wdb.close();
+            checkInDbHelper.close();
         }
 
         int finalWeight = (int) totalWeight;
@@ -174,7 +176,7 @@ public class ActivityTrashCheckIn extends ActionBarActivity {
 
         c.moveToFirst();
 
-        // If there has been a check in this week, return the id of the check in and the amount
+        // If there has been a check-in this week, return the id of the check in and the amount
         try {
             while(!c.isAfterLast()) {
                 String dateString = c.getString(c.getColumnIndexOrThrow(CheckInContract.CheckIns.COLUMN_NAME_DATE));
@@ -190,7 +192,9 @@ public class ActivityTrashCheckIn extends ActionBarActivity {
                     info[0] = c.getInt(c.getColumnIndexOrThrow(CheckIns._ID));
                     info[1] = c.getInt(c.getColumnIndexOrThrow(CheckIns.COLUMN_NAME_AMOUNT));
                     return info;
-                } else {
+                }
+                // TO DO: Check if this was the end of the year. Weeks 53 and 1 are the same.
+                else {
                     c.moveToNext();
                 }
             }

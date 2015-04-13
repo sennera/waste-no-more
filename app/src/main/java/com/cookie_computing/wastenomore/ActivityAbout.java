@@ -1,27 +1,26 @@
 package com.cookie_computing.wastenomore;
 
 import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 
-public class ActivityWaterHome extends ActionBarActivity {
+public class ActivityAbout extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_water_home);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setContentView(R.layout.activity_about);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_activity_water_home, menu);
+        getMenuInflater().inflate(R.menu.menu_activity_about, menu);
         return true;
     }
 
@@ -40,21 +39,11 @@ public class ActivityWaterHome extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    /** Called when the user clicks the Check In button */
-    public void goToWaterCheckIn(View view) {
-        Intent intent = new Intent(this, ActivityWaterCheckIn.class);
+    /**
+     * Called when the user clicks the Home button
+     */
+    public void goHome(View view) {
+        Intent intent = new Intent(this, ActivityHome.class);
         startActivity(intent);
-    }
-
-    /** Called when the user clicks the Past Usage button */
-    public void goToWaterTrack(View view) {
-        Intent intent = new Intent(this, ActivityWaterTrack.class);
-        startActivity(intent);
-    }
-
-    /** Called when the user clicks the Facts button */
-    public void goToWaterFact(View view) {
-//        Intent intent = new Intent(this, ActivityWaterFact.class);
-//        startActivity(intent);
     }
 }

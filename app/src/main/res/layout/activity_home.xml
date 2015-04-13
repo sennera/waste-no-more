@@ -49,14 +49,14 @@
         android:layout_marginRight="55dp"/>
 
     <Button
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="40dp"
         android:layout_marginRight="40dp"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/why"
         android:id="@+id/button3"
-        android:onClick="goToWater"
+        android:onClick="goToWhy"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
 

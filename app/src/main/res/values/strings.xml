@@ -83,6 +83,35 @@
     <string name="trash_fact_8_source">SustainAbility. "Recycling Facts." Sustainability-Recycling.
         Accessed March 28, 2014.</string>
 
+
+    <string name="why_waste_less_1"><b>Wasting less is for you if you&#8230;\n
+        -  want to help the environment\n
+        -  want to save money\n
+        -  want to help less-fortunate people in the world</b></string>
+    <string name="why_waste_less_2">We\'ve all heard how our waste contributes to the environment
+        being less  healthy, and it makes sense that we can save money when we use less resources,
+        especially gasoline and water. But there\'s a different reason why your decreased usage can
+        <b>impact many lives in the world</b> - but it takes one more step. Once you\'ve saved money by
+        conserving your resources, you can make a real difference by <b>donating</b> that money to
+        charities that help people meet their practical physical needs.\n\n
+
+        What if, instead of <b>paying</b> for and <b>wasting</b> clean drinking water, we used only
+        what we <b>need</b> and helped others get <b>access to clean water</b>?\n\n
+
+        What if, instead of <b>paying</b> for food that we ultimately didn\'t end up eating (or let go bad),
+        we bought only what we needed and gave the left over money to <b>starving</b> people on our streets
+        or across the world?\n\n
+
+        <i>\"There is plenty on this earth to suit our needs, but there will never ever be enough to
+        <b>satisfy our greed</b>.\"</i>\n
+        -Jenny and Tyler , \"Love Through Me\"\n\n
+
+        Let\'s not be greedy with the resources around us. These things take <b>lifestyle changes</b> and
+        are not easy, but we can change lives from what would have been our <b>overflow</b>.
+        You don\'t have to be rich by American standards
+        to give to others.\n\n <b>Turn your usage savings into money to make a real difference, starting now</b>.</string>
+
+
     <string name="swipe_fact">Swipe to see another fact</string>
 
     <color name="light_green">#CCFF99</color>
@@ -95,7 +124,7 @@
     <string name="title_activity_trash_check_in">Trash Check-In</string>
     <string name="title_activity_home">Home</string>
     <string name="title_activity_trash_fact">Trash Facts</string>
-    <string name="title_activity_track_trash">Past Usage</string>
+    <string name="title_activity_track_trash">Past Trash Usage</string>
     <string name="title_activity_trash_home">Waste No More Trash</string>
     <string name="title_activity_activity_water_home">Waste No More Water</string>
 
@@ -106,5 +135,7 @@
 
 <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_activity_water_track">Past Water Usage</string>
+    <string name="title_activity_activity_about">Why Waste Less?</string>
 
 </resources>

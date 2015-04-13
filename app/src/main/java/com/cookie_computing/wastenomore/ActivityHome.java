@@ -56,4 +56,12 @@ public class ActivityHome extends ActionBarActivity {
         startActivity(intent);
     }
 
+    /**
+     * Called when the user clicks the Why button
+     */
+    public void goToWhy(View view) {
+        Intent intent = new Intent(this, ActivityAbout.class);
+        startActivity(intent);
+    }
+
 }

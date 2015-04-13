@@ -45,7 +45,7 @@ public class CheckInDbHelper extends SQLiteOpenHelper {
     //Indexes for the Usage types
     public static final int TRASH_ID = 1;
     public static final int WATER_ID = 2;
-    public static final int GAS_ID = 3;
+    //public static final int GAS_ID = 3;
 
 
     public CheckInDbHelper(Context context) {

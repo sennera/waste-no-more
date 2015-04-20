@@ -54,7 +54,7 @@ public class ActivityWaterHome extends ActionBarActivity {
 
     /** Called when the user clicks the Facts button */
     public void goToWaterFact(View view) {
-//        Intent intent = new Intent(this, ActivityWaterFact.class);
-//        startActivity(intent);
+        Intent intent = new Intent(this, ActivityWaterFact.class);
+        startActivity(intent);
     }
 }

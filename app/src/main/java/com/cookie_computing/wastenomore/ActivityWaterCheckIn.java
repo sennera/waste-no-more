@@ -171,9 +171,9 @@ public class ActivityWaterCheckIn extends ActionBarActivity {
 
     // Get the number of gallons that were used from using the dishwasher today
     public double getDishwasherGals(){
-        // 20 gal/load: http://water.usgs.gov/edu/qa-home-percapita.html
+        // 12.5 gal/load: http://www.home-water-works.org/indoor-use/dishwasher
         double runs = getNumFromEditText(R.id.dishwasher_number);
-        return runs * 20;
+        return runs * 12.5;
     }
 
     // Get the number of gallons that were used from using face-washing today

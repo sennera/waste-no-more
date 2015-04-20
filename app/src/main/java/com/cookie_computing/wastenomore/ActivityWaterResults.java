@@ -58,8 +58,8 @@ public class ActivityWaterResults extends ActionBarActivity {
 
     /** Called when the user clicks the Fact button */
     public void goToFact(View view) {
-//        Intent intent = new Intent(this, ActivityWaterFact.class);
-//        startActivity(intent);
+        Intent intent = new Intent(this, ActivityWaterFact.class);
+        startActivity(intent);
     }
 
     /** Called when the user clicks the Past Usages button */

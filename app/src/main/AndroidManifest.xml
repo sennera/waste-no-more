@@ -122,6 +122,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.cookie_computing.wastenomore.ActivityHome" />
         </activity>
+        <activity
+            android:name=".ActivityWaterFact"
+            android:label="@string/title_activity_activity_water_fact"
+            android:parentActivityName=".ActivityWaterHome" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cookie_computing.wastenomore.ActivityWaterHome" />
+        </activity>
     </application>
 
 </manifest>

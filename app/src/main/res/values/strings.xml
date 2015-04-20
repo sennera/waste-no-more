@@ -11,6 +11,7 @@
     <string name="check_in">Check In</string>
     <string name="past_usage">Past Usage</string>
     <string name="facts">Facts</string>
+    <string name="fact_source">Fact Source</string>
 
     <string name="how_many_bags_of_trash">How many bags of trash have you gone through?</string>
     <string name="since_last_check_in">(This week or since your last check-in)</string>
@@ -28,7 +29,7 @@
     <string name="with_water_running">(With the water running)</string>
     <string name="teeth_brushing_question">How long did you have the water running while you brushed your teeth today?</string>
     <string name="other_running_water_question">Are there other times you used running water that haven\'t been accounted for? Add that time here.</string>
-    <string name="other_running_water_examples">(Washing hands, cleaning things, rinsing things...)</string>
+    <string name="other_running_water_examples">(Washing hands, cleaning things, rinsing things, cooking, drinking&#8230;)</string>
     <string name="restroom_question">Do you have a water-conserving toilet?</string>
     <string name="toilet_explanation">It would be labeled WaterSense.</string>
     <string name="minutes">minutes</string>
@@ -56,7 +57,8 @@
     <string name="trash_fact_1_source">Environmental Protection Agency. "Municipal Solid Waste."
         EPA. Accessed March 28, 2014.</string>
     <string name="trash_fact_2">Americans make more than 200 million tons of garbage each year,
-        enough to fill Busch Stadium from top to bottom twice a day.</string>
+        enough to fill Busch Stadium from top to bottom twice a day. (Busch Stadium is home of the
+        MLB St. Louis Cardinals. The stadium has a seating capacity of 43,975.)</string>
     <string name="trash_fact_2_source">Environmental Protection Agency. "10 FAST FACTS ON RECYCLING."
         EPA. http://www.epa.gov/reg3wcmd/solidwasterecyclingfacts.htm. Accessed July 13, 2014.</string>
     <string name="trash_fact_3">Over 75\%% of waste is recyclable, but we only recycle about 30\%% of it.</string>
@@ -82,6 +84,48 @@
         we could save about 25 million trees each year.</string>
     <string name="trash_fact_8_source">SustainAbility. "Recycling Facts." Sustainability-Recycling.
         Accessed March 28, 2014.</string>
+
+
+    <string name="water_fact_1">We drink very little of our drinking water. Generally speaking,
+        less than 1\%% of the treated water produced by water utilities is actually consumed. The
+        rest goes on lawns, in washing machines, and down toilets and drains.</string>
+    <string name="water_fact_1_source">Department Of Water Supply. “55 Facts, Figures, and Follies
+        of Water Conservation.” http://www.co.maui.hi.us/DocumentCenter/Home/View/4334.</string>
+    <string name="water_fact_2">If everyone in the United States could manage to use just one less
+        gallon of water per shower every day, we could save some 85 billion gallons per year.
+        How do you do it? By keeping the shower pressure lower or by making your showers a few
+        seconds shorter.</string>
+    <string name="water_fact_2_source">Department Of Water Supply. “55 Facts, Figures, and Follies
+        of Water Conservation.” http://www.co.maui.hi.us/DocumentCenter/Home/View/4334.</string>
+    <string name="water_fact_3">If you have a lawn, chances are it\'s your biggest water gobbler.
+        Typically, at least 50\%% of water consumed by households is used outdoors. Inside your house,
+        bathroom facilities claim nearly 75\%% of the water used.</string>
+    <string name="water_fact_3_source">Department Of Water Supply. “55 Facts, Figures, and Follies
+        of Water Conservation.” http://www.co.maui.hi.us/DocumentCenter/Home/View/4334.</string>
+    <string name="water_fact_4">It takes a considerable amount of energy to deliver and treat the
+        water you use every day. For example, letting your faucet run for five minutes uses about as
+        much energy as letting a 60-watt light bulb run for 22 hours.</string>
+    <string name="water_fact_4_source">United States Environmental Protection Agency. "Why Water Efficiency."
+        http://www.epa.gov/watersense/our_water/why_water_efficiency.html.</string>
+    <string name="water_fact_5">The WaterSense label will help you identify high-efficiency
+        products, homes and programs. These water efficient options provide the same performance and
+        quality you\'ve come to expect, but with the added benefit of water savings.</string>
+    <string name="water_fact_5_source">United States Environmental Protection Agency. "What You Can Do."
+        http://www.epa.gov/watersense/our_water/what_you_can_do.html.</string>
+    <string name="water_fact_6">The average family spends $1,100 per year in water costs, but can
+        save $350 from retrofitting with WaterSense labeled fixtures and ENERGY STAR&#174; qualified
+        appliances.</string>
+    <string name="water_fact_6_source">United States Environmental Protection Agency. "Why Water Efficiency."
+        http://www.epa.gov/watersense/our_water/why_water_efficiency.html.</string>
+    <string name="water_fact_7">Heating water for bathing, shaving, cooking, and cleaning also
+        requires a lot of energy. Homes with electric water heaters, for example, spend one-quarter
+        of their electric bill just to heat water.</string>
+    <string name="water_fact_7_source">United States Environmental Protection Agency. "Why Water Efficiency."
+        http://www.epa.gov/watersense/our_water/why_water_efficiency.html.</string>
+    <string name="water_fact_8">Average <b>daily</b> U.S. domestic water use (including outdoor) is
+        27.4 <b>billion</b> gallons. </string>
+    <string name="water_fact_8_source">American Water Works Association. "Water Use Statistics."
+        http://www.drinktap.org/home/water-information/conservation/water-use-statistics.aspx.</string>
 
 
     <string name="why_waste_less_1"><b>Wasting less is for you if you&#8230;\n
@@ -137,5 +181,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_activity_water_track">Past Water Usage</string>
     <string name="title_activity_activity_about">Why Waste Less?</string>
+    <string name="title_activity_activity_water_fact">Water Facts</string>
 
 </resources>

@@ -17,12 +17,12 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:textSize="25dp"
+            android:textSize="25sp"
             android:textColor="@color/light_green"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:id="@+id/trashFact"
-            android:layout_marginTop="113dp"
-            android:text="Trash Fact"
+            android:id="@+id/fact"
+            android:layout_marginTop="13sp"
+            android:text="Fact"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />
@@ -34,9 +34,9 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/swipeToNext"
             android:layout_gravity="center_horizontal"
-            android:layout_below="@+id/trashFact"
+            android:layout_below="@+id/fact"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="46dp" />
+            android:layout_marginTop="30dp" />
 
         <TextView
             android:layout_width="fill_parent"
@@ -47,7 +47,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_above="@+id/homeButton"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="30dp" />
+            android:layout_marginBottom="20dp" />
 
         <Button
             android:layout_width="wrap_content"
@@ -56,7 +56,7 @@
             android:id="@+id/homeButton"
             android:onClick="goHome"
             android:layout_gravity="center_horizontal"
-            android:layout_above="@+id/trashFactSource"
+            android:layout_above="@+id/factSource"
             android:layout_centerHorizontal="true" />
 
         <TextView
@@ -64,8 +64,8 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:textAppearance="?android:attr/textAppearanceSmall"
-            android:id="@+id/trashFactSource"
-            android:text="Trash Fact Source"
+            android:id="@+id/factSource"
+            android:text="@string/fact_source"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true" />

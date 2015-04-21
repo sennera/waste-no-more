@@ -163,6 +163,7 @@
     <color name="dark_green_shade">#325b32</color>
     <color name="dark_gray">#2a2a2a</color>
     <color name="white">#FFFFFF</color>
+    <color name="transparent_background">#80000000</color>
 
     <string name="title_activity_trash_results">Trash Check-In Results</string>
     <string name="title_activity_trash_check_in">Trash Check-In</string>

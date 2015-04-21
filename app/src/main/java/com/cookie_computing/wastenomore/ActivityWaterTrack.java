@@ -3,10 +3,8 @@ package com.cookie_computing.wastenomore;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +14,7 @@ import android.widget.Toast;
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
 import org.achartengine.chart.BarChart;
+import org.achartengine.chart.LineChart;
 import org.achartengine.model.SeriesSelection;
 import org.achartengine.model.XYMultipleSeriesDataset;
 import org.achartengine.model.XYSeries;
@@ -71,20 +70,51 @@ public class ActivityWaterTrack extends ActionBarActivity {
         int[] days = getAscendingDayNumbers(data);
         double[] amounts = getAmountsAscendingByDate(data);
 
+        final double AVG_AMERICAN_INTAKE = 98; // From http://pacinst.org/news/397/
+        int avgUserAmount = (int) getAverage(amounts);
+
+        double xMax = getMax(days);
+
+
         // Put data in the series
-        XYSeries series = new XYSeries("Water Amount");
+        XYSeries usageSeries = new XYSeries("Water Amount");
         for(int i = 0; i < count; i++){
-            series.add(days[i], amounts[i]);
+            usageSeries.add(days[i], amounts[i]);
         }
+        // Make two points so that a line of the average shows up
+        XYSeries avgAmericanSeries = new XYSeries("American Average");
+        avgAmericanSeries.add(0, AVG_AMERICAN_INTAKE);
+        avgAmericanSeries.add(xMax, AVG_AMERICAN_INTAKE);
+        // Make two points so that a line of their average shows up
+        XYSeries avgUserSeries = new XYSeries("Your Average");
+        avgUserSeries.add(0, avgUserAmount);
+        avgUserSeries.add(xMax + 0.5, avgUserAmount);
+
 
         // Create a dataset to hold each series
         XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
-        dataset.addSeries(series);
+        dataset.addSeries(usageSeries);
+        dataset.addSeries(avgAmericanSeries);
+        dataset.addSeries(avgUserSeries);
+
 
         // Creating XYSeriesRenderer to customize series
-        XYSeriesRenderer renderer = new XYSeriesRenderer();
-        renderer.setColor(Color.WHITE);
-        renderer.setDisplayChartValues(true);
+        XYSeriesRenderer usageRenderer = new XYSeriesRenderer();
+        usageRenderer.setColor(Color.WHITE);
+        usageRenderer.setDisplayChartValues(true);
+
+        XYSeriesRenderer avgAmericanRenderer = new XYSeriesRenderer();
+        avgAmericanRenderer.setColor(Color.RED);
+        avgAmericanRenderer.setFillPoints(true);
+        avgAmericanRenderer.setLineWidth(4);
+        avgAmericanRenderer.setDisplayChartValues(false);
+
+        XYSeriesRenderer avgUserRenderer = new XYSeriesRenderer();
+        avgUserRenderer.setColor(Color.GREEN);
+        avgUserRenderer.setFillPoints(true);
+        avgUserRenderer.setLineWidth(4);
+        avgUserRenderer.setDisplayChartValues(false);
+
 
         // Creating a XYMultipleSeriesRenderer to customize the whole chart
         XYMultipleSeriesRenderer multiRenderer = new XYMultipleSeriesRenderer();
@@ -92,48 +122,52 @@ public class ActivityWaterTrack extends ActionBarActivity {
         multiRenderer.setChartTitle("Your Water Check-Ins");
         multiRenderer.setXTitle("Day");
         multiRenderer.setYTitle("Gallons");
-        multiRenderer.setZoomButtonsVisible(true);
+        //multiRenderer.setZoomButtonsVisible(true);
         double yMax = getMax(amounts);
         yMax = yMax + (0.1 * yMax);
         multiRenderer.setYAxisMax(yMax);
         multiRenderer.setYAxisMin(0);
-        double xMax = getMax(days) + 0.5;
-        multiRenderer.setXAxisMin(0.5);
-        multiRenderer.setXAxisMax(xMax);
-        multiRenderer.setXLabels((int) (xMax - 0.5));
+        multiRenderer.setXAxisMin(-0.5);
+        multiRenderer.setXAxisMax(xMax + 0.5);
+        multiRenderer.setXLabels((int) (xMax));
+        // setting legend to fit the screen size
+        multiRenderer.setFitLegend(true);
+        multiRenderer.setBackgroundColor(Color.TRANSPARENT);
+        multiRenderer.setApplyBackgroundColor(true);
+
+        // setting the margin size for the graph in the order top, left, bottom, right
+        multiRenderer.setMargins(new int[] { 0, 20, 40, 0 });
+
         //Increase text size
         multiRenderer.setLabelsTextSize(22);
         multiRenderer.setAxisTitleTextSize(22);
         multiRenderer.setChartTitleTextSize(22);
         multiRenderer.setLegendTextSize(22);
 
-        int width = 100;
-        if (android.os.Build.VERSION.SDK_INT >= 13){
-            Display display = getWindowManager().getDefaultDisplay();
-            Point size = new Point();
-            display.getSize(size);
-            width = size.x;
-        } else {
-            Display display = getWindowManager().getDefaultDisplay();
-            width = display.getWidth();  // deprecated
-        }
-        float barWidth = (float) (.8 * width) / getMax(days);
-        multiRenderer.setBarWidth(barWidth);
+        float barSpacing = (float) 0.5; //(float) (width / getMax(days) * .045);
+        multiRenderer.setBarSpacing(barSpacing);
 
-        multiRenderer.addSeriesRenderer(renderer);
+        multiRenderer.addSeriesRenderer(usageRenderer);
+        multiRenderer.addSeriesRenderer(avgAmericanRenderer);
+        multiRenderer.addSeriesRenderer(avgUserRenderer);
+
+        // Creating a combined chart with the chart types specified in types array
+        String[] types = new String[] { BarChart.TYPE, LineChart.TYPE, LineChart.TYPE };
+        final GraphicalView mChart;
+        mChart = ChartFactory.getCombinedXYChartView(getBaseContext(), dataset, multiRenderer, types);
 
         // Getting a reference to RelativeLayout of the ActivityWaterTrack Layout
         RelativeLayout chartContainer = (RelativeLayout) findViewById(R.id.track_water_chart);
 
-        final GraphicalView chart = ChartFactory.getBarChartView(getBaseContext(), dataset, multiRenderer, BarChart.Type.DEFAULT);
+        //final GraphicalView chart = ChartFactory.getBarChartView(getBaseContext(), dataset, multiRenderer, BarChart.Type.DEFAULT);
         multiRenderer.setClickEnabled(true);
         multiRenderer.setSelectableBuffer(50);
 
         // Setting a click event listener for the graph
-        chart.setOnClickListener(new View.OnClickListener() {
+        mChart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SeriesSelection seriesSelection = chart.getCurrentSeriesAndPoint();
+                SeriesSelection seriesSelection = mChart.getCurrentSeriesAndPoint();
 
                 if (seriesSelection != null) {
                     String selectedSeries="Gallons of Water";
@@ -150,7 +184,7 @@ public class ActivityWaterTrack extends ActionBarActivity {
         });
 
         // Adding the Line Chart to the Layout
-        chartContainer.addView(chart);
+        chartContainer.addView(mChart);
     }
 
     private HashMap<Integer,Double> getUsageData() {
@@ -279,6 +313,18 @@ public class ActivityWaterTrack extends ActionBarActivity {
             }
         }
         return max;
+    }
+
+    // Calculate the average for an array of doubles
+    private double getAverage(double[] numbers) {
+        double sum = 0;
+
+        for(int i=0; i < numbers.length ; i++) {
+            sum += numbers[i];
+        }
+
+        //calculate average value
+        return sum / numbers.length;
     }
 
     private double[] getAmountsAscendingByDate(HashMap<Integer,Double> map) {

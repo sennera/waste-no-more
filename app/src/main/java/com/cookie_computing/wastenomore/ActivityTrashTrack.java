@@ -3,10 +3,8 @@ package com.cookie_computing.wastenomore;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.graphics.Point;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +14,7 @@ import android.widget.Toast;
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
 import org.achartengine.chart.BarChart;
+import org.achartengine.chart.LineChart;
 import org.achartengine.model.SeriesSelection;
 import org.achartengine.model.XYMultipleSeriesDataset;
 import org.achartengine.model.XYSeries;
@@ -41,98 +40,6 @@ public class ActivityTrashTrack extends ActionBarActivity {
         setContentView(R.layout.activity_track_trash);
 
         openChart();
-//        //Get the data from the DB
-//        CheckInDbHelper mDbHelper = new CheckInDbHelper(this);
-//        SQLiteDatabase db = mDbHelper.getReadableDatabase();
-//
-//        // Define a projection that specifies which columns from the database
-//        // you will actually use after this query.
-//        String[] projection = {
-//                CheckInContract.CheckIns._ID,
-//                CheckInContract.CheckIns.COLUMN_NAME_DATE,
-//                CheckInContract.CheckIns.COLUMN_NAME_USAGE_TYPE_ID,
-//                CheckInContract.CheckIns.COLUMN_NAME_AMOUNT};
-//
-//        // How the results should be sorted in the resulting Cursor
-//        String[] selectionArgs = {"" + CheckInDbHelper.TRASH_ID};
-//
-//        Cursor c = db.query(
-//                CheckInContract.CheckIns.TABLE_NAME,  // The table to query
-//                projection,                               // The columns to return
-//                CheckInContract.CheckIns.COLUMN_NAME_USAGE_TYPE_ID + "=?",                                // The columns for the WHERE clause
-//                selectionArgs,                            // The values for the WHERE clause
-//                null,                                     // don't group the rows
-//                null,                                     // don't filter by row groups
-//                null                                      // don't sort the rows
-//        );
-//
-//        c.moveToFirst();
-//        db.close();
-//
-//        while(!c.isAfterLast()){
-//            data += c.getInt(
-//                    c.getColumnIndexOrThrow(CheckInContract.CheckIns._ID)
-//            ) + " ";
-//            data += c.getString(
-//                    c.getColumnIndexOrThrow(CheckInContract.CheckIns.COLUMN_NAME_DATE)
-//            ) + " ";
-//            data += c.getInt(
-//                    c.getColumnIndexOrThrow(CheckInContract.CheckIns.COLUMN_NAME_USAGE_TYPE_ID)
-//            ) + " ";
-//            data += c.getDouble(
-//                    c.getColumnIndexOrThrow(CheckInContract.CheckIns.COLUMN_NAME_AMOUNT)
-//            ) + " ";
-//            data += "\n";
-//
-//            c.moveToNext();
-//        }
-//
-//        c.close();
-
-
-//        final TextView textView = (TextView) findViewById(R.id.track_trash_text);
-//        textView.setText(data);
-
-
-
-        // BEGINNING OF COPIED CODE
-//        public Intent execute(Context context) {
-//            String[] titles = new String[] { "Sales growth January 1995 to December 2000" };
-//            List<Date[]> dates = new ArrayList<Date[]>();
-//            List<double[]> values = new ArrayList<double[]>();
-//            Date[] dateValues = new Date[] { new Date(95, 0, 1), new Date(95, 3, 1), new Date(95, 6, 1),
-//                    new Date(95, 9, 1), new Date(96, 0, 1), new Date(96, 3, 1), new Date(96, 6, 1),
-//                    new Date(96, 9, 1), new Date(97, 0, 1), new Date(97, 3, 1), new Date(97, 6, 1),
-//                    new Date(97, 9, 1), new Date(98, 0, 1), new Date(98, 3, 1), new Date(98, 6, 1),
-//                    new Date(98, 9, 1), new Date(99, 0, 1), new Date(99, 3, 1), new Date(99, 6, 1),
-//                    new Date(99, 9, 1), new Date(100, 0, 1), new Date(100, 3, 1), new Date(100, 6, 1),
-//                    new Date(100, 9, 1), new Date(100, 11, 1) };
-//            dates.add(dateValues);
-//
-//            values.add(new double[] { 4.9, 5.3, 3.2, 4.5, 6.5, 4.7, 5.8, 4.3, 4, 2.3, -0.5, -2.9, 3.2, 5.5,
-//                    4.6, 9.4, 4.3, 1.2, 0, 0.4, 4.5, 3.4, 4.5, 4.3, 4 });
-//            int[] colors = new int[] { Color.BLUE };
-//            PointStyle[] styles = new PointStyle[] { PointStyle.POINT };
-//            XYMultipleSeriesRenderer renderer = buildRenderer(colors, styles);
-//            setChartSettings(renderer, "Sales growth", "Date", "%", dateValues[0].getTime(),
-//                    dateValues[dateValues.length - 1].getTime(), -4, 11, Color.GRAY, Color.LTGRAY);
-//            renderer.setYLabels(10);
-//            renderer.setXRoundedLabels(false);
-//            XYSeriesRenderer xyRenderer = (XYSeriesRenderer) renderer.getSeriesRendererAt(0);
-//            FillOutsideLine fill = new FillOutsideLine(FillOutsideLine.Type.BOUNDS_ABOVE);
-//            fill.setColor(Color.GREEN);
-//            xyRenderer.addFillOutsideLine(fill);
-//            fill = new FillOutsideLine(FillOutsideLine.Type.BOUNDS_BELOW);
-//            fill.setColor(Color.MAGENTA);
-//            xyRenderer.addFillOutsideLine(fill);
-//            fill = new FillOutsideLine(FillOutsideLine.Type.BOUNDS_ABOVE);
-//            fill.setColor(Color.argb(255, 0, 200, 100));
-//            fill.setFillRange(new int[] {10, 19});
-//            xyRenderer.addFillOutsideLine(fill);
-//
-//            return ChartFactory.getTimeChartIntent(context, buildDateDataset(titles, dates, values),
-//                    renderer, "MMM yyyy");
-//        }
     }
 
 
@@ -166,24 +73,50 @@ public class ActivityTrashTrack extends ActionBarActivity {
         double[] amounts = getAmountsAscendingByDate(data);
 
 
+        final double AVG_AMERICAN_INTAKE = 35; // 5 lbs a day * 7 days
+        int avgUserAmount = (int) getAverage(amounts);
+
+        double xMin = 0.5;
+        double xMax = getMax(weeks) + 0.5;
+
+
         // Put data in the series
         XYSeries series = new XYSeries("Trash Amount");
         for(int i = 0; i < count; i++){
             series.add(weeks[i], amounts[i]);
         }
+        // Make two points so that a line of the average shows up
+        XYSeries avgAmericanSeries = new XYSeries("American Average");
+        avgAmericanSeries.add(xMin, AVG_AMERICAN_INTAKE);
+        avgAmericanSeries.add(xMax, AVG_AMERICAN_INTAKE);
+        // Make two points so that a line of their average shows up
+        XYSeries avgUserSeries = new XYSeries("Your Average");
+        avgUserSeries.add(xMin, avgUserAmount);
+        avgUserSeries.add(xMax, avgUserAmount);
 
         // Create a dataset to hold each series
         XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
         dataset.addSeries(series);
+        dataset.addSeries(avgAmericanSeries);
+        dataset.addSeries(avgUserSeries);
 
         // Creating XYSeriesRenderer to customize series
         XYSeriesRenderer renderer = new XYSeriesRenderer();
         renderer.setColor(Color.WHITE);
-        //renderer.setPointStyle(PointStyle.CIRCLE);
-        //renderer.setFillPoints(true);
-        //renderer.setLineWidth(4);
-        //renderer.setPointStrokeWidth(5);
         renderer.setDisplayChartValues(true);
+
+        XYSeriesRenderer avgAmericanRenderer = new XYSeriesRenderer();
+        avgAmericanRenderer.setColor(Color.RED);
+        avgAmericanRenderer.setFillPoints(true);
+        avgAmericanRenderer.setLineWidth(4);
+        avgAmericanRenderer.setDisplayChartValues(false);
+
+        XYSeriesRenderer avgUserRenderer = new XYSeriesRenderer();
+        avgUserRenderer.setColor(Color.GREEN);
+        avgUserRenderer.setFillPoints(true);
+        avgUserRenderer.setLineWidth(4);
+        avgUserRenderer.setDisplayChartValues(false);
+
 
         // Creating a XYMultipleSeriesRenderer to customize the whole chart
         XYMultipleSeriesRenderer multiRenderer = new XYMultipleSeriesRenderer();
@@ -191,15 +124,22 @@ public class ActivityTrashTrack extends ActionBarActivity {
         multiRenderer.setChartTitle("Your Trash Check-Ins");
         multiRenderer.setXTitle("Week");
         multiRenderer.setYTitle("Weight (lbs)");
-        multiRenderer.setZoomButtonsVisible(true);
         double yMax = getMax(amounts);
         yMax = yMax + (0.1 * yMax);
         multiRenderer.setYAxisMax(yMax);
         multiRenderer.setYAxisMin(0);
-        double xMax = getMax(weeks) + 0.5;
-        multiRenderer.setXAxisMin(0.5);
+        multiRenderer.setXAxisMin(xMin);
         multiRenderer.setXAxisMax(xMax);
         multiRenderer.setXLabels((int) (xMax - 0.5));
+
+        // setting legend to fit the screen size
+        multiRenderer.setFitLegend(true);
+        multiRenderer.setBackgroundColor(Color.TRANSPARENT);
+        multiRenderer.setApplyBackgroundColor(true);
+
+        // setting the margin size for the graph in the order top, left, bottom, right
+        multiRenderer.setMargins(new int[] { 0, 20, 40, 0 });
+
         //Increase text size
         multiRenderer.setLabelsTextSize(22);
         multiRenderer.setAxisTitleTextSize(22);
@@ -207,33 +147,29 @@ public class ActivityTrashTrack extends ActionBarActivity {
         multiRenderer.setLegendTextSize(22);
 
         // Set the width of the bars
-        int width = 100;
-        if (android.os.Build.VERSION.SDK_INT >= 13){
-            Display display = getWindowManager().getDefaultDisplay();
-            Point size = new Point();
-            display.getSize(size);
-            width = size.x;
-        } else {
-            Display display = getWindowManager().getDefaultDisplay();
-            width = display.getWidth();  // deprecated
-        }
-        float barWidth = (float) (.8 * width) / getMax(weeks);
-        multiRenderer.setBarWidth(barWidth);
+        float barSpacing = (float) 0.5;
+        multiRenderer.setBarSpacing(barSpacing);
 
         multiRenderer.addSeriesRenderer(renderer);
+        multiRenderer.addSeriesRenderer(avgAmericanRenderer);
+        multiRenderer.addSeriesRenderer(avgUserRenderer);
+
+        // Creating a combined chart with the chart types specified in types array
+        String[] types = new String[] { BarChart.TYPE, LineChart.TYPE, LineChart.TYPE };
+        final GraphicalView mChart;
+        mChart = ChartFactory.getCombinedXYChartView(getBaseContext(), dataset, multiRenderer, types);
 
         // Getting a reference to RelativeLayout of the ActivityTrashTrack Layout
         RelativeLayout chartContainer = (RelativeLayout) findViewById(R.id.track_trash_chart);
 
-        final GraphicalView chart = ChartFactory.getBarChartView(getBaseContext(), dataset, multiRenderer, BarChart.Type.DEFAULT);
         multiRenderer.setClickEnabled(true);
         multiRenderer.setSelectableBuffer(50);
 
         // Setting a click event listener for the graph
-        chart.setOnClickListener(new View.OnClickListener() {
+        mChart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SeriesSelection seriesSelection = chart.getCurrentSeriesAndPoint();
+                SeriesSelection seriesSelection = mChart.getCurrentSeriesAndPoint();
 
                 if (seriesSelection != null) {
                     String selectedSeries="Weight of Trash";
@@ -250,7 +186,7 @@ public class ActivityTrashTrack extends ActionBarActivity {
         });
 
         // Adding the Line Chart to the Layout
-        chartContainer.addView(chart);
+        chartContainer.addView(mChart);
     }
 
     private HashMap<Integer,Double> getUsageData() {
@@ -402,6 +338,18 @@ public class ActivityTrashTrack extends ActionBarActivity {
             }
         }
         return max;
+    }
+
+    // Calculate the average for an array of doubles
+    private double getAverage(double[] numbers) {
+        double sum = 0;
+
+        for(int i=0; i < numbers.length ; i++) {
+            sum += numbers[i];
+        }
+
+        //calculate average value
+        return sum / numbers.length;
     }
 
     private double[] getAmountsAscendingByDate(HashMap<Integer,Double> map) {

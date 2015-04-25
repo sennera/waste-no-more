@@ -9,40 +9,37 @@ import android.view.View;
 import android.widget.TextView;
 
 
-public class ActivityTrashResults extends ActionBarActivity {
+public class ActivityGasResults extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trash_results);
+        setContentView(R.layout.activity_gas_results);
 
         // Get the message from the intent
         Intent intent = getIntent();
-        String totalWeight = intent.getStringExtra(ActivityTrashCheckIn.TOTAL_GAL);
+        String mileage = intent.getStringExtra(ActivityGasCheckIn.GAS_AMOUNTS);
 
-        String message = "That adds up to about " + totalWeight + " pounds of trash.";
+        String message = "You averaged " + mileage + " miles per gallon of gas.";
 
         // Create the text view
         final TextView textView = (TextView) findViewById(R.id.usageResults);
         textView.setTextSize(30);
         textView.setText(message);
-
-        // Set the text view as the activity layout
-        //setContentView(textView);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_trash_results, menu);
+        getMenuInflater().inflate(R.menu.menu_activity_gas_results, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the ActivityHome/Up button, so long
+        // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
@@ -56,13 +53,13 @@ public class ActivityTrashResults extends ActionBarActivity {
 
     /** Called when the user clicks the Fact button */
     public void goToFact(View view) {
-        Intent intent = new Intent(this, ActivityTrashFact.class);
-        startActivity(intent);
+//        Intent intent = new Intent(this, ActivityGasFact.class);
+//        startActivity(intent);
     }
 
     /** Called when the user clicks the Past Usages button */
     public void goToTrack(View view) {
-        Intent intent = new Intent(this, ActivityTrashTrack.class);
+        Intent intent = new Intent(this, ActivityGasTrack.class);
         startActivity(intent);
     }
 }

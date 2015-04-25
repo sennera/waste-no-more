@@ -45,7 +45,7 @@ public class CheckInDbHelper extends SQLiteOpenHelper {
     //Indexes for the Usage types
     public static final int TRASH_ID = 1;
     public static final int WATER_ID = 2;
-    //public static final int GAS_ID = 3;
+    public static final int GAS_MILEAGE_ID = 3;
 
 
     public CheckInDbHelper(Context context) {
@@ -74,7 +74,7 @@ public class CheckInDbHelper extends SQLiteOpenHelper {
         ArrayList<String> types = new ArrayList<String>();
         types.add("Trash");
         types.add("Water");
-        types.add("Gas");
+        types.add("Gas Mileage");
 
         // This will be the primary key
         for (String type : types) {

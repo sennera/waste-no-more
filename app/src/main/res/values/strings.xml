@@ -6,6 +6,7 @@
 
     <string name="trash">Trash</string>
     <string name="water">Water</string>
+    <string name="gas">Gasoline</string>
     <string name="why">Why Waste Less?</string>
 
     <string name="check_in">Check In</string>
@@ -18,6 +19,13 @@
     <string name="small_bags">small bags (8 gal)</string>
     <string name="med_bags">medium bags (13 gal)</string>
     <string name="large_bags">large bags (30 gal)</string>
+
+    <string name="check_odometer">Check your odometer. How many miles did you drive on this tank of gas?</string>
+    <string name="gallons_bought">How many gallons of gas did you fill up with? </string>
+    <string name="reset_odometer">Don\'t forget to reset your odometer!</string>
+    <string name="miles">miles</string>
+    <string name="gallons">gallons</string>
+    <string name="money_sign">$</string>
 
     <string name="how_many_shower_min">How many minutes did you spend in the shower today?</string>
     <string name="may_be_more">We tend to think we shower shorter than we do. Be honest with this amount of time.</string>
@@ -183,5 +191,9 @@
     <string name="title_activity_activity_water_track">Past Water Usage</string>
     <string name="title_activity_activity_about">Why Waste Less?</string>
     <string name="title_activity_activity_water_fact">Water Facts</string>
+    <string name="title_activity_activity_gas_home">Waste Less Gas</string>
+    <string name="title_activity_activity_gas_track">Past Gas Usage</string>
+    <string name="title_activity_activity_gas_check_in">Gas Check-In</string>
+    <string name="title_activity_activity_gas_results">Gas Check-In Results</string>
 
 </resources>

@@ -56,6 +56,12 @@ public class ActivityHome extends ActionBarActivity {
         startActivity(intent);
     }
 
+    /** Called when the user clicks the Gasoline button */
+    public void goToGas(View view) {
+        Intent intent = new Intent(this, ActivityGasHome.class);
+        startActivity(intent);
+    }
+
     /**
      * Called when the user clicks the Why button
      */

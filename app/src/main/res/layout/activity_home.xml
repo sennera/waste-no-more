@@ -38,12 +38,23 @@
         android:layout_below="@+id/button"
         android:layout_centerHorizontal="true" />
 
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:text="@string/gas"
+        android:id="@+id/button4"
+        android:onClick="goToGas"
+        android:layout_below="@+id/button2"
+        android:layout_centerHorizontal="true" />
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView2"
         android:src="@drawable/green_chart"
-        android:layout_below="@+id/button2"
+        android:layout_below="@+id/button4"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="55dp"
         android:layout_marginRight="55dp"/>

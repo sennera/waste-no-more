@@ -1,0 +1,157 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    android:orientation="vertical"
+    android:gravity="center_horizontal"
+    tools:context="com.cookie_computing.wastenomore.ActivityGasCheckIn">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp"
+        android:paddingTop="16dp"
+        android:paddingBottom="16dp"
+        android:layout_margin="10sp"
+        android:orientation="vertical"
+        android:background="@color/dark_green"
+        android:gravity="center_horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:gravity="center"
+            android:text="@string/check_odometer"
+            android:textColor="@color/light_green"
+            android:id="@+id/odometerQ" />
+
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:id="@+id/linear2">
+
+            <EditText
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:hint="@string/zero"
+                android:id="@+id/miles_driven"
+                android:gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/miles"
+                android:id="@+id/miles_words"
+                android:layout_gravity="end" />
+
+        </LinearLayout>
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:gravity="center"
+            android:text="@string/gallons_bought"
+            android:textColor="@color/light_green"
+            android:id="@+id/gasGalsQ" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:id="@+id/linear6">
+
+            <EditText
+                android:layout_width="60dp"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:ems="10"
+                android:hint="@string/zero"
+                android:id="@+id/gallons_bought"
+                android:gravity="center_horizontal" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="@string/gallons"
+                android:layout_gravity="end" />
+
+        </LinearLayout>
+
+
+
+        <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingTop="16dp"-->
+            <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
+            <!--android:gravity="center"-->
+            <!--android:text="@string/gas_gal_cost"-->
+            <!--android:textColor="@color/light_green"-->
+            <!--android:id="@+id/gasPriceQ" />-->
+
+        <!--<LinearLayout-->
+            <!--android:orientation="horizontal"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:gravity="center_horizontal"-->
+            <!--android:id="@+id/linear7">-->
+
+            <!--<TextView-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+                <!--android:text="@string/money_sign"-->
+                <!--android:layout_gravity="end" />-->
+
+            <!--<EditText-->
+                <!--android:layout_width="30dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:inputType="numberDecimal"-->
+                <!--android:ems="10"-->
+                <!--android:hint="@string/zero"-->
+                <!--android:id="@+id/price_per_gal"-->
+                <!--android:gravity="center_horizontal" />-->
+
+        <!--</LinearLayout>-->
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="16dp"
+        android:gravity="center"
+        android:text="@string/reset_odometer"
+        android:textColor="@color/light_green" />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/check_in"
+        android:onClick="sendMessage"/>
+
+
+</LinearLayout>
+
+

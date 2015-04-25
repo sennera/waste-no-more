@@ -1,0 +1,11 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_chart_margin"
+    android:paddingRight="@dimen/activity_chart_margin"
+    android:paddingTop="@dimen/activity_chart_margin"
+    android:paddingBottom="@dimen/activity_chart_margin"
+    tools:context="com.cookie_computing.wastenomore.ActivityGasTrack"
+    android:id="@+id/track_gas_chart">
+
+
+</RelativeLayout>

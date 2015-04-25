@@ -130,6 +130,38 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.cookie_computing.wastenomore.ActivityWaterHome" />
         </activity>
+        <activity
+            android:name=".ActivityGasHome"
+            android:label="@string/title_activity_activity_gas_home"
+            android:parentActivityName=".ActivityHome" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cookie_computing.wastenomore.ActivityHome" />
+        </activity>
+        <activity
+            android:name=".ActivityGasTrack"
+            android:label="@string/title_activity_activity_gas_track"
+            android:parentActivityName=".ActivityGasHome" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cookie_computing.wastenomore.ActivityGasHome" />
+        </activity>
+        <activity
+            android:name=".ActivityGasCheckIn"
+            android:label="@string/title_activity_activity_gas_check_in"
+            android:parentActivityName=".ActivityGasHome" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cookie_computing.wastenomore.ActivityGasHome" />
+        </activity>
+        <activity
+            android:name=".ActivityGasResults"
+            android:label="@string/title_activity_activity_gas_results"
+            android:parentActivityName=".ActivityGasCheckIn" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cookie_computing.wastenomore.ActivityGasCheckIn" />
+        </activity>
     </application>
 
 </manifest>

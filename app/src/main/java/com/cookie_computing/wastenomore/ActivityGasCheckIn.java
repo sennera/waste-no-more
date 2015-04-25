@@ -18,11 +18,19 @@ public class ActivityGasCheckIn extends ActionBarActivity {
 
     public final static String GAS_AMOUNTS = "com.cookie-computing.wastenomore.GAS_AMOUNTS";
     SQLiteDatabase wdb;
+    Global global;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gas_check_in);
+
+        // Fill in default values based on what they've entered before
+        global = ((Global)getApplicationContext());
+        final EditText editGallons = (EditText) findViewById(R.id.gallons_bought);
+        editGallons.setText("" + (int)global.getTypicalGasGallons());
+        final EditText editMiles = (EditText) findViewById(R.id.miles_driven);
+        editMiles.setText("" + (int)global.getTypicalGasMiles());
     }
 
 
@@ -101,6 +109,8 @@ public class ActivityGasCheckIn extends ActionBarActivity {
     public double getGasMileage() {
         double miles = getNumFromEditText(R.id.miles_driven);
         double gals = getNumFromEditText(R.id.gallons_bought);
+        global.setTypicalGasGallons(gals);
+        global.setTypicalGasMiles(miles);
         return (int) (miles / gals);
     }
 

@@ -20,11 +20,30 @@ public class ActivityWaterCheckIn extends ActionBarActivity {
 
     public final static String TOTAL_GAL = "com.cookie-computing.wastenomore.TOTAL_GAL";
     SQLiteDatabase wdb;
+    Global global;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_water_check_in);
+
+        // Fill in default values based on what they've entered before
+        global = ((Global)getApplicationContext());
+        final EditText editShower = (EditText) findViewById(R.id.shower_min_number);
+        editShower.setText("" + (int)global.getTypicalShower());
+        final EditText editHandDish = (EditText) findViewById(R.id.hand_dish_min);
+        editHandDish.setText("" + (int)global.getTypicalHandDishes());
+        final EditText editDishwasher = (EditText) findViewById(R.id.dishwasher_number);
+        editDishwasher.setText("" + (int)global.getTypicalDishwasher());
+        final EditText editFaceWash = (EditText) findViewById(R.id.face_wash_min);
+        editFaceWash.setText("" + (int)global.getTypicalFaceWash());
+        final EditText editTeeth = (EditText) findViewById(R.id.teeth_brushing_min);
+        editTeeth.setText("" + (int)global.getTypicalBrushTeeth());
+        final EditText editOther = (EditText) findViewById(R.id.other_running_min);
+        editOther.setText("" + (int)global.getTypicalBrushTeeth());
+        final ToggleButton toggleToilet = (ToggleButton) findViewById(R.id.toggleButton);
+        toggleToilet.setChecked(global.getTypicalConservingToilet());
     }
 
 
@@ -109,11 +128,9 @@ public class ActivityWaterCheckIn extends ActionBarActivity {
         } else {
             double newGallons = todaysInfo[1] + totalGallons;
             values.put(CheckInContract.CheckIns.COLUMN_NAME_AMOUNT, newGallons);
-            System.out.println("values " + values);
 
             // we'll say update WHERE _ID = today's ID
             String[] selectionArgs = {"" + todaysInfo[0]};
-            System.out.println("before update. Is open? " + wdb.isOpen());
 
             try{
                 long newRowId = wdb.update(
@@ -121,11 +138,8 @@ public class ActivityWaterCheckIn extends ActionBarActivity {
                         values,
                         CheckInContract.CheckIns._ID + "=?", // The columns for the WHERE clause
                         selectionArgs);                      // The values for the WHERE clause,
-                System.out.println("after update. Is open? " + wdb.isOpen());
                 wdb.close();
-                System.out.println("after close. Is open? " + wdb.isOpen());
             } catch (Exception e) {
-                System.out.println("An error occurred when trying to update the database.");
                 if(wdb.isOpen()) {
                     wdb.close();
                 }
@@ -145,6 +159,7 @@ public class ActivityWaterCheckIn extends ActionBarActivity {
     public double getShowerGals() {
         // 2.5 gal/min: http://www.epa.gov/WaterSense/pubs/indoor.html
         double showerMin = getNumFromEditText(R.id.shower_min_number);
+        global.setTypicalShower(showerMin);
         return showerMin * 2.5;
     }
 
@@ -166,6 +181,7 @@ public class ActivityWaterCheckIn extends ActionBarActivity {
     public double getHandDishWashingGals(){
         // 3 gal/min: http://water.usgs.gov/edu/qa-home-percapita.html
         double min = getNumFromEditText(R.id.hand_dish_min);
+        global.setTypicalHandDishes(min);
         return min * 3;
     }
 
@@ -173,6 +189,7 @@ public class ActivityWaterCheckIn extends ActionBarActivity {
     public double getDishwasherGals(){
         // 12.5 gal/load: http://www.home-water-works.org/indoor-use/dishwasher
         double runs = getNumFromEditText(R.id.dishwasher_number);
+        global.setTypicalDishwasher(runs);
         return runs * 12.5;
     }
 
@@ -180,6 +197,7 @@ public class ActivityWaterCheckIn extends ActionBarActivity {
     public double getFaceWashGals(){
         // 2 gal/min: http://www.epa.gov/WaterSense/pubs/indoor.html
         double min = getNumFromEditText(R.id.face_wash_min);
+        global.setTypicalFaceWash(min);
         return min * 2;
     }
 
@@ -187,6 +205,7 @@ public class ActivityWaterCheckIn extends ActionBarActivity {
     public double getTeethBrushingGals(){
         // 2 gal/min: http://www.epa.gov/WaterSense/pubs/indoor.html
         double min = getNumFromEditText(R.id.teeth_brushing_min);
+        global.setTypicalBrushTeeth(min);
         return min * 2;
     }
 
@@ -194,6 +213,7 @@ public class ActivityWaterCheckIn extends ActionBarActivity {
     public double getOtherRunningWaterGals(){
         // 2 gal/min: http://www.epa.gov/WaterSense/pubs/indoor.html
         double min = getNumFromEditText(R.id.other_running_min);
+        global.setTypicalOtherWater(min);
         return min * 2;
     }
 
@@ -218,6 +238,7 @@ public class ActivityWaterCheckIn extends ActionBarActivity {
     // hand washing.
     public double getToiletGals() {
         boolean hasConservingToilet = ((ToggleButton) findViewById(R.id.toggleButton)).isChecked();
+        global.setTypicalConservingToilet(hasConservingToilet);
         if(hasConservingToilet) {
             // 1.3 gal/flush + 1 gal/30 sec of hand washing after = 2.3 gal, 5 times a day = 11.5 gal/day
             return 11.5;

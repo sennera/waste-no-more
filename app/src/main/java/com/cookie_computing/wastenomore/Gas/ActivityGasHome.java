@@ -1,11 +1,13 @@
-package com.cookie_computing.wastenomore;
+package com.cookie_computing.wastenomore.Gas;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.cookie_computing.wastenomore.R;
 
 
 public class ActivityGasHome extends ActionBarActivity {
@@ -41,14 +43,14 @@ public class ActivityGasHome extends ActionBarActivity {
     }
 
     /** Called when the user clicks the Check In button */
-    public void goToGasCheckIn(View view) {
-        Intent intent = new Intent(this, ActivityGasCheckIn.class);
+    public void goToCheckIn(View view) {
+        Intent intent = new Intent(this, ActivityChooseGasCheckIn.class);
         startActivity(intent);
     }
 
     /** Called when the user clicks the Past Usage button */
     public void goToGasTrack(View view) {
-        Intent intent = new Intent(this, ActivityGasTrack.class);
+        Intent intent = new Intent(this, ActivityChooseGasTrack.class);
         startActivity(intent);
     }
 

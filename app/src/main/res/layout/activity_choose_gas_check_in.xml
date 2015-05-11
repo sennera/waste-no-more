@@ -6,37 +6,29 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    tools:context="com.cookie_computing.wastenomore.Gas.ActivityGasHome"
+    tools:context="com.cookie_computing.wastenomore.Gas.ActivityChooseGasCheckIn"
     android:weightSum="2">
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:layout_margin="8dp"
-        android:text="@string/check_in"
+        android:text="@string/fuel_check_in"
         android:textSize="25dp"
+        android:textColor="@color/red"
         android:id="@+id/button3"
-        android:onClick="goToCheckIn"
+        android:onClick="goToGasCheckIn"
         android:layout_weight="1"/>
 
     <Button
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:layout_margin="8dp"
-        android:text="@string/past_usage"
+        android:text="@string/saved_gas_check_in"
         android:textSize="25dp"
-        android:id="@+id/button4"
-        android:onClick="goToGasTrack"
+        android:textColor="@color/green"
+        android:id="@+id/button5"
+        android:onClick="goToGasSavedCheckIn"
         android:layout_weight="1"/>
-
-    <!--<Button-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_margin="8dp"-->
-        <!--android:text="@string/facts"-->
-        <!--android:textSize="25dp"-->
-        <!--android:id="@+id/button5"-->
-        <!--android:onClick="goToTrashFact"-->
-        <!--android:layout_weight="1.3"/>-->
 
 </LinearLayout>

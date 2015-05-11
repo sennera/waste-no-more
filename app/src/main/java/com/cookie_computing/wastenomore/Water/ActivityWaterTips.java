@@ -1,4 +1,4 @@
-package com.cookie_computing.wastenomore;
+package com.cookie_computing.wastenomore.Water;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,29 +14,33 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.cookie_computing.wastenomore.R;
 
-public class ActivityTrashFact extends FragmentActivity {
+
+public class ActivityWaterTips extends FragmentActivity {
+
     // When requested, this adapter returns a TrashFactFragment,
     // representing an object in the collection.
-    FactPagerAdapter trashFactPagerAdapter;
+    PagerAdapter tipPagerAdapter;
     ViewPager viewPager;
 
-    public void onCreate(Bundle savedInstanceState) {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_trash_fact);
+        setContentView(R.layout.activity_water_tips);
 
         // ViewPager and its adapters use support library
         // fragments, so use getSupportFragmentManager.
-        trashFactPagerAdapter = new FactPagerAdapter(getSupportFragmentManager());
-        viewPager = (ViewPager) findViewById(R.id.pager);
-        viewPager.setAdapter(trashFactPagerAdapter);
+        tipPagerAdapter = new PagerAdapter(getSupportFragmentManager());
+        viewPager = (ViewPager) findViewById(R.id.water_tip_pager);
+        viewPager.setAdapter(tipPagerAdapter);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_trash_fact, menu);
+        getMenuInflater().inflate(R.menu.menu_activity_water_tips, menu);
         return true;
     }
 
@@ -59,29 +63,28 @@ public class ActivityTrashFact extends FragmentActivity {
      * Called when the user clicks the Home button
      */
     public void goHome(View view) {
-        Intent intent = new Intent(this, ActivityTrashHome.class);
+        Intent intent = new Intent(this, ActivityWaterHome.class);
         startActivity(intent);
     }
 
-
-    public class FactPagerAdapter extends FragmentPagerAdapter {
-        public FactPagerAdapter(FragmentManager fm) {
+    public class PagerAdapter extends FragmentPagerAdapter {
+        public PagerAdapter(FragmentManager fm) {
             super(fm);
         }
 
         @Override
         public Fragment getItem(int i) {
-            Fragment fragment = new FactObjectFragment();
+            Fragment fragment = new ObjectFragment();
             Bundle args = new Bundle();
             // Our object is just an integer
-            args.putInt(FactObjectFragment.ARG_PAGE_NUM, i + 1);
+            args.putInt(ObjectFragment.ARG_PAGE_NUM, i + 1);
             fragment.setArguments(args);
             return fragment;
         }
 
         @Override
         public int getCount() {
-            return 8;
+            return 5;
         }
 
         @Override
@@ -90,10 +93,9 @@ public class ActivityTrashFact extends FragmentActivity {
         }
     }
 
-
     // Instances of this class are fragments representing a single
     // object in our collection.
-    public static class FactObjectFragment extends Fragment {
+    public static class ObjectFragment extends Fragment {
 
         public static final String ARG_PAGE_NUM = "page number";
 
@@ -108,30 +110,31 @@ public class ActivityTrashFact extends FragmentActivity {
             String fact = "";
             String source = "";
             if(page == 1) {
-                fact = getResources().getString(R.string.trash_fact_1);
-                source = getResources().getString(R.string.trash_fact_1_source);
+                fact = getResources().getString(R.string.water_tip_1);
+                source = getResources().getString(R.string.water_tip_source);
             } else if(page == 2) {
-                fact = getResources().getString(R.string.trash_fact_2);
-                source = getResources().getString(R.string.trash_fact_2_source);
+                fact = getResources().getString(R.string.water_tip_2);
+                source = getResources().getString(R.string.water_tip_source);
             } else if(page == 3) {
-                fact = getResources().getString(R.string.trash_fact_3);
-                source = getResources().getString(R.string.trash_fact_3_source);
+                fact = getResources().getString(R.string.water_tip_3);
+                source = getResources().getString(R.string.water_tip_source);
             } else if(page == 4) {
-                fact = getResources().getString(R.string.trash_fact_4);
-                source = getResources().getString(R.string.trash_fact_4_source);
+                fact = getResources().getString(R.string.water_tip_4);
+                source = getResources().getString(R.string.water_tip_source);
             } else if(page == 5) {
-                fact = getResources().getString(R.string.trash_fact_5);
-                source = getResources().getString(R.string.trash_fact_5_source);
-            } else if(page == 6) {
-                fact = getResources().getString(R.string.trash_fact_6);
-                source = getResources().getString(R.string.trash_fact_6_source);
-            } else if(page == 7) {
-                fact = getResources().getString(R.string.trash_fact_7);
-                source = getResources().getString(R.string.trash_fact_7_source);
-            } else {
-                fact = getResources().getString(R.string.trash_fact_8);
-                source = getResources().getString(R.string.trash_fact_8_source);
+                fact = getResources().getString(R.string.water_tip_5);
+                source = getResources().getString(R.string.water_tip_source);
             }
+//            } else if(page == 6) {
+//                fact = getResources().getString(R.string.water_fact_6);
+//                source = getResources().getString(R.string.water_fact_6_source);
+//            } else if(page == 7) {
+//                fact = getResources().getString(R.string.water_fact_7);
+//                source = getResources().getString(R.string.water_fact_7_source);
+//            } else {
+//                fact = getResources().getString(R.string.water_fact_8);
+//                source = getResources().getString(R.string.water_fact_8_source);
+//            }
             // Get the text view and set text for fact and source
             final TextView textView = (TextView) rootView.findViewById(R.id.fact);
             textView.setText(fact);
@@ -140,7 +143,7 @@ public class ActivityTrashFact extends FragmentActivity {
             textSourceView.setText(source);
 
             final TextView textPageNum = (TextView) rootView.findViewById(R.id.page);
-            String pageString = "Page " + page + " of 8";
+            String pageString = "Page " + page + " of 5";
             textPageNum.setText(pageString);
 
             return rootView;

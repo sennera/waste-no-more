@@ -1,4 +1,4 @@
-package com.cookie_computing.wastenomore;
+package com.cookie_computing.wastenomore.Water;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -11,6 +11,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ToggleButton;
+
+import com.cookie_computing.wastenomore.db.CheckInContract;
+import com.cookie_computing.wastenomore.db.CheckInDbHelper;
+import com.cookie_computing.wastenomore.Global;
+import com.cookie_computing.wastenomore.R;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -31,17 +36,17 @@ public class ActivityWaterCheckIn extends ActionBarActivity {
         // Fill in default values based on what they've entered before
         global = ((Global)getApplicationContext());
         final EditText editShower = (EditText) findViewById(R.id.shower_min_number);
-        editShower.setText("" + (int)global.getTypicalShower());
+        editShower.setText("" + (int) global.getTypicalShower());
         final EditText editHandDish = (EditText) findViewById(R.id.hand_dish_min);
-        editHandDish.setText("" + (int)global.getTypicalHandDishes());
+        editHandDish.setText("" + (int) global.getTypicalHandDishes());
         final EditText editDishwasher = (EditText) findViewById(R.id.dishwasher_number);
-        editDishwasher.setText("" + (int)global.getTypicalDishwasher());
+        editDishwasher.setText("" + (int) global.getTypicalDishwasher());
         final EditText editFaceWash = (EditText) findViewById(R.id.face_wash_min);
-        editFaceWash.setText("" + (int)global.getTypicalFaceWash());
+        editFaceWash.setText("" + (int) global.getTypicalFaceWash());
         final EditText editTeeth = (EditText) findViewById(R.id.teeth_brushing_min);
-        editTeeth.setText("" + (int)global.getTypicalBrushTeeth());
+        editTeeth.setText("" + (int) global.getTypicalBrushTeeth());
         final EditText editOther = (EditText) findViewById(R.id.other_running_min);
-        editOther.setText("" + (int)global.getTypicalBrushTeeth());
+        editOther.setText("" + (int) global.getTypicalBrushTeeth());
         final ToggleButton toggleToilet = (ToggleButton) findViewById(R.id.toggleButton);
         toggleToilet.setChecked(global.getTypicalConservingToilet());
     }
@@ -221,17 +226,7 @@ public class ActivityWaterCheckIn extends ActionBarActivity {
     // If input is negative, this returns 0.
     public double getNumFromEditText(int editTextID){
         EditText editText = (EditText) findViewById(editTextID);
-        String string = editText.getText().toString();
-        if (string.equals("")) {
-            return 0;
-        } else {
-            double num = Double.parseDouble(string);
-            // Check that they've entered a non-negative number
-            if(num < 0) {
-                return 0;
-            }
-            return num;
-        }
+        return global.getPositiveNumFromString(editText.getText().toString());
     }
 
     // Get the number of gallons that were used from using the restroom today (toilet-flushing and
@@ -257,7 +252,7 @@ public class ActivityWaterCheckIn extends ActionBarActivity {
         return parser.format(date);
     }
 
-    // Returns the row id and amount for this week's check-in, otherwise returns {-1,0}
+    // Returns the row id and amount for today's check-in, otherwise returns {-1,0}
     private double[] getTodaysInfo() {
         //Get the data from the DB
         CheckInDbHelper mDbHelper = new CheckInDbHelper(this);

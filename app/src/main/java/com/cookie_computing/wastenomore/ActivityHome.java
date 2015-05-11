@@ -7,6 +7,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.cookie_computing.wastenomore.Gas.ActivityGasHome;
+import com.cookie_computing.wastenomore.Trash.ActivityTrashHome;
+import com.cookie_computing.wastenomore.Water.ActivityWaterHome;
+
 
 public class ActivityHome extends ActionBarActivity {
 

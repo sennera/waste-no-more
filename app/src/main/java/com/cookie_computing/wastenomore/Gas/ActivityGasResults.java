@@ -1,12 +1,16 @@
-package com.cookie_computing.wastenomore;
+package com.cookie_computing.wastenomore.Gas;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.cookie_computing.wastenomore.R;
 
 
 public class ActivityGasResults extends ActionBarActivity {
@@ -20,12 +24,23 @@ public class ActivityGasResults extends ActionBarActivity {
         Intent intent = getIntent();
         String mileage = intent.getStringExtra(ActivityGasCheckIn.GAS_AMOUNTS);
 
-        String message = "You averaged " + mileage + " miles per gallon of gas.";
 
-        // Create the text view
+        String message2 = "Look at your past gas mileage to see if you're improving!";
+        final TextView textView2 = (TextView) findViewById(R.id.addedToWeekOrDayNote);
+        textView2.setText(message2);
+
+        String message = "You averaged " + mileage + " miles per gallon of gas.";
         final TextView textView = (TextView) findViewById(R.id.usageResults);
         textView.setTextSize(30);
         textView.setText(message);
+
+        // Remove the Fact Button
+        Button button = (Button) findViewById(R.id.factButton);
+        ((RelativeLayout) button.getParent()).removeView(button);
+
+        // Since fact button is gone, set what the past usage button is below
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) findViewById(R.id.usageButton).getLayoutParams();
+        params.addRule(RelativeLayout.BELOW, R.id.addedToWeekOrDayNote);
     }
 
 
@@ -52,10 +67,10 @@ public class ActivityGasResults extends ActionBarActivity {
     }
 
     /** Called when the user clicks the Fact button */
-    public void goToFact(View view) {
+//    public void goToFact(View view) {
 //        Intent intent = new Intent(this, ActivityGasFact.class);
 //        startActivity(intent);
-    }
+//    }
 
     /** Called when the user clicks the Past Usages button */
     public void goToTrack(View view) {

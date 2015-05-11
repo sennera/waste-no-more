@@ -1,4 +1,4 @@
-package com.cookie_computing.wastenomore;
+package com.cookie_computing.wastenomore.Gas;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -9,6 +9,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+
+import com.cookie_computing.wastenomore.db.CheckInContract;
+import com.cookie_computing.wastenomore.db.CheckInDbHelper;
+import com.cookie_computing.wastenomore.Global;
+import com.cookie_computing.wastenomore.R;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -28,9 +33,9 @@ public class ActivityGasCheckIn extends ActionBarActivity {
         // Fill in default values based on what they've entered before
         global = ((Global)getApplicationContext());
         final EditText editGallons = (EditText) findViewById(R.id.gallons_bought);
-        editGallons.setText("" + (int)global.getTypicalGasGallons());
+        editGallons.setText("" + (int) global.getTypicalGasGallons());
         final EditText editMiles = (EditText) findViewById(R.id.miles_driven);
-        editMiles.setText("" + (int)global.getTypicalGasMiles());
+        editMiles.setText("" + (int) global.getTypicalGasMiles());
     }
 
 
@@ -98,7 +103,6 @@ public class ActivityGasCheckIn extends ActionBarActivity {
         }
 
 
-
         // What we send to with the Intent only has to be an int
         int mileage = (int) avgMileage;
         intent.putExtra(GAS_AMOUNTS, "" + mileage);
@@ -111,6 +115,8 @@ public class ActivityGasCheckIn extends ActionBarActivity {
         double gals = getNumFromEditText(R.id.gallons_bought);
         global.setTypicalGasGallons(gals);
         global.setTypicalGasMiles(miles);
+        global.setTotalMiles(global.getTotalMiles() + miles);
+        global.setTotalGals(global.getTotalGals() + gals);
         return (int) (miles / gals);
     }
 

@@ -1,4 +1,4 @@
-package com.cookie_computing.wastenomore;
+package com.cookie_computing.wastenomore.Gas;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -11,34 +11,35 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.cookie_computing.wastenomore.db.CheckInContract;
+import com.cookie_computing.wastenomore.db.CheckInDbHelper;
+import com.cookie_computing.wastenomore.R;
+
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
 import org.achartengine.chart.BarChart;
-import org.achartengine.chart.LineChart;
+import org.achartengine.chart.TimeChart;
 import org.achartengine.model.SeriesSelection;
+import org.achartengine.model.TimeSeries;
 import org.achartengine.model.XYMultipleSeriesDataset;
-import org.achartengine.model.XYSeries;
 import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-public class ActivityTrashTrack extends ActionBarActivity {
+
+public class ActivityGasTrack extends ActionBarActivity {
 
     private SQLiteDatabase db;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_track_trash);
-
+        setContentView(R.layout.activity_gas_track);
         openChart();
     }
 
@@ -46,14 +47,14 @@ public class ActivityTrashTrack extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_track_trash, menu);
+        getMenuInflater().inflate(R.menu.menu_activity_gas_track, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the ActivityHome/Up button, so long
+        // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
@@ -67,49 +68,37 @@ public class ActivityTrashTrack extends ActionBarActivity {
 
     private void openChart() {
         //Get the data for the dates and amounts
-        HashMap<Integer,Double> data = getUsageData();
+        HashMap<Date,Double> data = getUsageData();
         int count = data.size();
-        int[] weeks = getAscendingWeekNumbers(data);
+        Date[] days = getAscendingDates(data);
         double[] amounts = getAmountsAscendingByDate(data);
 
+        Date xMin = getMin(days);
+        Date xMax = getMax(days);
 
-        final double AVG_AMERICAN_INTAKE = 35; // 5 lbs a day * 7 days
         int avgUserAmount = (int) getAverage(amounts);
-
-        double xMin = 0.5;
-        double xMax = getMax(weeks) + 0.5;
 
 
         // Put data in the series
-        XYSeries series = new XYSeries("Trash Amount");
+        TimeSeries series = new TimeSeries("Gas Mileage");
         for(int i = 0; i < count; i++){
-            series.add(weeks[i], amounts[i]);
+            series.add(days[i], amounts[i]);
         }
-        // Make two points so that a line of the average shows up
-        XYSeries avgAmericanSeries = new XYSeries("American Average");
-        avgAmericanSeries.add(xMin, AVG_AMERICAN_INTAKE);
-        avgAmericanSeries.add(xMax, AVG_AMERICAN_INTAKE);
+
         // Make two points so that a line of their average shows up
-        XYSeries avgUserSeries = new XYSeries("Your Average");
+        TimeSeries avgUserSeries = new TimeSeries("Your Average");
         avgUserSeries.add(xMin, avgUserAmount);
         avgUserSeries.add(xMax, avgUserAmount);
 
         // Create a dataset to hold each series
         XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
         dataset.addSeries(series);
-        dataset.addSeries(avgAmericanSeries);
         dataset.addSeries(avgUserSeries);
 
         // Creating XYSeriesRenderer to customize series
         XYSeriesRenderer renderer = new XYSeriesRenderer();
         renderer.setColor(Color.WHITE);
         renderer.setDisplayChartValues(true);
-
-        XYSeriesRenderer avgAmericanRenderer = new XYSeriesRenderer();
-        avgAmericanRenderer.setColor(Color.RED);
-        avgAmericanRenderer.setFillPoints(true);
-        avgAmericanRenderer.setLineWidth(4);
-        avgAmericanRenderer.setDisplayChartValues(false);
 
         XYSeriesRenderer avgUserRenderer = new XYSeriesRenderer();
         avgUserRenderer.setColor(Color.GREEN);
@@ -121,16 +110,16 @@ public class ActivityTrashTrack extends ActionBarActivity {
         // Creating a XYMultipleSeriesRenderer to customize the whole chart
         XYMultipleSeriesRenderer multiRenderer = new XYMultipleSeriesRenderer();
 
-        multiRenderer.setChartTitle("Your Trash Check-Ins");
-        multiRenderer.setXTitle("Week");
-        multiRenderer.setYTitle("Weight (lbs)");
+        multiRenderer.setChartTitle("");
+        multiRenderer.setXTitle("Date");
+        multiRenderer.setYTitle("Miles per gallon");
         double yMax = getMax(amounts);
         yMax = yMax + (0.1 * yMax);
         multiRenderer.setYAxisMax(yMax);
         multiRenderer.setYAxisMin(0);
-        multiRenderer.setXAxisMin(xMin);
-        multiRenderer.setXAxisMax(xMax);
-        multiRenderer.setXLabels((int) (xMax - 0.5));
+//        multiRenderer.setXAxisMin(xMin);
+//        multiRenderer.setXAxisMax(xMax);
+//        multiRenderer.setXLabels((int) (xMax - 0.5));
 
         // setting legend to fit the screen size
         multiRenderer.setFitLegend(true);
@@ -149,18 +138,18 @@ public class ActivityTrashTrack extends ActionBarActivity {
         // Set the width of the bars
         float barSpacing = (float) 0.5;
         multiRenderer.setBarSpacing(barSpacing);
+        multiRenderer.setXRoundedLabels(false);
 
         multiRenderer.addSeriesRenderer(renderer);
-        multiRenderer.addSeriesRenderer(avgAmericanRenderer);
         multiRenderer.addSeriesRenderer(avgUserRenderer);
 
         // Creating a combined chart with the chart types specified in types array
-        String[] types = new String[] { BarChart.TYPE, LineChart.TYPE, LineChart.TYPE };
+        String[] types = new String[] { BarChart.TYPE, TimeChart.TYPE };
         final GraphicalView mChart;
-        mChart = ChartFactory.getCombinedXYChartView(getBaseContext(), dataset, multiRenderer, types);
+        mChart = ChartFactory.getTimeChartView(getBaseContext(), dataset, multiRenderer, "MM/dd");
 
         // Getting a reference to RelativeLayout of the ActivityTrashTrack Layout
-        RelativeLayout chartContainer = (RelativeLayout) findViewById(R.id.track_trash_chart);
+        RelativeLayout chartContainer = (RelativeLayout) findViewById(R.id.track_gas_chart);
 
         multiRenderer.setClickEnabled(true);
         multiRenderer.setSelectableBuffer(50);
@@ -172,14 +161,14 @@ public class ActivityTrashTrack extends ActionBarActivity {
                 SeriesSelection seriesSelection = mChart.getCurrentSeriesAndPoint();
 
                 if (seriesSelection != null) {
-                    String selectedSeries="Weight of Trash";
-                    int clickedWeek = (int) seriesSelection.getXValue(); // Getting the clicked Date ( x value )
+                    String selectedSeries="Mileage";
+                    int clickedDate = (int) seriesSelection.getXValue(); // Getting the clicked Date ( x value )
                     int amount = (int) seriesSelection.getValue(); // Getting the y value
 
                     // Displaying Toast Message
                     Toast.makeText(
                             getBaseContext(),
-                            selectedSeries + " for Week " + clickedWeek + " : " + amount + " lbs",
+                            selectedSeries + " for " + clickedDate + " : " + amount + " miles per gallon",
                             Toast.LENGTH_SHORT).show();
                 }
             }
@@ -189,7 +178,7 @@ public class ActivityTrashTrack extends ActionBarActivity {
         chartContainer.addView(mChart);
     }
 
-    private HashMap<Integer,Double> getUsageData() {
+    private HashMap<Date,Double> getUsageData() {
         //Get the data from the DB
         CheckInDbHelper mDbHelper = new CheckInDbHelper(this);
         db = mDbHelper.getReadableDatabase();
@@ -200,8 +189,8 @@ public class ActivityTrashTrack extends ActionBarActivity {
                 CheckInContract.CheckIns.COLUMN_NAME_DATE,
                 CheckInContract.CheckIns.COLUMN_NAME_AMOUNT};
 
-        String[] selectionArgs = {"" + CheckInDbHelper.TRASH_ID};
-        String sortBy = CheckInContract.CheckIns.COLUMN_NAME_DATE + " DESC";
+        String[] selectionArgs = {"" + CheckInDbHelper.GAS_MILEAGE_ID};
+        String sortBy = CheckInContract.CheckIns.COLUMN_NAME_DATE + " ASC";
 
         Cursor c = db.query(
                 CheckInContract.CheckIns.TABLE_NAME,  // The table to query
@@ -215,7 +204,7 @@ public class ActivityTrashTrack extends ActionBarActivity {
 
         // With the results from the DB, fill a map with where the key is the date and the value is
         // the usage amount
-        HashMap<Integer,Double> entriesMap = new HashMap<>();
+        HashMap<Date,Double> entriesMap = new HashMap<>();
         Date minDate = getMinDate(c);
         c.moveToFirst();
 
@@ -226,10 +215,8 @@ public class ActivityTrashTrack extends ActionBarActivity {
             Date date;
             try {
                 date = parser.parse(dateString);
-                // the day number is one more than the number of days since the first check-in
-                int weekNumber = getWeeksBetween(minDate, date);
-                entriesMap.put(weekNumber, amount);
-                System.out.println("date: " + date + " week: " + weekNumber + " amount: " + amount);
+                entriesMap.put(date, amount);
+                System.out.println("date: " + date + " amount: " + amount);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -272,12 +259,12 @@ public class ActivityTrashTrack extends ActionBarActivity {
      * @param map The map to read from, which includes the weeks and usage amounts
      * @return The array of week numbers
      */
-    private int[] getAscendingWeekNumbers(HashMap<Integer,Double> map) {
+    private Date[] getAscendingDates(HashMap<Date,Double> map) {
         // The entries need to be sorted by date in case they weren't in order in the cursor so they
         // will display correctly in the chart
-        LinkedList<Integer> weeksList = new LinkedList<>(map.keySet());
+        LinkedList<Date> weeksList = new LinkedList<>(map.keySet());
         Collections.sort(weeksList);
-        int[] weeks = new int[weeksList.size()];
+        Date[] weeks = new Date[weeksList.size()];
 
         for(int i = 0; i < weeks.length; i++){
             weeks[i] = weeksList.get(i);
@@ -286,48 +273,24 @@ public class ActivityTrashTrack extends ActionBarActivity {
         return weeks;
     }
 
-    public static int getWeeksBetween (Date a, Date b) {
-
-        if (b.before(a)) {
-            return -getWeeksBetween(b, a);
-        }
-
-        // Back up the time for a until the beginning of that week, down to the very second.
-        a = resetTime(a);
-        Calendar cal = new GregorianCalendar();
-        cal.setTime(a);
-        while (cal.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
-            cal.add(Calendar.DATE, -1);
-        }
-
-        int weeks = 0;
-        while (cal.getTime().before(b)) {
-            // add another week
-            cal.add(Calendar.WEEK_OF_YEAR, 1);
-            weeks++;
-        }
-        return weeks;
-    }
-
-    /* Resets the time but not the date or weeks part of the Date */
-    public static Date resetTime (Date d) {
-        Calendar cal = new GregorianCalendar();
-        cal.setTime(d);
-        cal.set(Calendar.HOUR_OF_DAY, 0);
-        cal.set(Calendar.MINUTE, 0);
-        cal.set(Calendar.SECOND, 0);
-        cal.set(Calendar.MILLISECOND, 0);
-        return cal.getTime();
-    }
-
-    private int getMax(int[] arr) {
-        int max = Integer.MIN_VALUE;
+    private Date getMax(Date[] arr) {
+        Date max = new Date(0);
         for(int i = 0; i < arr.length; i++) {
-            if(max < arr[i]) {
+            if(max.before(arr[i])) {
                 max = arr[i];
             }
         }
         return max;
+    }
+
+    private Date getMin(Date[] arr) {
+        Date min = new Date(System.currentTimeMillis());
+        for(int i = 0; i < arr.length; i++) {
+            if(min.after(arr[i])) {
+                min = arr[i];
+            }
+        }
+        return min;
     }
 
     private double getMax(double[] arr) {
@@ -352,9 +315,9 @@ public class ActivityTrashTrack extends ActionBarActivity {
         return sum / numbers.length;
     }
 
-    private double[] getAmountsAscendingByDate(HashMap<Integer,Double> map) {
+    private double[] getAmountsAscendingByDate(HashMap<Date,Double> map) {
         // Sort the dates
-        LinkedList<Integer> daysList = new LinkedList<>(map.keySet());
+        LinkedList<Date> daysList = new LinkedList<>(map.keySet());
         Collections.sort(daysList);
         double[] amounts = new double[daysList.size()];
 
@@ -367,3 +330,5 @@ public class ActivityTrashTrack extends ActionBarActivity {
     }
 
 }
+
+

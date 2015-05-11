@@ -1,4 +1,4 @@
-package com.cookie_computing.wastenomore;
+package com.cookie_computing.wastenomore.Trash;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -11,7 +11,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
-import com.cookie_computing.wastenomore.CheckInContract.CheckIns;
+import com.cookie_computing.wastenomore.db.CheckInContract;
+import com.cookie_computing.wastenomore.db.CheckInContract.CheckIns;
+import com.cookie_computing.wastenomore.db.CheckInDbHelper;
+import com.cookie_computing.wastenomore.R;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;

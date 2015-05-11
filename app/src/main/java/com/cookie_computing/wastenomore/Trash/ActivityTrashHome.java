@@ -1,4 +1,4 @@
-package com.cookie_computing.wastenomore;
+package com.cookie_computing.wastenomore.Trash;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.cookie_computing.wastenomore.R;
 
 
 public class ActivityTrashHome extends ActionBarActivity {

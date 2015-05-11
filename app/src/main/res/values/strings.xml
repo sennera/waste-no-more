@@ -11,8 +11,13 @@
 
     <string name="check_in">Check In</string>
     <string name="past_usage">Past Usage</string>
+    <string name="tips">Tips</string>
     <string name="facts">Facts</string>
     <string name="fact_source">Fact Source</string>
+    <string name="fuel_check_in">Fuel Up Check-In</string>
+    <string name="saved_gas_check_in">Saved Gas Check-In</string>
+    <string name="fuel_track">Fuel-Ups</string>
+    <string name="saved_gas_track">Saved Gas</string>
 
     <string name="how_many_bags_of_trash">How many bags of trash have you gone through?</string>
     <string name="since_last_check_in">(This week or since your last check-in)</string>
@@ -26,6 +31,10 @@
     <string name="miles">miles</string>
     <string name="gallons">gallons</string>
     <string name="money_sign">$</string>
+
+    <string name="celebrate">Celebrate when you choose to save gas! \n\n Whether you save a trip in the
+        car by walking, biking, carpooling, or not going at all, keep track of it here.</string>
+    <string name="trip_length">Distance of saved trip: </string>
 
     <string name="how_many_shower_min">How many minutes did you spend in the shower today?</string>
     <string name="may_be_more">We tend to think we shower shorter than we do. Be honest with this amount of time.</string>
@@ -136,6 +145,30 @@
         http://www.drinktap.org/home/water-information/conservation/water-use-statistics.aspx.</string>
 
 
+    Which uses more water, a shower or a tub bath? It all depends. A partially filled tub uses much less than a long shower, while a short shower is much more water efficient than a brimful tub. If you shower in a bathtub, check yourself by plugging the tub to see how high the water comes when you're finished. Do you use more or less than that amount when you take a bath?
+    <string name="water_tip_1">Which uses more water, a shower or a tub bath? It all depends. A
+        partially filled tub uses much less than a long shower, while a short shower is much more
+        water efficient than a brimful tub. If you shower in a bathtub, check yourself by plugging
+        the tub to see how high the water comes when you\'re finished. Do you use more or less than
+        that amount when you take a bath?</string>
+    <string name="water_tip_source">Department Of Water Supply. “55 Facts, Figures, and Follies
+        of Water Conservation.” http://www.co.maui.hi.us/DocumentCenter/Home/View/4334.</string>
+    <string name="water_tip_2">If you like to rinse off vegetables and fruits, stopper the sink
+        instead of using running water. Stopper the sink when you wash dishes by hand, too; and
+        when you\'re finished, turn on the garbage disposal as you pull the plug.</string>
+    <string name="water_tip_3">If everyone
+        in the United States could manage to use just one less gallon of water per shower every
+        day, we could save some 85 billion gallons per year. How do you do it? By keeping the shower
+        pressure lower or by making your showers a few seconds shorter.</string>
+    <string name="water_tip_4">Here\'s a two-for-one idea if you have a fish tank in the house. When
+        you clean the tank, use the dirty water on your houseplants. It\'s rich in nitrogen and
+        phosphorus, which gives you a nice fertilizer while you use the same water twice.</string>
+    <string name="water_tip_5">Some people thoughtlessly flush away tissues and other bits of trash
+        in the toilet. Using a wastebasket, instead, will save all those gallons of water that
+        otherwise go wastefully down the drain.</string>
+
+
+
     <string name="why_waste_less_1"><b>Wasting less is for you if you&#8230;\n
         -  want to help the environment\n
         -  want to save money\n
@@ -172,6 +205,8 @@
     <color name="dark_gray">#2a2a2a</color>
     <color name="white">#FFFFFF</color>
     <color name="transparent_background">#80000000</color>
+    <color name="red">#ff7f7f</color>
+    <color name="green">#66b266</color>
 
     <string name="title_activity_trash_results">Trash Check-In Results</string>
     <string name="title_activity_trash_check_in">Trash Check-In</string>
@@ -195,5 +230,12 @@
     <string name="title_activity_activity_gas_track">Past Gas Usage</string>
     <string name="title_activity_activity_gas_check_in">Gas Check-In</string>
     <string name="title_activity_activity_gas_results">Gas Check-In Results</string>
+    <string name="title_activity_activity_water_tips">Water Conservation Tips</string>
+    <string name="title_activity_activity_gas_saved_check_in">Saved Gas Check-In</string>
+    <string name="title_activity_acitivity_choose_gas_check_in">Gas Check-In</string>
+    <string name="title_activity_activity_gas_saved_results">Saved Gas Results</string>
+    <string name="title_activity_acitivity_choose_gas_track">Past Gas Usage</string>
+    <string name="title_activity_activity_gas_saved_track">Past Saved Gas</string>
+    <string name="title_activity_activity_choose_gas_track">Past Gas Usage</string>
 
 </resources>

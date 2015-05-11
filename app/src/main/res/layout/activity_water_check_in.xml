@@ -13,7 +13,7 @@
         android:paddingBottom="16dp"
         android:orientation="vertical"
         android:gravity="center_horizontal"
-        tools:context="com.cookie_computing.wastenomore.ActivityWaterCheckIn">
+        tools:context="com.cookie_computing.wastenomore.Water.ActivityWaterCheckIn">
 
 
         <!--BATHS/SHOWERS WATER USAGE-->

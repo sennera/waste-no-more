@@ -1,42 +1,53 @@
-package com.cookie_computing.wastenomore;
+package com.cookie_computing.wastenomore.Gas;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.cookie_computing.wastenomore.R;
 
-public class ActivityWaterResults extends ActionBarActivity {
+public class ActivityGasSavedResults extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_water_results);
+        setContentView(R.layout.activity_activity_gas_saved_results);
 
         // Get the message from the intent
         Intent intent = getIntent();
-        String totalGallons = intent.getStringExtra(ActivityWaterCheckIn.TOTAL_GAL);
+        String gals = intent.getStringExtra(ActivityGasCheckIn.GAS_AMOUNTS);
 
-        String message = "That adds up to about " + totalGallons + " gallons of water.";
+        String message = "Great job! You saved " + gals + " gallons of gas from that trip.";
+        String message2 = "Look at your past gas savings to see how much you've saved!";
 
-        // Edit the text in the text view
+        // Create the text view
         final TextView textView = (TextView) findViewById(R.id.usageResults);
         textView.setTextSize(30);
         textView.setText(message);
 
         final TextView textView2 = (TextView) findViewById(R.id.addedToWeekOrDayNote);
-        textView2.setText(R.string.day_results_small_text);
+        textView2.setText(message2);
 
+        // Remove the Fact Button
+        Button button = (Button) findViewById(R.id.factButton);
+        ((RelativeLayout) button.getParent()).removeView(button);
+
+        // Since fact button is gone, set what the past usage button is below
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) findViewById(R.id.usageButton).getLayoutParams();
+        params.addRule(RelativeLayout.BELOW, R.id.addedToWeekOrDayNote);
     }
 
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_activity_water_results, menu);
+        getMenuInflater().inflate(R.menu.menu_activity_gas_saved_results, menu);
         return true;
     }
 
@@ -56,15 +67,9 @@ public class ActivityWaterResults extends ActionBarActivity {
     }
 
 
-    /** Called when the user clicks the Fact button */
-    public void goToFact(View view) {
-        Intent intent = new Intent(this, ActivityWaterFact.class);
-        startActivity(intent);
-    }
-
     /** Called when the user clicks the Past Usages button */
     public void goToTrack(View view) {
-        Intent intent = new Intent(this, ActivityWaterTrack.class);
+        Intent intent = new Intent(this, ActivityGasSavedTrack.class);
         startActivity(intent);
     }
 }

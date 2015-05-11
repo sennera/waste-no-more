@@ -1,9 +1,9 @@
-package com.cookie_computing.wastenomore;
+package com.cookie_computing.wastenomore.db;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import com.cookie_computing.wastenomore.CheckInContract.CheckIns;
+import com.cookie_computing.wastenomore.db.CheckInContract.CheckIns;
 
 import java.util.ArrayList;
 
@@ -46,6 +46,8 @@ public class CheckInDbHelper extends SQLiteOpenHelper {
     public static final int TRASH_ID = 1;
     public static final int WATER_ID = 2;
     public static final int GAS_MILEAGE_ID = 3;
+    public static final int GAS_SAVINGS_ID = 4;
+
 
 
     public CheckInDbHelper(Context context) {
@@ -75,6 +77,7 @@ public class CheckInDbHelper extends SQLiteOpenHelper {
         types.add("Trash");
         types.add("Water");
         types.add("Gas Mileage");
+        types.add("Gas Savings");
 
         // This will be the primary key
         for (String type : types) {

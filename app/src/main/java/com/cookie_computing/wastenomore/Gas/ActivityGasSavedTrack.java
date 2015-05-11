@@ -1,20 +1,24 @@
-package com.cookie_computing.wastenomore;
+package com.cookie_computing.wastenomore.Gas;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.cookie_computing.wastenomore.R;
+import com.cookie_computing.wastenomore.db.CheckInContract;
+import com.cookie_computing.wastenomore.db.CheckInDbHelper;
+
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
 import org.achartengine.chart.BarChart;
-import org.achartengine.chart.LineChart;
+import org.achartengine.chart.TimeChart;
 import org.achartengine.model.SeriesSelection;
 import org.achartengine.model.TimeSeries;
 import org.achartengine.model.XYMultipleSeriesDataset;
@@ -27,15 +31,14 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-
-public class ActivityGasTrack extends ActionBarActivity {
+public class ActivityGasSavedTrack extends ActionBarActivity {
 
     private SQLiteDatabase db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_gas_track);
+        setContentView(R.layout.activity_gas_saved_track);
         openChart();
     }
 
@@ -43,7 +46,7 @@ public class ActivityGasTrack extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_activity_gas_track, menu);
+        getMenuInflater().inflate(R.menu.menu_activity_gas_saved_track, menu);
         return true;
     }
 
@@ -76,7 +79,7 @@ public class ActivityGasTrack extends ActionBarActivity {
 
 
         // Put data in the series
-        TimeSeries series = new TimeSeries("Gas Mileage");
+        TimeSeries series = new TimeSeries("Saved Gas");
         for(int i = 0; i < count; i++){
             series.add(days[i], amounts[i]);
         }
@@ -106,9 +109,9 @@ public class ActivityGasTrack extends ActionBarActivity {
         // Creating a XYMultipleSeriesRenderer to customize the whole chart
         XYMultipleSeriesRenderer multiRenderer = new XYMultipleSeriesRenderer();
 
-        multiRenderer.setChartTitle("Your Gasoline Check-Ins");
+        multiRenderer.setChartTitle("");
         multiRenderer.setXTitle("Date");
-        multiRenderer.setYTitle("Mileage (miles per gallon)");
+        multiRenderer.setYTitle("Gallons");
         double yMax = getMax(amounts);
         yMax = yMax + (0.1 * yMax);
         multiRenderer.setYAxisMax(yMax);
@@ -134,17 +137,18 @@ public class ActivityGasTrack extends ActionBarActivity {
         // Set the width of the bars
         float barSpacing = (float) 0.5;
         multiRenderer.setBarSpacing(barSpacing);
+        multiRenderer.setXRoundedLabels(false);
 
         multiRenderer.addSeriesRenderer(renderer);
         multiRenderer.addSeriesRenderer(avgUserRenderer);
 
         // Creating a combined chart with the chart types specified in types array
-        String[] types = new String[] { BarChart.TYPE, LineChart.TYPE };
+        String[] types = new String[] { BarChart.TYPE, TimeChart.TYPE };
         final GraphicalView mChart;
-        mChart = ChartFactory.getCombinedXYChartView(getBaseContext(), dataset, multiRenderer, types);
+        mChart = ChartFactory.getTimeChartView(getBaseContext(), dataset, multiRenderer, "MM/dd");
 
         // Getting a reference to RelativeLayout of the ActivityTrashTrack Layout
-        RelativeLayout chartContainer = (RelativeLayout) findViewById(R.id.track_gas_chart);
+        RelativeLayout chartContainer = (RelativeLayout) findViewById(R.id.track_gas_saved_chart);
 
         multiRenderer.setClickEnabled(true);
         multiRenderer.setSelectableBuffer(50);
@@ -156,14 +160,13 @@ public class ActivityGasTrack extends ActionBarActivity {
                 SeriesSelection seriesSelection = mChart.getCurrentSeriesAndPoint();
 
                 if (seriesSelection != null) {
-                    String selectedSeries="Mileage";
                     int clickedDate = (int) seriesSelection.getXValue(); // Getting the clicked Date ( x value )
                     int amount = (int) seriesSelection.getValue(); // Getting the y value
 
                     // Displaying Toast Message
                     Toast.makeText(
                             getBaseContext(),
-                            selectedSeries + " for " + clickedDate + " : " + amount + " miles per gallon",
+                            "Saved " + amount + " gallons on " + clickedDate,
                             Toast.LENGTH_SHORT).show();
                 }
             }
@@ -184,7 +187,7 @@ public class ActivityGasTrack extends ActionBarActivity {
                 CheckInContract.CheckIns.COLUMN_NAME_DATE,
                 CheckInContract.CheckIns.COLUMN_NAME_AMOUNT};
 
-        String[] selectionArgs = {"" + CheckInDbHelper.GAS_MILEAGE_ID};
+        String[] selectionArgs = {"" + CheckInDbHelper.GAS_SAVINGS_ID};
         String sortBy = CheckInContract.CheckIns.COLUMN_NAME_DATE + " ASC";
 
         Cursor c = db.query(
@@ -325,5 +328,3 @@ public class ActivityGasTrack extends ActionBarActivity {
     }
 
 }
-
-

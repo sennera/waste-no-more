@@ -4,7 +4,7 @@
     android:paddingRight="@dimen/activity_chart_margin"
     android:paddingTop="@dimen/activity_chart_margin"
     android:paddingBottom="@dimen/activity_chart_margin"
-    tools:context="com.cookie_computing.wastenomore.ActivityTrashTrack"
+    tools:context="com.cookie_computing.wastenomore.Trash.ActivityTrashTrack"
     android:id="@+id/track_trash_chart">
 
 </RelativeLayout>

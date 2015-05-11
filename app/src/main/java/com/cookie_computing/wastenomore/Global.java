@@ -2,11 +2,14 @@ package com.cookie_computing.wastenomore;
 
 import android.app.Application;
 
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+
 /**
  * To hold global variables for the application.
  * Created by April on 4/24/15.
  */
-public  class  Global extends Application {
+public class Global extends Application {
 
     // wash face
     // other
@@ -81,5 +84,47 @@ public  class  Global extends Application {
     }
     public void setTypicalGasMiles(double TYPICAL_GAS_MILES) {
         this.TYPICAL_GAS_MILES = TYPICAL_GAS_MILES;
+    }
+
+    // It will be the mean of car mileage until they have saved a fuel up check-in
+    //Value from data in MTH 366 data from .gov website
+    // The total miles and total gallons will be used to find an average mpg
+    private double TOTAL_MILES = 0.0;
+    public double getTotalMiles() {
+        return TOTAL_MILES;
+    }
+    public void setTotalMiles(double TOTAL_MILES) {
+        this.TOTAL_MILES = TOTAL_MILES;
+    }
+
+    private double TOTAL_GALS = 0.0;
+    public double getTotalGals() {
+        return TOTAL_GALS;
+    }
+    public void setTotalGals(double TOTAL_GALS) {
+        this.TOTAL_GALS = TOTAL_GALS;
+    }
+
+
+    /* Get the current date and put it in correct format so it can be put in the map */
+    public static String getCurrentDate() {
+        final SimpleDateFormat parser = new SimpleDateFormat("ww yyyy-MM-dd HH:mm:ss.SSS");
+        Date date = new Date(System.currentTimeMillis()); //gets the current date
+        return parser.format(date);
+    }
+
+    // Helper method to get the number from a string. Always gives positive:
+    // If input is negative, this returns 0.
+    public static double getPositiveNumFromString(String string){
+        if (string.equals("")) {
+            return 0;
+        } else {
+            double num = Double.parseDouble(string);
+            // Check that they've entered a non-negative number
+            if(num < 0) {
+                return 0;
+            }
+            return num;
+        }
     }
 }

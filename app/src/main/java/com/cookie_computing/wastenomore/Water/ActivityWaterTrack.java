@@ -1,4 +1,4 @@
-package com.cookie_computing.wastenomore;
+package com.cookie_computing.wastenomore.Water;
 
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,6 +10,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
+
+import com.cookie_computing.wastenomore.db.CheckInContract;
+import com.cookie_computing.wastenomore.db.CheckInDbHelper;
+import com.cookie_computing.wastenomore.R;
 
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;

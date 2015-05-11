@@ -4,8 +4,8 @@
     android:paddingRight="@dimen/activity_chart_margin"
     android:paddingTop="@dimen/activity_chart_margin"
     android:paddingBottom="@dimen/activity_chart_margin"
-    tools:context="com.cookie_computing.wastenomore.Water.ActivityWaterTrack"
-    android:id="@+id/track_water_chart">
+    tools:context="com.cookie_computing.wastenomore.Gas.ActivityGasSavedTrack"
+    android:id="@+id/track_gas_saved_chart">
 
 
 </RelativeLayout>

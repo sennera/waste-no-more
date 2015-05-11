@@ -35,7 +35,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ActivityTrashHome"
+            android:name=".Trash.ActivityTrashHome"
             android:label="@string/title_activity_trash_home" >
             android:parentActivityName="com.cookie_computing.wastenomore.ActivityHome" >
             <!-- Parent activity meta-data to support 4.0 and lower -->
@@ -44,47 +44,47 @@
                 android:value="com.cookie_computing.wastenomore.ActivityHome" />
         </activity>
         <activity
-            android:name=".ActivityTrashCheckIn"
+            android:name=".Trash.ActivityTrashCheckIn"
             android:label="@string/title_activity_trash_check_in"
-            android:parentActivityName=".ActivityTrashHome" >
+            android:parentActivityName=".Trash.ActivityTrashHome" >
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.cookie_computing.wastenomore.ActivityTrashHome" />
+                android:value=".Trash.ActivityTrashHome" />
         </activity>
         <activity
-            android:name=".ActivityTrashResults"
+            android:name=".Trash.ActivityTrashResults"
             android:label="@string/title_activity_trash_results"
-            android:parentActivityName=".ActivityTrashCheckIn" >
+            android:parentActivityName=".Trash.ActivityTrashCheckIn" >
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.cookie_computing.wastenomore.ActivityTrashCheckIn" />
+                android:value=".Trash.ActivityTrashCheckIn" />
         </activity>
         <activity
-            android:name=".ActivityTrashFact"
+            android:name=".Trash.ActivityTrashFact"
             android:label="@string/title_activity_trash_fact"
-            android:parentActivityName=".ActivityTrashHome" >
+            android:parentActivityName=".Trash.ActivityTrashHome" >
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.cookie_computing.wastenomore.ActivityTrashHome" />
+                android:value=".Trash.ActivityTrashHome" />
         </activity>
         <activity
-            android:name=".ActivityTrashTrack"
+            android:name=".Trash.ActivityTrashTrack"
             android:label="@string/title_activity_track_trash"
-            android:parentActivityName=".ActivityTrashHome" >
+            android:parentActivityName=".Trash.ActivityTrashHome" >
 
             <!-- Parent activity meta-data to support 4.0 and lower -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.cookie_computing.wastenomore.ActivityTrashHome" />
+                android:value=".Trash.ActivityTrashHome" />
         </activity>
         <activity
-            android:name=".ActivityWaterHome"
+            android:name=".Water.ActivityWaterHome"
             android:label="@string/title_activity_activity_water_home"
             android:parentActivityName=".ActivityHome" >
             <meta-data
@@ -92,28 +92,28 @@
                 android:value="com.cookie_computing.wastenomore.ActivityHome" />
         </activity>
         <activity
-            android:name=".ActivityWaterCheckIn"
+            android:name=".Water.ActivityWaterCheckIn"
             android:label="@string/title_activity_activity_water_check_in"
-            android:parentActivityName=".ActivityWaterHome" >
+            android:parentActivityName=".Water.ActivityWaterHome" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.cookie_computing.wastenomore.ActivityWaterHome" />
+                android:value=".Water.ActivityWaterHome" />
         </activity>
         <activity
-            android:name=".ActivityWaterResults"
+            android:name=".Water.ActivityWaterResults"
             android:label="@string/title_activity_activity_water_results"
-            android:parentActivityName=".ActivityWaterCheckIn" >
+            android:parentActivityName=".Water.ActivityWaterCheckIn" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.cookie_computing.wastenomore.ActivityWaterCheckIn" />
+                android:value=".Water.ActivityWaterCheckIn" />
         </activity>
         <activity
-            android:name=".ActivityWaterTrack"
+            android:name=".Water.ActivityWaterTrack"
             android:label="@string/title_activity_activity_water_track"
-            android:parentActivityName=".ActivityWaterHome" >
+            android:parentActivityName=".Water.ActivityWaterHome" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.cookie_computing.wastenomore.ActivityWaterHome" />
+                android:value=".Water.ActivityWaterHome" />
         </activity>
         <activity
             android:name=".ActivityAbout"
@@ -124,15 +124,15 @@
                 android:value="com.cookie_computing.wastenomore.ActivityHome" />
         </activity>
         <activity
-            android:name=".ActivityWaterFact"
+            android:name=".Water.ActivityWaterFact"
             android:label="@string/title_activity_activity_water_fact"
-            android:parentActivityName=".ActivityWaterHome" >
+            android:parentActivityName=".Water.ActivityWaterHome" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.cookie_computing.wastenomore.ActivityWaterHome" />
+                android:value=".Water.ActivityWaterHome" />
         </activity>
         <activity
-            android:name=".ActivityGasHome"
+            android:name=".Gas.ActivityGasHome"
             android:label="@string/title_activity_activity_gas_home"
             android:parentActivityName=".ActivityHome" >
             <meta-data
@@ -140,28 +140,76 @@
                 android:value="com.cookie_computing.wastenomore.ActivityHome" />
         </activity>
         <activity
-            android:name=".ActivityGasTrack"
+            android:name=".Gas.ActivityGasTrack"
             android:label="@string/title_activity_activity_gas_track"
-            android:parentActivityName=".ActivityGasHome" >
+            android:parentActivityName=".Gas.ActivityGasHome" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.cookie_computing.wastenomore.ActivityGasHome" />
+                android:value=".Gas.ActivityGasHome" />
         </activity>
         <activity
-            android:name=".ActivityGasCheckIn"
+            android:name=".Gas.ActivityGasCheckIn"
             android:label="@string/title_activity_activity_gas_check_in"
-            android:parentActivityName=".ActivityGasHome" >
+            android:parentActivityName=".Gas.ActivityGasHome" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.cookie_computing.wastenomore.ActivityGasHome" />
+                android:value=".Gas.ActivityGasHome" />
         </activity>
         <activity
-            android:name=".ActivityGasResults"
+            android:name=".Gas.ActivityGasResults"
             android:label="@string/title_activity_activity_gas_results"
-            android:parentActivityName=".ActivityGasCheckIn" >
+            android:parentActivityName=".Gas.ActivityGasCheckIn" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.cookie_computing.wastenomore.ActivityGasCheckIn" />
+                android:value=".Gas.ActivityGasCheckIn" />
+        </activity>
+        <activity
+            android:name=".Water.ActivityWaterTips"
+            android:label="@string/title_activity_activity_water_tips"
+            android:parentActivityName=".Water.ActivityWaterHome" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Water.ActivityWaterHome" />
+        </activity>
+        <activity
+            android:name=".Gas.ActivityGasSavedCheckIn"
+            android:label="@string/title_activity_activity_gas_saved_check_in"
+            android:parentActivityName=".Gas.ActivityGasHome" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cookie_computing.wastenomore.Gas.ActivityGasHome" />
+        </activity>
+        <activity
+            android:name=".Gas.ActivityChooseGasCheckIn"
+            android:label="@string/title_activity_acitivity_choose_gas_check_in"
+            android:parentActivityName=".Gas.ActivityGasHome" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cookie_computing.wastenomore.Gas.ActivityGasHome" />
+        </activity>
+        <activity
+            android:name=".Gas.ActivityGasSavedResults"
+            android:label="@string/title_activity_activity_gas_saved_results"
+            android:parentActivityName=".Gas.ActivityGasSavedCheckIn" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cookie_computing.wastenomore.Gas.ActivityGasSavedCheckIn" />
+        </activity>
+        <activity
+            android:name=".Gas.ActivityGasSavedTrack"
+            android:label="@string/title_activity_activity_gas_saved_track"
+            android:parentActivityName=".Gas.ActivityChooseGasTrack" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cookie_computing.wastenomore.Gas.ActivityChooseGasTrack" />
+        </activity>
+        <activity
+            android:name=".Gas.ActivityChooseGasTrack"
+            android:label="@string/title_activity_activity_choose_gas_track"
+            android:parentActivityName=".Gas.ActivityGasHome" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cookie_computing.wastenomore.Gas.ActivityGasHome" />
         </activity>
     </application>
 

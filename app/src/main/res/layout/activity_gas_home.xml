@@ -9,34 +9,16 @@
     tools:context="com.cookie_computing.wastenomore.Gas.ActivityGasHome"
     android:weightSum="2">
 
-    <Button
+    <fragment  android:name="com.cookie_computing.wastenomore.CheckInFragment"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        android:layout_margin="8dp"
-        android:text="@string/check_in"
-        android:textSize="25dp"
-        android:id="@+id/button3"
-        android:onClick="goToCheckIn"
-        android:layout_weight="1"/>
+        tools:layout="@layout/fragment_check_in"
+        android:layout_weight="1"></fragment>
 
-    <Button
+    <fragment  android:name="com.cookie_computing.wastenomore.PastResultsButtonFragment"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
-        android:layout_margin="8dp"
-        android:text="@string/past_usage"
-        android:textSize="25dp"
-        android:id="@+id/button4"
-        android:onClick="goToGasTrack"
-        android:layout_weight="1"/>
-
-    <!--<Button-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_margin="8dp"-->
-        <!--android:text="@string/facts"-->
-        <!--android:textSize="25dp"-->
-        <!--android:id="@+id/button5"-->
-        <!--android:onClick="goToTrashFact"-->
-        <!--android:layout_weight="1.3"/>-->
+        tools:layout="@layout/fragment_past_results_button"
+        android:layout_weight="1"></fragment>
 
 </LinearLayout>

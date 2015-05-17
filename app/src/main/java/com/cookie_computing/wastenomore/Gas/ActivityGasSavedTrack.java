@@ -3,8 +3,8 @@ package com.cookie_computing.wastenomore.Gas;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,8 +17,6 @@ import com.cookie_computing.wastenomore.db.CheckInDbHelper;
 
 import org.achartengine.ChartFactory;
 import org.achartengine.GraphicalView;
-import org.achartengine.chart.BarChart;
-import org.achartengine.chart.TimeChart;
 import org.achartengine.model.SeriesSelection;
 import org.achartengine.model.TimeSeries;
 import org.achartengine.model.XYMultipleSeriesDataset;
@@ -84,15 +82,15 @@ public class ActivityGasSavedTrack extends ActionBarActivity {
             series.add(days[i], amounts[i]);
         }
 
-        // Make two points so that a line of their average shows up
-        TimeSeries avgUserSeries = new TimeSeries("Your Average");
-        avgUserSeries.add(xMin, avgUserAmount);
-        avgUserSeries.add(xMax, avgUserAmount);
+//        // Make two points so that a line of their average shows up
+//        TimeSeries avgUserSeries = new TimeSeries("Your Average");
+//        avgUserSeries.add(xMin, avgUserAmount);
+//        avgUserSeries.add(xMax, avgUserAmount);
 
         // Create a dataset to hold each series
         XYMultipleSeriesDataset dataset = new XYMultipleSeriesDataset();
         dataset.addSeries(series);
-        dataset.addSeries(avgUserSeries);
+//        dataset.addSeries(avgUserSeries);
 
         // Creating XYSeriesRenderer to customize series
         XYSeriesRenderer renderer = new XYSeriesRenderer();
@@ -143,7 +141,6 @@ public class ActivityGasSavedTrack extends ActionBarActivity {
         multiRenderer.addSeriesRenderer(avgUserRenderer);
 
         // Creating a combined chart with the chart types specified in types array
-        String[] types = new String[] { BarChart.TYPE, TimeChart.TYPE };
         final GraphicalView mChart;
         mChart = ChartFactory.getTimeChartView(getBaseContext(), dataset, multiRenderer, "MM/dd");
 

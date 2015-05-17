@@ -49,7 +49,7 @@ public class ActivityGasHome extends ActionBarActivity {
     }
 
     /** Called when the user clicks the Past Usage button */
-    public void goToGasTrack(View view) {
+    public void goToTrack(View view) {
         Intent intent = new Intent(this, ActivityChooseGasTrack.class);
         startActivity(intent);
     }

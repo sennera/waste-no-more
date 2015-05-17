@@ -10,13 +10,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
-import com.cookie_computing.wastenomore.db.CheckInContract;
-import com.cookie_computing.wastenomore.db.CheckInDbHelper;
 import com.cookie_computing.wastenomore.Global;
 import com.cookie_computing.wastenomore.R;
-
-import java.sql.Date;
-import java.text.SimpleDateFormat;
+import com.cookie_computing.wastenomore.db.CheckInContract;
+import com.cookie_computing.wastenomore.db.CheckInDbHelper;
 
 
 public class ActivityGasCheckIn extends ActionBarActivity {
@@ -82,7 +79,7 @@ public class ActivityGasCheckIn extends ActionBarActivity {
         // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(CheckInContract.CheckIns.COLUMN_NAME_USAGE_TYPE_ID, CheckInDbHelper.GAS_MILEAGE_ID);
-        values.put(CheckInContract.CheckIns.COLUMN_NAME_DATE, getCurrentDate());
+        values.put(CheckInContract.CheckIns.COLUMN_NAME_DATE, global.getCurrentDate());
         values.put(CheckInContract.CheckIns.COLUMN_NAME_AMOUNT, avgMileage);
 
         try{
@@ -120,14 +117,6 @@ public class ActivityGasCheckIn extends ActionBarActivity {
         return (int) (miles / gals);
     }
 
-    // Get the cost of gas for this trip
-//    public double getGasCost() {
-//        double gals = getNumFromEditText(R.id.gallons_bought);
-//        double price = getNumFromEditText(R.id.price_per_gal);
-//        // Save the price rounded to the cent
-//        return ((int)(100 * gals * price)) / 100;
-//    }
-
     // Helper method to get the number from the EditText with the given ID. Always gives positive:
     // If input is negative, this returns 0.
     public double getNumFromEditText(int editTextID){
@@ -143,13 +132,6 @@ public class ActivityGasCheckIn extends ActionBarActivity {
             }
             return num;
         }
-    }
-
-    /* Get the current date and put it in correct format so it can be put in the map */
-    public String getCurrentDate() {
-        final SimpleDateFormat parser = new SimpleDateFormat("ww yyyy-MM-dd HH:mm:ss.SSS");
-        Date date = new Date(System.currentTimeMillis()); //gets the current date
-        return parser.format(date);
     }
 
 }

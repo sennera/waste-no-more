@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.cookie_computing.wastenomore.Global;
 import com.cookie_computing.wastenomore.db.CheckInContract;
 import com.cookie_computing.wastenomore.db.CheckInDbHelper;
 import com.cookie_computing.wastenomore.R;
@@ -36,12 +37,14 @@ import java.util.LinkedList;
 public class ActivityTrashTrack extends ActionBarActivity {
 
     private SQLiteDatabase db;
+    static Global global;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_track_trash);
+        global = ((Global)getApplicationContext());
 
         openChart();
     }
@@ -78,10 +81,10 @@ public class ActivityTrashTrack extends ActionBarActivity {
 
 
         final double AVG_AMERICAN_INTAKE = 35; // 5 lbs a day * 7 days
-        int avgUserAmount = (int) getAverage(amounts);
+        int avgUserAmount = (int) global.getAverage(amounts);
 
         double xMin = 0.5;
-        double xMax = getMax(weeks) + 0.5;
+        double xMax = global.getMax(weeks) + 0.5;
 
 
         // Put data in the series
@@ -125,10 +128,10 @@ public class ActivityTrashTrack extends ActionBarActivity {
         // Creating a XYMultipleSeriesRenderer to customize the whole chart
         XYMultipleSeriesRenderer multiRenderer = new XYMultipleSeriesRenderer();
 
-        multiRenderer.setChartTitle("Your Trash Check-Ins");
+        multiRenderer.setChartTitle("");
         multiRenderer.setXTitle("Week");
         multiRenderer.setYTitle("Weight (lbs)");
-        double yMax = getMax(amounts);
+        double yMax = global.getMax(amounts);
         yMax = yMax + (0.1 * yMax);
         multiRenderer.setYAxisMax(yMax);
         multiRenderer.setYAxisMin(0);
@@ -217,7 +220,7 @@ public class ActivityTrashTrack extends ActionBarActivity {
                 sortBy                                      // don't sort the rows
         );
 
-        // With the results from the DB, fill a map with where the key is the date and the value is
+        // With the results from the DB, fill a map where the key is the date and the value is
         // the usage amount
         HashMap<Integer,Double> entriesMap = new HashMap<>();
         Date minDate = getMinDate(c);
@@ -297,7 +300,7 @@ public class ActivityTrashTrack extends ActionBarActivity {
         }
 
         // Back up the time for a until the beginning of that week, down to the very second.
-        a = resetTime(a);
+        a = global.resetTime(a);
         Calendar cal = new GregorianCalendar();
         cal.setTime(a);
         while (cal.get(Calendar.DAY_OF_WEEK) != Calendar.SUNDAY) {
@@ -311,49 +314,6 @@ public class ActivityTrashTrack extends ActionBarActivity {
             weeks++;
         }
         return weeks;
-    }
-
-    /* Resets the time but not the date or weeks part of the Date */
-    public static Date resetTime (Date d) {
-        Calendar cal = new GregorianCalendar();
-        cal.setTime(d);
-        cal.set(Calendar.HOUR_OF_DAY, 0);
-        cal.set(Calendar.MINUTE, 0);
-        cal.set(Calendar.SECOND, 0);
-        cal.set(Calendar.MILLISECOND, 0);
-        return cal.getTime();
-    }
-
-    private int getMax(int[] arr) {
-        int max = Integer.MIN_VALUE;
-        for(int i = 0; i < arr.length; i++) {
-            if(max < arr[i]) {
-                max = arr[i];
-            }
-        }
-        return max;
-    }
-
-    private double getMax(double[] arr) {
-        double max = Double.MIN_VALUE;
-        for(int i = 0; i < arr.length; i++) {
-            if(max < arr[i]) {
-                max = arr[i];
-            }
-        }
-        return max;
-    }
-
-    // Calculate the average for an array of doubles
-    private double getAverage(double[] numbers) {
-        double sum = 0;
-
-        for(int i=0; i < numbers.length ; i++) {
-            sum += numbers[i];
-        }
-
-        //calculate average value
-        return sum / numbers.length;
     }
 
     private double[] getAmountsAscendingByDate(HashMap<Integer,Double> map) {

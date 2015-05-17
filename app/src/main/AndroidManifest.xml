@@ -211,6 +211,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.cookie_computing.wastenomore.Gas.ActivityGasHome" />
         </activity>
+        <activity
+            android:name=".Water.ActivityWaterStats"
+            android:label="@string/title_activity_activity_water_stats"
+            android:parentActivityName=".Water.ActivityWaterHome" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cookie_computing.wastenomore.Water.ActivityWaterHome" />
+        </activity>
     </application>
 
 </manifest>

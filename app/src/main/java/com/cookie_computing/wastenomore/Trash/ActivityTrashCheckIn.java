@@ -11,24 +11,24 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import com.cookie_computing.wastenomore.Global;
+import com.cookie_computing.wastenomore.R;
 import com.cookie_computing.wastenomore.db.CheckInContract;
 import com.cookie_computing.wastenomore.db.CheckInContract.CheckIns;
 import com.cookie_computing.wastenomore.db.CheckInDbHelper;
-import com.cookie_computing.wastenomore.R;
-
-import java.sql.Date;
-import java.text.SimpleDateFormat;
 
 
 public class ActivityTrashCheckIn extends ActionBarActivity {
 
     public final static String TOTAL_GAL = "com.cookie-computing.wastenomore.TOTAL_GAL";
+    Global global;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trash_check_in);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        global = ((Global)getApplicationContext());
     }
 
 
@@ -116,7 +116,7 @@ public class ActivityTrashCheckIn extends ActionBarActivity {
         double[] thisWeeksInfo = getThisWeeksDate();
         // If the ID is -1 then there was no check-in found for this week
         if (thisWeeksInfo[0] == -1) {
-            values.put(CheckIns.COLUMN_NAME_DATE, getCurrentDate());
+            values.put(CheckIns.COLUMN_NAME_DATE, global.getCurrentDate());
             values.put(CheckIns.COLUMN_NAME_AMOUNT, totalWeight);
 
             // Insert the new row, returning the primary key value of the new row
@@ -148,12 +148,6 @@ public class ActivityTrashCheckIn extends ActionBarActivity {
         startActivity(intent);
     }
 
-    /* Get the current date and put it in correct format so it can be put in the map */
-    public String getCurrentDate() {
-        final SimpleDateFormat parser = new SimpleDateFormat("ww yyyy-MM-dd HH:mm:ss.SSS");
-        Date date = new Date(System.currentTimeMillis()); //gets the current date
-        return parser.format(date);
-    }
 
     // Returns the row id and amount for this week's check-in, otherwise returns {-1,0}
     private double[] getThisWeeksDate() {
@@ -187,7 +181,7 @@ public class ActivityTrashCheckIn extends ActionBarActivity {
                 // first 7 characters match (ww yyyy)
                 String week = dateString.substring(0, 7);
 
-                String thisWeek = getCurrentDate();
+                String thisWeek = global.getCurrentDate();
                 thisWeek = thisWeek.substring(0, 7);
 
                 if (thisWeek.equals(week)) {
@@ -207,36 +201,4 @@ public class ActivityTrashCheckIn extends ActionBarActivity {
 
         return new double[] {-1,0};
     }
-
-    /* Get the UsageTypeID for trash from the UsageTypes DB */
-//    public int getTrashID() {
-//        CheckInDbHelper mDbHelper = new CheckInDbHelper(this);
-//        SQLiteDatabase db = mDbHelper.getReadableDatabase();
-//
-//        // Define a projection that specifies which columns from the database
-//        // you will actually use after this query.
-//        String[] projection = {
-//                UsageTypeContract.UsageTypes._ID};
-//
-//        // How the results should be sorted in the resulting Cursor
-//        String[] selectionArgs = {TRASH};
-//
-//        Cursor c = db.query(
-//                UsageTypeContract.UsageTypes.TABLE_NAME,  // The table to query
-//                projection,                               // The columns to return
-//                UsageTypeContract.UsageTypes.COLUMN_NAME_USAGE_TYPE + "=?",                                // The columns for the WHERE clause
-//                selectionArgs,                            // The values for the WHERE clause
-//                null,                                     // don't group the rows
-//                null,                                     // don't filter by row groups
-//                null                                      // don't sort the rows
-//        );
-//
-//        c.moveToFirst();
-//        db.close();
-//        int id = c.getInt(
-//                c.getColumnIndexOrThrow(UsageTypeContract.UsageTypes._ID)
-//        );
-//        c.close();
-//        return id;
-//    }
 }

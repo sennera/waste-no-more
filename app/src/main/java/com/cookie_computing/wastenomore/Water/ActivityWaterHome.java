@@ -43,14 +43,20 @@ public class ActivityWaterHome extends ActionBarActivity {
     }
 
     /** Called when the user clicks the Check In button */
-    public void goToWaterCheckIn(View view) {
+    public void goToCheckIn(View view) {
         Intent intent = new Intent(this, ActivityWaterCheckIn.class);
         startActivity(intent);
     }
 
     /** Called when the user clicks the Past Usage button */
-    public void goToWaterTrack(View view) {
+    public void goToTrack(View view) {
         Intent intent = new Intent(this, ActivityWaterTrack.class);
+        startActivity(intent);
+    }
+
+    /** Called when the user clicks the Stats button */
+    public void goToStats(View view) {
+        Intent intent = new Intent(this, ActivityWaterStats.class);
         startActivity(intent);
     }
 
@@ -61,7 +67,7 @@ public class ActivityWaterHome extends ActionBarActivity {
     }
 
     /** Called when the user clicks the Facts button */
-    public void goToWaterFact(View view) {
+    public void goToFact(View view) {
         Intent intent = new Intent(this, ActivityWaterFact.class);
         startActivity(intent);
     }

@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.cookie_computing.wastenomore.Global;
 import com.cookie_computing.wastenomore.db.CheckInContract;
 import com.cookie_computing.wastenomore.db.CheckInDbHelper;
 import com.cookie_computing.wastenomore.R;
@@ -26,8 +27,10 @@ import org.achartengine.renderer.XYMultipleSeriesRenderer;
 import org.achartengine.renderer.XYSeriesRenderer;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -35,12 +38,15 @@ import java.util.LinkedList;
 public class ActivityWaterTrack extends ActionBarActivity {
 
     final long DAY_IN_MILLIS = 1000 * 60 * 60 * 24;
+    public static final double AVG_AMERICAN_INTAKE = 98; // From http://pacinst.org/news/397/
     private SQLiteDatabase db;
+    static Global global;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_water_track);
+        global = ((Global)getApplicationContext());
         openChart();
     }
 
@@ -74,10 +80,10 @@ public class ActivityWaterTrack extends ActionBarActivity {
         int[] days = getAscendingDayNumbers(data);
         double[] amounts = getAmountsAscendingByDate(data);
 
-        final double AVG_AMERICAN_INTAKE = 98; // From http://pacinst.org/news/397/
-        int avgUserAmount = (int) getAverage(amounts);
+        int avgUserAmount = (int) global.getAverage(amounts);
 
-        double xMax = getMax(days);
+        double xMin = 0.5;
+        double xMax = global.getMax(days);
 
 
         // Put data in the series
@@ -87,11 +93,11 @@ public class ActivityWaterTrack extends ActionBarActivity {
         }
         // Make two points so that a line of the average shows up
         XYSeries avgAmericanSeries = new XYSeries("American Average");
-        avgAmericanSeries.add(0, AVG_AMERICAN_INTAKE);
-        avgAmericanSeries.add(xMax, AVG_AMERICAN_INTAKE);
+        avgAmericanSeries.add(xMin, AVG_AMERICAN_INTAKE);
+        avgAmericanSeries.add(xMax + 0.5, AVG_AMERICAN_INTAKE);
         // Make two points so that a line of their average shows up
         XYSeries avgUserSeries = new XYSeries("Your Average");
-        avgUserSeries.add(0, avgUserAmount);
+        avgUserSeries.add(xMin, avgUserAmount);
         avgUserSeries.add(xMax + 0.5, avgUserAmount);
 
 
@@ -123,15 +129,15 @@ public class ActivityWaterTrack extends ActionBarActivity {
         // Creating a XYMultipleSeriesRenderer to customize the whole chart
         XYMultipleSeriesRenderer multiRenderer = new XYMultipleSeriesRenderer();
 
-        multiRenderer.setChartTitle("Your Water Check-Ins");
+        multiRenderer.setChartTitle("");
         multiRenderer.setXTitle("Day");
         multiRenderer.setYTitle("Gallons");
         //multiRenderer.setZoomButtonsVisible(true);
-        double yMax = getMax(amounts);
+        double yMax = global.getMax(amounts);
         yMax = yMax + (0.1 * yMax);
         multiRenderer.setYAxisMax(yMax);
         multiRenderer.setYAxisMin(0);
-        multiRenderer.setXAxisMin(-0.5);
+        multiRenderer.setXAxisMin(xMin);
         multiRenderer.setXAxisMax(xMax + 0.5);
         multiRenderer.setXLabels((int) (xMax));
         // setting legend to fit the screen size
@@ -191,6 +197,8 @@ public class ActivityWaterTrack extends ActionBarActivity {
         chartContainer.addView(mChart);
     }
 
+    // Gets the data for the water check ins. Returns a map with the key being the day number and the
+    // value being the number of gallons used on that day
     private HashMap<Integer,Double> getUsageData() {
         //Get the data from the DB
         CheckInDbHelper mDbHelper = new CheckInDbHelper(this);
@@ -215,8 +223,8 @@ public class ActivityWaterTrack extends ActionBarActivity {
                 sortBy                                      // don't sort the rows
         );
 
-        // With the results from the DB, fill a map with where the key is the date and the value is
-        // the usage amount
+        // With the results from the DB, fill a map with where the key is the day number and the
+        // value is the usage amount
         HashMap<Integer,Double> entriesMap = new HashMap<>();
         long minDate = getMinDate(c).getTime();
         c.moveToFirst();
@@ -268,14 +276,32 @@ public class ActivityWaterTrack extends ActionBarActivity {
     }
 
     /*
-    Gets the number of days included in the two timestamps (if there's 24 hours between,
-    it spanned 2 days)
+    Given two date timestamps, gets the number of days included in the two timestamps
+    (if there's 24 hours between, it spanned 2 days)
      */
-    private int getDaysBetween(long minDate, long maxDate) {
-        if (maxDate < minDate) {
-            return -getDaysBetween(maxDate, minDate);
+    public static int getDaysBetween (long date1, long date2) {
+        Date a = new Date(date1);
+        Date b = new Date(date2);
+        System.out.println("date1: "+ a + " Date2: " + b);
+
+        if (b.before(a)) {
+            return -getDaysBetween(b.getTime(), a.getTime());
         }
-        return (int) ((maxDate - minDate)/ DAY_IN_MILLIS) + 1;
+
+        // Back up the time for 'a' until the beginning of that day, down to the very second.
+        a = global.resetTime(a);
+        Calendar cal = new GregorianCalendar();
+        cal.setTime(a);
+
+        int days = 0;
+        while (cal.getTime().before(b)) {
+            // add another day
+            cal.add(Calendar.DAY_OF_YEAR, 1);
+            days++;
+        }
+        System.out.println("days between: "+ days);
+
+        return days;
     }
 
     /**
@@ -299,37 +325,6 @@ public class ActivityWaterTrack extends ActionBarActivity {
         return days;
     }
 
-    private int getMax(int[] arr) {
-        int max = Integer.MIN_VALUE;
-        for(int i = 0; i < arr.length; i++) {
-            if(max < arr[i]) {
-                max = arr[i];
-            }
-        }
-        return max;
-    }
-
-    private double getMax(double[] arr) {
-        double max = Double.MIN_VALUE;
-        for(int i = 0; i < arr.length; i++) {
-            if(max < arr[i]) {
-                max = arr[i];
-            }
-        }
-        return max;
-    }
-
-    // Calculate the average for an array of doubles
-    private double getAverage(double[] numbers) {
-        double sum = 0;
-
-        for(int i=0; i < numbers.length ; i++) {
-            sum += numbers[i];
-        }
-
-        //calculate average value
-        return sum / numbers.length;
-    }
 
     private double[] getAmountsAscendingByDate(HashMap<Integer,Double> map) {
         // Sort the dates

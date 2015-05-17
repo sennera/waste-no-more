@@ -12,13 +12,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ToggleButton;
 
-import com.cookie_computing.wastenomore.db.CheckInContract;
-import com.cookie_computing.wastenomore.db.CheckInDbHelper;
 import com.cookie_computing.wastenomore.Global;
 import com.cookie_computing.wastenomore.R;
-
-import java.sql.Date;
-import java.text.SimpleDateFormat;
+import com.cookie_computing.wastenomore.db.CheckInContract;
+import com.cookie_computing.wastenomore.db.CheckInDbHelper;
 
 
 public class ActivityWaterCheckIn extends ActionBarActivity {
@@ -109,9 +106,10 @@ public class ActivityWaterCheckIn extends ActionBarActivity {
         double[] todaysInfo = getTodaysInfo();
         // If the ID is -1 then there was no check-in found for today
         if (todaysInfo[0] == -1) {
+            System.out.println("first check in of the day");
             // This is the first check-in of the day, so we'll include the toilet gallons
             totalGallons += getToiletGals();
-            values.put(CheckInContract.CheckIns.COLUMN_NAME_DATE, getCurrentDate());
+            values.put(CheckInContract.CheckIns.COLUMN_NAME_DATE, global.getCurrentDate());
             values.put(CheckInContract.CheckIns.COLUMN_NAME_AMOUNT, totalGallons);
 
             try{
@@ -245,13 +243,6 @@ public class ActivityWaterCheckIn extends ActionBarActivity {
     }
 
 
-    /* Get the current date and put it in correct format so it can be put in the map */
-    public String getCurrentDate() {
-        final SimpleDateFormat parser = new SimpleDateFormat("ww yyyy-MM-dd HH:mm:ss.SSS");
-        Date date = new Date(System.currentTimeMillis()); //gets the current date
-        return parser.format(date);
-    }
-
     // Returns the row id and amount for today's check-in, otherwise returns {-1,0}
     private double[] getTodaysInfo() {
         //Get the data from the DB
@@ -282,15 +273,21 @@ public class ActivityWaterCheckIn extends ActionBarActivity {
                 String dateString = c.getString(c.getColumnIndexOrThrow(CheckInContract.CheckIns.COLUMN_NAME_DATE));
                 //The format for the date is "ww yyyy-MM-dd HH:mm:ss.SSS" so we'll check if the
                 // first 13 characters match (ww yyyy-MM-dd)
-                String week = dateString.substring(0, 13);
+                String day = dateString.substring(0, 13);
+                System.out.println("-"+day+"-");
 
-                String thisWeek = getCurrentDate();
-                thisWeek = thisWeek.substring(0, 13);
+                String today = global.getCurrentDate();
+                today = today.substring(0, 13);
+                System.out.println("-"+today+"-");
 
-                if (thisWeek.equals(week)) {
+                if (today.equals(day)) {
+                    System.out.println("Found that this day was in db");
+
                     double[] info = new double[2];
                     info[0] = c.getInt(c.getColumnIndexOrThrow(CheckInContract.CheckIns._ID));
                     info[1] = c.getInt(c.getColumnIndexOrThrow(CheckInContract.CheckIns.COLUMN_NAME_AMOUNT));
+                    System.out.println("Sending info back to method");
+
                     return info;
                 } else {
                     c.moveToNext();
@@ -305,5 +302,86 @@ public class ActivityWaterCheckIn extends ActionBarActivity {
         mDbHelper.close();
         return new double[] {-1,0};
     }
+
+
+
+
+//    public void fillDB() {
+//        final SimpleDateFormat parser = new SimpleDateFormat("ww yyyy-MM-dd HH:mm:ss.SSS");
+//
+//        storeInDb(parser.format(1429156800000L), 130, CheckInDbHelper.WATER_ID);
+//        storeInDb(parser.format(1429243200000L), 95, CheckInDbHelper.WATER_ID);
+//        storeInDb(parser.format(1429502400000L), 115, CheckInDbHelper.WATER_ID);
+//        storeInDb(parser.format(1429588800000L), 89, CheckInDbHelper.WATER_ID);
+//        storeInDb(parser.format(1429675200000L), 110, CheckInDbHelper.WATER_ID);
+//        storeInDb(parser.format(1430020800000L), 87, CheckInDbHelper.WATER_ID);
+//        storeInDb(parser.format(1430020800000L), 90, CheckInDbHelper.WATER_ID);
+//        storeInDb(parser.format(1430193600000L), 95, CheckInDbHelper.WATER_ID);
+//        storeInDb(parser.format(1430366400000L), 87, CheckInDbHelper.WATER_ID);
+//        storeInDb(parser.format(1430452800000L), 77, CheckInDbHelper.WATER_ID);
+//        storeInDb(parser.format(1430539200000L), 74, CheckInDbHelper.WATER_ID);
+//        storeInDb(parser.format(1430625600000L), 82, CheckInDbHelper.WATER_ID);
+//        storeInDb(parser.format(1430798400000L), 85, CheckInDbHelper.WATER_ID);
+//        storeInDb(parser.format(1430884800000L), 84, CheckInDbHelper.WATER_ID);
+//        storeInDb(parser.format(1431057600000L), 92, CheckInDbHelper.WATER_ID);
+//        storeInDb(parser.format(1431230400000L), 85, CheckInDbHelper.WATER_ID);
+//        storeInDb(parser.format(1431403200000L), 82, CheckInDbHelper.WATER_ID);
+//        storeInDb(parser.format(1431489600000L), 89, CheckInDbHelper.WATER_ID);
+//
+//        storeInDb(parser.format(1428465600000L), 37, CheckInDbHelper.TRASH_ID);
+//        storeInDb(parser.format(1429070400000L), 30, CheckInDbHelper.TRASH_ID);
+//        storeInDb(parser.format(1429675200000L), 40, CheckInDbHelper.TRASH_ID);
+//        storeInDb(parser.format(1430452800000L), 28, CheckInDbHelper.TRASH_ID);
+//        storeInDb(parser.format(1430884800000L), 22, CheckInDbHelper.TRASH_ID);
+//
+//        storeInDb(parser.format(1426824000000L), 30.7, CheckInDbHelper.GAS_MILEAGE_ID);
+//        storeInDb(parser.format(1428120000000L), 25, CheckInDbHelper.GAS_MILEAGE_ID);
+//        storeInDb(parser.format(1428897600000L), 34, CheckInDbHelper.GAS_MILEAGE_ID);
+//        storeInDb(parser.format(1430884800000L), 35, CheckInDbHelper.GAS_MILEAGE_ID);
+//
+//        storeInDb(parser.format(1429156800000L), .53, CheckInDbHelper.GAS_SAVINGS_ID);
+//        storeInDb(parser.format(1429243200000L), .67, CheckInDbHelper.GAS_SAVINGS_ID);
+//        storeInDb(parser.format(1429588800000L), .76, CheckInDbHelper.GAS_SAVINGS_ID);
+//        storeInDb(parser.format(1429675200000L), .34, CheckInDbHelper.GAS_SAVINGS_ID);
+//        storeInDb(parser.format(1430020800000L), .17, CheckInDbHelper.GAS_SAVINGS_ID);
+//        storeInDb(parser.format(1430193600000L), .2, CheckInDbHelper.GAS_SAVINGS_ID);
+//        storeInDb(parser.format(1430452800000L), .2, CheckInDbHelper.GAS_SAVINGS_ID);
+//        storeInDb(parser.format(1430539200000L), .24, CheckInDbHelper.GAS_SAVINGS_ID);
+//        storeInDb(parser.format(1430798400000L), .2, CheckInDbHelper.GAS_SAVINGS_ID);
+//        storeInDb(parser.format(1430884800000L), .12, CheckInDbHelper.GAS_SAVINGS_ID);
+//        storeInDb(parser.format(1431403200000L), .23, CheckInDbHelper.GAS_SAVINGS_ID);
+//        storeInDb(parser.format(1431489600000L), .3, CheckInDbHelper.GAS_SAVINGS_ID);
+//    }
+//
+//    private void storeInDb (String dateString, double gals, int usageType){
+//        // Send this check-in to the CheckIns DB
+//        CheckInDbHelper checkInDbHelper = new CheckInDbHelper(this);
+//        wdb = checkInDbHelper.getWritableDatabase();
+//
+//        // Create a new map of values, where column names are the keys
+//        ContentValues values = new ContentValues();
+//        values.put(CheckInContract.CheckIns.COLUMN_NAME_USAGE_TYPE_ID, usageType);
+//        values.put(CheckInContract.CheckIns.COLUMN_NAME_DATE, dateString);
+//        values.put(CheckInContract.CheckIns.COLUMN_NAME_AMOUNT, gals);
+//
+//        try{
+//            // Insert the new row, returning the primary key value of the new row
+//            long newRowId = wdb.insert(
+//                    CheckInContract.CheckIns.TABLE_NAME,
+//                    CheckInContract.CheckIns.COLUMN_NAME_AMOUNT,
+//                    values);
+//            System.out.println("Saved usage type " + usageType + " for " + gals + " on " + dateString);
+//            wdb.close();
+//        } catch (Exception e) {
+//            System.out.println("An error occurred when trying to insert the entry in the database.");
+//            if(wdb.isOpen()) {
+//                wdb.close();
+//            }
+//            if(checkInDbHelper != null){
+//                checkInDbHelper.close();
+//            }
+//        }
+//    }
+
 
 }

@@ -10,9 +10,10 @@
     <string name="why">Why Waste Less?</string>
 
     <string name="check_in">Check In</string>
-    <string name="past_usage">Past Usage</string>
-    <string name="tips">Tips</string>
-    <string name="facts">Facts</string>
+    <string name="past_usage"> Past Usage</string>
+    <string name="stats"> Your Stats</string>
+    <string name="tips"> Tips</string>
+    <string name="facts"> Facts</string>
     <string name="fact_source">Fact Source</string>
     <string name="fuel_check_in">Fuel Up Check-In</string>
     <string name="saved_gas_check_in">Saved Gas Check-In</string>
@@ -237,5 +238,6 @@
     <string name="title_activity_acitivity_choose_gas_track">Past Gas Usage</string>
     <string name="title_activity_activity_gas_saved_track">Past Saved Gas</string>
     <string name="title_activity_activity_choose_gas_track">Past Gas Usage</string>
+    <string name="title_activity_activity_water_stats">Your Water Statistics</string>
 
 </resources>

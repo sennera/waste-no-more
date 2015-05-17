@@ -24,7 +24,6 @@ public class ActivityGasSavedResults extends ActionBarActivity {
         String gals = intent.getStringExtra(ActivityGasCheckIn.GAS_AMOUNTS);
 
         String message = "Great job! You saved " + gals + " gallons of gas from that trip.";
-        String message2 = "Look at your past gas savings to see how much you've saved!";
 
         // Create the text view
         final TextView textView = (TextView) findViewById(R.id.usageResults);
@@ -32,7 +31,7 @@ public class ActivityGasSavedResults extends ActionBarActivity {
         textView.setText(message);
 
         final TextView textView2 = (TextView) findViewById(R.id.addedToWeekOrDayNote);
-        textView2.setText(message2);
+        textView2.setText(R.string.day_results_small_text);
 
         // Remove the Fact Button
         Button button = (Button) findViewById(R.id.factButton);

@@ -1,0 +1,19 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.cookie_computing.wastenomore.PastResultsButtonFragment">
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="4dp"
+        android:paddingLeft="15sp"
+        android:drawablePadding="20dip"
+        android:gravity="left|center_vertical"
+        android:text="@string/past_usage"
+        android:textSize="30dp"
+        android:drawableLeft="@drawable/white_chart_small"
+        android:id="@+id/trackButton"
+        android:onClick="goToTrack"/>
+
+</FrameLayout>

@@ -4,6 +4,8 @@ import android.app.Application;
 
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 /**
  * To hold global variables for the application.
@@ -126,5 +128,48 @@ public class Global extends Application {
             }
             return num;
         }
+    }
+
+    public static int getMax(int[] arr) {
+        int max = Integer.MIN_VALUE;
+        for(int i = 0; i < arr.length; i++) {
+            if(max < arr[i]) {
+                max = arr[i];
+            }
+        }
+        return max;
+    }
+
+    public static double getMax(double[] arr) {
+        double max = Double.MIN_VALUE;
+        for(int i = 0; i < arr.length; i++) {
+            if(max < arr[i]) {
+                max = arr[i];
+            }
+        }
+        return max;
+    }
+
+    // Calculate the average for an array of doubles
+    public static double getAverage(double[] numbers) {
+        double sum = 0;
+
+        for(int i=0; i < numbers.length ; i++) {
+            sum += numbers[i];
+        }
+
+        //calculate average value
+        return sum / numbers.length;
+    }
+
+    /* Resets the time but not the date or weeks part of the Date */
+    public static java.util.Date resetTime (java.util.Date d) {
+        Calendar cal = new GregorianCalendar();
+        cal.setTime(d);
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        return cal.getTime();
     }
 }

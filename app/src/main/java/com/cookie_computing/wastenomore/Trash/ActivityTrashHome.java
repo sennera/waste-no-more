@@ -1,8 +1,8 @@
 package com.cookie_computing.wastenomore.Trash;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,6 +17,7 @@ public class ActivityTrashHome extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_trash_home);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
 
@@ -47,19 +48,19 @@ public class ActivityTrashHome extends ActionBarActivity {
     }
 
     /** Called when the user clicks the Check In button */
-    public void goToTrashCheckIn(View view) {
+    public void goToCheckIn(View view) {
         Intent intent = new Intent(this, ActivityTrashCheckIn.class);
         startActivity(intent);
     }
 
     /** Called when the user clicks the Past Usage button */
-    public void goToTrashTrack(View view) {
+    public void goToTrack(View view) {
         Intent intent = new Intent(this, ActivityTrashTrack.class);
         startActivity(intent);
     }
 
     /** Called when the user clicks the Facts button */
-    public void goToTrashFact(View view) {
+    public void goToFact(View view) {
         Intent intent = new Intent(this, ActivityTrashFact.class);
         startActivity(intent);
     }

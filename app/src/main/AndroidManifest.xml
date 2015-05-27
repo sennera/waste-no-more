@@ -219,6 +219,22 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.cookie_computing.wastenomore.Water.ActivityWaterHome" />
         </activity>
+        <activity
+            android:name=".Trash.ActivityTrashTips"
+            android:label="@string/title_activity_activity_trash_tips"
+            android:parentActivityName=".Trash.ActivityTrashHome" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cookie_computing.wastenomore.Trash.ActivityTrashHome" />
+        </activity>
+        <activity
+            android:name=".Gas.ActivityGasTips"
+            android:label="@string/title_activity_activity_gas_tips"
+            android:parentActivityName=".Gas.ActivityGasHome" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.cookie_computing.wastenomore.Gas.ActivityGasHome" />
+        </activity>
     </application>
 
 </manifest>

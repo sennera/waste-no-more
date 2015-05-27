@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.cookie_computing.wastenomore.R;
+import com.cookie_computing.wastenomore.Water.ActivityWaterTips;
 
 
 public class ActivityGasHome extends ActionBarActivity {
@@ -54,9 +55,9 @@ public class ActivityGasHome extends ActionBarActivity {
         startActivity(intent);
     }
 
-    /** Called when the user clicks the Facts button */
-//    public void goToGasFact(View view) {
-//        Intent intent = new Intent(this, ActivityGasFact.class);
-//        startActivity(intent);
-//    }
+    /** Called when the user clicks the Tips button */
+    public void goToTips(View view) {
+        Intent intent = new Intent(this, ActivityGasTips.class);
+        startActivity(intent);
+    }
 }

@@ -59,6 +59,12 @@ public class ActivityTrashHome extends ActionBarActivity {
         startActivity(intent);
     }
 
+    /** Called when the user clicks the Tips button */
+    public void goToTips(View view) {
+        Intent intent = new Intent(this, ActivityTrashTips.class);
+        startActivity(intent);
+    }
+
     /** Called when the user clicks the Facts button */
     public void goToFact(View view) {
         Intent intent = new Intent(this, ActivityTrashFact.class);

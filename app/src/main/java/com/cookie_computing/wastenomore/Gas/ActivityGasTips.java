@@ -1,4 +1,4 @@
-package com.cookie_computing.wastenomore.Water;
+package com.cookie_computing.wastenomore.Gas;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,23 +16,23 @@ import android.widget.TextView;
 
 import com.cookie_computing.wastenomore.R;
 
-
-public class ActivityWaterTips extends FragmentActivity {
+public class ActivityGasTips extends FragmentActivity {
 
     // When requested, this adapter returns a TrashFactFragment,
     // representing an object in the collection.
     PagerAdapter tipPagerAdapter;
     ViewPager viewPager;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_water_tips);
+        setContentView(R.layout.activity_gas_tips);
 
         // ViewPager and its adapters use support library
         // fragments, so use getSupportFragmentManager.
         tipPagerAdapter = new PagerAdapter(getSupportFragmentManager());
-        viewPager = (ViewPager) findViewById(R.id.water_tip_pager);
+        viewPager = (ViewPager) findViewById(R.id.tip_pager);
         viewPager.setAdapter(tipPagerAdapter);
     }
 
@@ -40,7 +40,7 @@ public class ActivityWaterTips extends FragmentActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_activity_water_tips, menu);
+        getMenuInflater().inflate(R.menu.menu_activity_gas_tips, menu);
         return true;
     }
 
@@ -63,7 +63,7 @@ public class ActivityWaterTips extends FragmentActivity {
      * Called when the user clicks the Home button
      */
     public void goHome(View view) {
-        Intent intent = new Intent(this, ActivityWaterHome.class);
+        Intent intent = new Intent(this, ActivityGasHome.class);
         startActivity(intent);
     }
 
@@ -84,7 +84,7 @@ public class ActivityWaterTips extends FragmentActivity {
 
         @Override
         public int getCount() {
-            return 5;
+            return 6;
         }
 
         @Override
@@ -110,30 +110,27 @@ public class ActivityWaterTips extends FragmentActivity {
             String fact = "";
             String source = "";
             if(page == 1) {
-                fact = getResources().getString(R.string.water_tip_1);
-                source = getResources().getString(R.string.water_tip_source);
+                fact = getResources().getString(R.string.gas_tip_1);
             } else if(page == 2) {
-                fact = getResources().getString(R.string.water_tip_2);
-                source = getResources().getString(R.string.water_tip_source);
+                fact = getResources().getString(R.string.gas_tip_2);
             } else if(page == 3) {
-                fact = getResources().getString(R.string.water_tip_3);
-                source = getResources().getString(R.string.water_tip_source);
+                fact = getResources().getString(R.string.gas_tip_3);
             } else if(page == 4) {
-                fact = getResources().getString(R.string.water_tip_4);
-                source = getResources().getString(R.string.water_tip_source);
+                fact = getResources().getString(R.string.gas_tip_4);
             } else if(page == 5) {
-                fact = getResources().getString(R.string.water_tip_5);
-                source = getResources().getString(R.string.water_tip_source);
+                fact = getResources().getString(R.string.gas_tip_5);
+            } else if(page == 6) {
+                fact = getResources().getString(R.string.gas_tip_6);
             }
             // Get the text view and set text for fact and source
             final TextView textView = (TextView) rootView.findViewById(R.id.fact);
             textView.setText(fact);
 
             final TextView textSourceView = (TextView) rootView.findViewById(R.id.factSource);
-            textSourceView.setText(source);
+            textSourceView.setText(getResources().getString(R.string.gas_tip_source));
 
             final TextView textPageNum = (TextView) rootView.findViewById(R.id.page);
-            String pageString = "Page " + page + " of 5";
+            String pageString = "Page " + page + " of 6";
             textPageNum.setText(pageString);
 
             return rootView;

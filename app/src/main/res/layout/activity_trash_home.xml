@@ -36,4 +36,18 @@
         android:onClick="goToFact"
         android:layout_weight="1.3"/>
 
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="4dp"
+        android:text="@string/tips"
+        android:textSize="25dp"
+        android:drawablePadding="10dip"
+        android:paddingLeft="15sp"
+        android:gravity="left|center_vertical"
+        android:drawableLeft="@drawable/lightbulb"
+        android:id="@+id/button6"
+        android:onClick="goToTips"
+        android:layout_weight="1.3"/>
+
 </LinearLayout>

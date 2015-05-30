@@ -38,8 +38,6 @@ public class ActivityWaterCheckIn extends ActionBarActivity {
         editHandDish.setText("" + (int) global.getTypicalHandDishes());
         final EditText editDishwasher = (EditText) findViewById(R.id.dishwasher_number);
         editDishwasher.setText("" + (int) global.getTypicalDishwasher());
-        final EditText editFaceWash = (EditText) findViewById(R.id.face_wash_min);
-        editFaceWash.setText("" + (int) global.getTypicalFaceWash());
         final EditText editTeeth = (EditText) findViewById(R.id.teeth_brushing_min);
         editTeeth.setText("" + (int) global.getTypicalBrushTeeth());
         final EditText editOther = (EditText) findViewById(R.id.other_running_min);
@@ -86,7 +84,7 @@ public class ActivityWaterCheckIn extends ActionBarActivity {
         double showerBathGals = getShowerGals() + getBathGals();
         double laundryGals = getLaundryGals();
         double dishWashingGals = getHandDishWashingGals() + getDishwasherGals();
-        double personalCare = getFaceWashGals() + getTeethBrushingGals() + getOtherRunningWaterGals();
+        double personalCare = getTeethBrushingGals() + getOtherRunningWaterGals();
 
         // Calculate the number of gallons used for that day to send with the Intent
         // Don't add in toilet gallons until we know if there's been a check-in today so it doesn't
@@ -194,14 +192,6 @@ public class ActivityWaterCheckIn extends ActionBarActivity {
         double runs = getNumFromEditText(R.id.dishwasher_number);
         global.setTypicalDishwasher(runs);
         return runs * 12.5;
-    }
-
-    // Get the number of gallons that were used from using face-washing today
-    public double getFaceWashGals(){
-        // 2 gal/min: http://www.epa.gov/WaterSense/pubs/indoor.html
-        double min = getNumFromEditText(R.id.face_wash_min);
-        global.setTypicalFaceWash(min);
-        return min * 2;
     }
 
     // Get the number of gallons that were used from using teeth-brushing today

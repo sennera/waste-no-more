@@ -29,6 +29,8 @@ public class ActivityGasTips extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gas_tips);
 
+
+
         // ViewPager and its adapters use support library
         // fragments, so use getSupportFragmentManager.
         tipPagerAdapter = new PagerAdapter(getSupportFragmentManager());
@@ -132,6 +134,9 @@ public class ActivityGasTips extends FragmentActivity {
             final TextView textPageNum = (TextView) rootView.findViewById(R.id.page);
             String pageString = "Page " + page + " of 6";
             textPageNum.setText(pageString);
+
+            final TextView textView2 = (TextView) rootView.findViewById(R.id.swipeToNext);
+            textView2.setText(R.string.swipe_tip);
 
             return rootView;
         }

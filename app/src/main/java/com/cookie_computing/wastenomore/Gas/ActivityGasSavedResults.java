@@ -30,16 +30,22 @@ public class ActivityGasSavedResults extends ActionBarActivity {
         textView.setTextSize(30);
         textView.setText(message);
 
+        String message2 = "It'll be added for your total for today. Look at your past saved gas to see how much you've saved!";
         final TextView textView2 = (TextView) findViewById(R.id.addedToWeekOrDayNote);
-        textView2.setText(R.string.day_results_small_text);
+        textView2.setText(message2);
+
+        Button button = (Button) findViewById(R.id.usageButton);
+        button.setText("Past Saved Gas");
 
         // Remove the Fact Button
-        Button button = (Button) findViewById(R.id.factButton);
-        ((RelativeLayout) button.getParent()).removeView(button);
+        Button button2 = (Button) findViewById(R.id.factButton);
+        ((RelativeLayout) button2.getParent()).removeView(button2);
 
         // Since fact button is gone, set what the past usage button is below
-        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) findViewById(R.id.usageButton).getLayoutParams();
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) button.getLayoutParams();
         params.addRule(RelativeLayout.BELOW, R.id.addedToWeekOrDayNote);
+
+
     }
 
 

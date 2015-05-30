@@ -43,11 +43,10 @@
     <string name="how_many_laundry">How many loads of laundry did you do today?</string>
     <string name="hand_dish_washing_question">How long did you spend hand-washing dishes today?</string>
     <string name="dishwasher_question">How many times did you run the dishwasher today?</string>
-    <string name="face_washing_question">How long did you spend washing your face today?</string>
     <string name="with_water_running">(With the water running)</string>
     <string name="teeth_brushing_question">How long did you have the water running while you brushed your teeth today?</string>
     <string name="other_running_water_question">Are there other times you used running water that haven\'t been accounted for? Add that time here.</string>
-    <string name="other_running_water_examples">(Washing hands, cleaning things, rinsing things, cooking, drinking&#8230;)</string>
+    <string name="other_running_water_examples">(Washing hands or face, shaving, cleaning things, rinsing things, cooking, drinking&#8230;)</string>
     <string name="restroom_question">Do you have a water-conserving toilet?</string>
     <string name="toilet_explanation">It would be labeled WaterSense.</string>
     <string name="minutes">minutes</string>
@@ -245,6 +244,7 @@
 
 
     <string name="swipe_fact">Swipe to see another fact</string>
+    <string name="swipe_tip">Swipe to see another tip</string>
 
     <color name="light_green">#CCFF99</color>
     <color name="dark_green">#003300</color>

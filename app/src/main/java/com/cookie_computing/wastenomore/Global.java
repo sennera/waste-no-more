@@ -40,14 +40,6 @@ public class Global extends Application {
         this.TYPICAL_DISHWASHER = TYPICAL_DISHWASHER;
     }
 
-    private double TYPICAL_FACE_WASH = 0.0;
-    public double getTypicalFaceWash() {
-        return TYPICAL_FACE_WASH;
-    }
-    public void setTypicalFaceWash(double TYPICAL_FACE_WASH) {
-        this.TYPICAL_FACE_WASH = TYPICAL_FACE_WASH;
-    }
-
     private double TYPICAL_BRUSH_TEETH = 0.0;
     public double getTypicalBrushTeeth() {
         return TYPICAL_BRUSH_TEETH;

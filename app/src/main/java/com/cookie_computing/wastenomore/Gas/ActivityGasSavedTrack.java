@@ -70,10 +70,10 @@ public class ActivityGasSavedTrack extends ActionBarActivity {
         Date[] days = getAscendingDates(data);
         double[] amounts = getAmountsAscendingByDate(data);
 
-        Date xMin = getMin(days);
-        Date xMax = getMax(days);
+//        Date xMin = getMin(days);
+//        Date xMax = getMax(days);
 
-        int avgUserAmount = (int) getAverage(amounts);
+//        int avgUserAmount = (int) getAverage(amounts);
 
 
         // Put data in the series
@@ -97,11 +97,11 @@ public class ActivityGasSavedTrack extends ActionBarActivity {
         renderer.setColor(Color.WHITE);
         renderer.setDisplayChartValues(true);
 
-        XYSeriesRenderer avgUserRenderer = new XYSeriesRenderer();
-        avgUserRenderer.setColor(Color.GREEN);
-        avgUserRenderer.setFillPoints(true);
-        avgUserRenderer.setLineWidth(4);
-        avgUserRenderer.setDisplayChartValues(false);
+//        XYSeriesRenderer avgUserRenderer = new XYSeriesRenderer();
+//        avgUserRenderer.setColor(Color.GREEN);
+//        avgUserRenderer.setFillPoints(true);
+//        avgUserRenderer.setLineWidth(4);
+//        avgUserRenderer.setDisplayChartValues(false);
 
 
         // Creating a XYMultipleSeriesRenderer to customize the whole chart
@@ -138,7 +138,7 @@ public class ActivityGasSavedTrack extends ActionBarActivity {
         multiRenderer.setXRoundedLabels(false);
 
         multiRenderer.addSeriesRenderer(renderer);
-        multiRenderer.addSeriesRenderer(avgUserRenderer);
+//        multiRenderer.addSeriesRenderer(avgUserRenderer);
 
         // Creating a combined chart with the chart types specified in types array
         final GraphicalView mChart;
